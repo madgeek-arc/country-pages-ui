@@ -26,17 +26,17 @@
 <!--            </div>-->
             <div id="navigation">
               <ul *ngIf="userInfo" class="uk-navbar-nav user_actions">
-                <li *ngIf="showArchive">
-                  <a class="uk-icon uk-animation-fade" [routerLink]="['/archive']" aria-expanded="false">
-                    <span class="uk-text-small uk-margin-small-right">Archive</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="uk-icon uk-animation-fade" [routerLink]="['/eoscreadiness/policies']" [queryParams]="{chart: '0'}"
-                     aria-expanded="false">
-                    <span class="uk-text-small uk-margin-small-right">EOSC Readiness</span>
-                  </a>
-                </li>
+<!--                <li *ngIf="showArchive">-->
+<!--                  <a class="uk-icon uk-animation-fade" [routerLink]="['/archive']" aria-expanded="false">-->
+<!--                    <span class="uk-text-small uk-margin-small-right">Archive</span>-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a class="uk-icon uk-animation-fade" [routerLink]="['/eoscreadiness/policies']" [queryParams]="{chart: '0'}"-->
+<!--                     aria-expanded="false">-->
+<!--                    <span class="uk-text-small uk-margin-small-right">EOSC Readiness</span>-->
+<!--                  </a>-->
+<!--                </li>-->
                 <li>
                   <a class="uk-icon" aria-expanded="false">
                     <span *ngIf="currentCoordinator || currentStakeholder" class="uk-text-small uk-margin-small-right">

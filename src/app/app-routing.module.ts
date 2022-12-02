@@ -13,16 +13,8 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'eoscreadiness',
-    loadChildren: () => import('./pages/eosc-readiness-dashboard/eosc-readiness-dashboard.module').then(m => m.EoscReadinessDashboardModule),
-  },
-  {
-    path: 'archive',
-    loadChildren: () => import('./pages/archive/archive.module').then(m => m.ArchiveModule)
-  },
-  {
     path: '',
-    loadChildren: () => import('../survey-tool/app/observatoryUi.module').then(m => m.ObservatoryUiModule)
+    loadChildren: () => import('../survey-tool/app/survey-tool.module').then(m => m.SurveyToolModule)
   }
 ];
 
