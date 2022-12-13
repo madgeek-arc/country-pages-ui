@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "observatory-ui": {
+    "country-pages-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/observatory-ui",
+            "outputPath": "dist/country-pages-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -107,10 +107,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "observatory-ui:build:production"
+              "browserTarget": "country-pages-ui:build:production"
             },
             "development": {
-              "browserTarget": "observatory-ui:build:development"
+              "browserTarget": "country-pages-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -118,7 +118,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "observatory-ui:build"
+            "browserTarget": "country-pages-ui:build"
           }
         },
         "test": {
@@ -142,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "observatory-ui"
+  "defaultProject": "country-pages-ui"
 }

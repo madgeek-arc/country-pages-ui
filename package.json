@@ -1,6 +1,6 @@
 {
-  "name": "observatory-ui",
-  "version": "0.1.0",
+  "name": "country-pages-ui",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",

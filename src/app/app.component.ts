@@ -7,7 +7,7 @@ import {AuthenticationService} from "../survey-tool/app/services/authentication.
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'observatory-ui';
+  title = 'country-pages-ui';
 
   constructor(private router: Router, private auth: AuthenticationService) {
     this.auth.redirect();
