@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:madgeek-arc/observatoryUI-subrepo.git
 	branch = master
-	commit = 20871fd79470b63a9b48b285052c95c3265efdff
+	commit = baab702bd1bcedee830af5fcf62240e300f34a6b
 	method = merge
 	cmdver = 0.4.3
 	parent = 40b0f486c044c8c418a8dacf6217d13bdfb6d336
