@@ -27,8 +27,9 @@ import UIkit from "uikit";
 
 export class SurveyComponent implements OnInit, OnChanges {
 
-  @Input() payload: any = null; // cant import specific project class in lib file
+  @Input() payload: any = null; // can't import specific project class in lib file
   @Input() model: Model = null;
+  @Input() subType: string = null;
   @Input() vocabulariesMap: Map<string, object[]> = null;
   @Input() subVocabularies: Map<string, object[]> = null;
   @Input() tabsHeader: string = null;
@@ -87,11 +88,14 @@ export class SurveyComponent implements OnInit, OnChanges {
           this.form.addControl(this.model.name, this.formControlService.toFormGroup(this.model.sections, true));
           break;
         }
-        this.form.addControl(this.model.sections[i].name, this.formControlService.toFormGroup(this.model.sections[i].subSections, true));
+        if (!this.model.sections[i].subType || this.model.sections[i].subType === this.subType) {
+          this.form.addControl(this.model.sections[i].name, this.formControlService.toFormGroup(this.model.sections[i].subSections, true));
+        }
       }
       if (this.payload?.answer) {
         for (let i = 0; i < this.model.sections.length; i++) {
-          this.prepareForm(this.payload.answer[this.model.sections[i].name], this.model.sections[i].subSections);
+          if (this.payload.answer[this.model.sections[i].name])
+            this.prepareForm(this.payload.answer[this.model.sections[i].name], this.model.sections[i].subSections);
         }
         this.form.patchValue(this.payload.answer);
         this.form.markAllAsTouched();
@@ -343,7 +347,7 @@ export class SurveyComponent implements OnInit, OnChanges {
         if (description === 'show')
           docDefinition.content.push(new Content(field.form.description.text, ['mt_3']));
       }
-      let answerValues = this.findVal(this.payload, field.name);
+      let answerValues = this.findVal(this.payload?.answer, field.name);
       if (field.typeInfo.type === 'radio') {
         let values = field.typeInfo.values
         // if (field.kind === 'conceal-reveal')
@@ -437,6 +441,8 @@ export class SurveyComponent implements OnInit, OnChanges {
   }
 
   findVal(obj, key) {
+    if (!obj)
+      return null;
     let seen = new Set, active = [obj];
     while (active.length) {
       let new_active = [], found = [];
