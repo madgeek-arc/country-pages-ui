@@ -22,25 +22,22 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
   surveyEntries: Paging<SurveyInfo>;
   surveyEntriesResults: SurveyInfo[];
   id: string = null;
+  loading = false;
 
-  selectedStakeholders: string[] = [];
-  selectedSurveys: string[] = [];
-
-  pageSize = 10;
-  totalPages = 0;
-  isPreviousPageDisabled = false;
-  isFirstPageDisabled = false;
-  isNextPageDisabled = false;
-  isLastPageDisabled = false;
+  // Filters
+  selectedStakeholder: string = null;
+  selectedSurvey: string = null;
+  validationStatus: string = '';
+  publishedStatus: string = '';
+  order: string = null;
 
   //Paging
+  pageSize = 10;
   total: number;
   currentPage = 1;
-  pageTotal: number;
+  totalPages: number = 0;
   pages: number[] = [];
   offset = 2;
-
-  loading = false;
 
   constructor(private userService: UserService, private surveyService: SurveyService, public route: ActivatedRoute,
               public router: Router) {
@@ -48,17 +45,20 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.loading = true;
+    this.updateURLParameters('orderField', 'modificationDate');
+    this.updateURLParameters('order', 'desc');
     this.subscriptions.push(
       this.route.params.subscribe(params => {
         this.subscriptions.push(
           this.route.queryParams.subscribe(
             qParams => {
               this.setUrlParams(qParams);
-                this.id = params['id'];
-                this.updateCoordinatorStakeholderParameter(this.id);
-                this.subscriptions.push(
+              this.id = params['id'];
+              this.updateCoordinatorStakeholderParameter(this.id);
+              this.subscriptions.push(
                 this.surveyService.getSurveyEntries(this.id, this.urlParameters).subscribe(surveyEntries => {
-                    this.updateSurveyEntriesList(surveyEntries);
+                    this.surveyEntries = surveyEntries;
+                    this.surveyEntriesResults = this.surveyEntries.results;
                   },
                   error => {console.error(error)},
                   () => {
@@ -92,93 +92,58 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
     this.surveyService.exportToCsv(this.surveyEntriesResults[0].surveyId);
   }
 
-  onSelect(variable) {
-    console.log(variable)
-  }
-
-  updateSurveyEntriesList(searchResults: Paging<SurveyInfo>) {
-
-    // INITIALISATIONS
-
-    this.surveyEntries = searchResults;
-    this.surveyEntriesResults = this.surveyEntries.results;
-
-    this.updatePagingURLParametersQuantity(this.pageSize);
-    this.currentPage = (searchResults.from / this.pageSize) + 1;
-    this.totalPages = Math.ceil(searchResults.total / this.pageSize);
-    if (this.currentPage === 1) {
-      this.isFirstPageDisabled = true;
-      this.isPreviousPageDisabled = true;
-    }
-    if (this.currentPage === this.totalPages) {
-      this.isLastPageDisabled = true;
-      this.isNextPageDisabled = true;
-    }
-  }
-
   updateCoordinatorStakeholderParameter(id: string) {
     let key: string;
     if (id.substring(0,2) === 'co') {
       key = 'coordinator';
-      if (this.urlParameters.find(param => param.key === key)) {
-        this.urlParameters.find(param => param.key === key).values = [id];
-      } else {
-        const parameter: URLParameter = {
-          key: 'coordinator',
-          values: [id]
-        };
-        this.urlParameters.push(parameter);
-      }
-    }
-    else {
+    } else {
       key = 'stakeholder';
-      if (this.urlParameters.find(param => param.key === key)) {
-        this.urlParameters.find(param => param.key === key).values = [id];
-      } else {
-        const parameter: URLParameter = {
-          key: 'stakeholder',
-          values: [id]
-        };
-        this.urlParameters.push(parameter);
-      }
+    }
+    if (this.urlParameters.find(param => param.key === key)) {
+      this.urlParameters.find(param => param.key === key).values = [id];
+    } else {
+      const parameter: URLParameter = {
+        key: key,
+        values: [id]
+      };
+      this.urlParameters.push(parameter);
     }
   }
 
-  updatePagingURLParameters(from: number) {
+  updateURLParameters(key: string, value: string | string[]) {
+    console.log('key: '+key);
+    console.log('value: '+value);
     let foundFromCategory = false;
     for (const urlParameter of this.urlParameters) {
-      if (urlParameter.key === 'from') {
+      if (urlParameter.key === key) {
         foundFromCategory = true;
         urlParameter.values = [];
-        urlParameter.values.push(from + '');
+        if (value instanceof Array) {
+          if (value.length === 0)
+            this.urlParameters.splice(this.urlParameters.indexOf(urlParameter), 1);
+          else
+            urlParameter.values = value;
+        } else {
+          if (value === '' || value === null)
+            this.urlParameters.splice(this.urlParameters.indexOf(urlParameter), 1);
+          else
+            urlParameter.values.push(value);
+        }
         break;
       }
     }
     if (!foundFromCategory) {
+      if (value === null || value === '' || value?.length === 0) {
+        return;
+      }
+      console.log('adding new url param');
       const newFromParameter: URLParameter = {
-        key: 'from',
-        values: [from + '']
+        key: key,
+        values: value instanceof Array ? value : [value]
       };
       this.urlParameters.push(newFromParameter);
     }
-  }
-
-  updatePagingURLParametersQuantity(quantity: number) {
-    let foundQuantityCategory = false;
-    for (const urlParameter of this.urlParameters) {
-      if (urlParameter.key === 'quantity') {
-        foundQuantityCategory = true;
-        urlParameter.values = [];
-        urlParameter.values.push(quantity + '');
-      }
-    }
-    if (!foundQuantityCategory) {
-      const newQuantityParameter: URLParameter = {
-        key: 'quantity',
-        values: [quantity + '']
-      };
-      this.urlParameters.push(newQuantityParameter);
-    }
+    console.log(this.urlParameters)
   }
 
   paginationInit() {
@@ -186,16 +151,16 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
     let addToStartCounter = 0;
     this.pages = [];
     this.currentPage = (this.surveyEntries.from / this.pageSize) + 1;
-    this.pageTotal = Math.ceil(this.surveyEntries.total / this.pageSize);
+    this.totalPages = Math.ceil(this.surveyEntries.total / this.pageSize);
     for ( let i = (+this.currentPage - this.offset); i < (+this.currentPage + 1 + this.offset); ++i ) {
       if ( i < 1 ) { addToEndCounter++; }
-      if ( i > this.pageTotal ) { addToStartCounter++; }
-      if ((i >= 1) && (i <= this.pageTotal)) {
+      if ( i > this.totalPages ) { addToStartCounter++; }
+      if ((i >= 1) && (i <= this.totalPages)) {
         this.pages.push(i);
       }
     }
     for ( let i = 0; i < addToEndCounter; ++i ) {
-      if (this.pages.length < this.pageTotal) {
+      if (this.pages.length < this.totalPages) {
         this.pages.push(this.pages.length + 1);
       }
     }
@@ -206,30 +171,36 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
     }
   }
 
+  filterSelection(key: string, value: string | string[]) {
+    this.updateURLParameters(key, value);
+    this.updateURLParameters('from', '0');
+    return this.navigateUsingParameters();
+  }
+
   goToPage(page: number) {
     this.currentPage = page;
     let from: number = (this.currentPage - 1) * this.pageSize
-    this.updatePagingURLParameters(from);
+    this.updateURLParameters('from', from.toString());
     return this.navigateUsingParameters();
   }
 
   previousPage() {
     // if (this.currentPage > 1) {
-      this.currentPage--;
-      let from: number = this.surveyEntries.from;
-      from -= this.pageSize;
-      this.updatePagingURLParameters(from);
-      return this.navigateUsingParameters();
+    this.currentPage--;
+    let from: number = this.surveyEntries.from;
+    from -= this.pageSize;
+    this.updateURLParameters('from', from.toString());
+    return this.navigateUsingParameters();
     // }
   }
 
   nextPage() {
     // if (this.currentPage < this.pageTotal) {
-      this.currentPage++;
-      let from: number = this.surveyEntries.from;
-      from += this.pageSize;
-      this.updatePagingURLParameters(from);
-      return this.navigateUsingParameters();
+    this.currentPage++;
+    let from: number = this.surveyEntries.from;
+    from += this.pageSize;
+    this.updateURLParameters('from', from.toString());
+    return this.navigateUsingParameters();
     // }
   }
 
@@ -253,6 +224,46 @@ export class CoordinatorsComponent implements OnInit, OnDestroy{
         this.urlParameters.push(urlParameter);
       }
     }
+    this.setFilters();
+  }
+
+  setFilters() {
+    let ordered: boolean = false;
+    for (let i = 0; i < this.urlParameters.length; i++) {
+      if (this.urlParameters[i].key === 'stakeholderId') {
+        this.selectedStakeholder = this.urlParameters[i].values[0];
+        continue;
+      }
+      if (this.urlParameters[i].key === 'surveyId') {
+        this.selectedSurvey = this.urlParameters[i].values[0];
+        continue;
+      }
+      if (this.urlParameters[i].key === 'validated') {
+        this.validationStatus = this.urlParameters[i].values[0];
+        continue;
+      }
+      if (this.urlParameters[i].key === 'published') {
+        this.publishedStatus = this.urlParameters[i].values[0];
+        continue;
+      }
+      if (this.urlParameters[i].key === 'order') {
+        ordered = true;
+        this.order = this.urlParameters[i].values[0];
+      }
+    }
+    // if (!ordered) {
+    //   console.log(this.urlParameters);
+    //   let urlParameter: URLParameter = {
+    //     key: 'orderField',
+    //     values: ['modificationDate']
+    //   };
+    //   this.urlParameters.push(urlParameter);
+    //   console.log(this.urlParameters);
+    //   urlParameter.key = 'order'
+    //   urlParameter.values = ['desc']
+    //   this.urlParameters.push(urlParameter);
+    //   console.log(this.urlParameters);
+    // }
   }
 
 }
