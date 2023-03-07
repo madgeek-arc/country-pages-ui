@@ -30,6 +30,7 @@ export class SurveyComponent implements OnInit, OnChanges {
   @Input() payload: any = null; // can't import specific project class in lib file
   @Input() model: Model = null;
   @Input() subType: string = null;
+  @Input() activeUsers: string[] = null;
   @Input() vocabulariesMap: Map<string, object[]> = null;
   @Input() subVocabularies: Map<string, object[]> = null;
   @Input() tabsHeader: string = null;
@@ -105,6 +106,11 @@ export class SurveyComponent implements OnInit, OnChanges {
         this.validate = false;
       } else if (this.validate) {
         UIkit.modal('#validation-modal').show();
+      }
+      if (this.activeUsers?.length > 0) {
+        setTimeout(()=> {
+          UIkit.tooltip('#concurrentEdit', {title: this.activeUsers.toString(), pos: 'bottom'});
+          }, 0);
       }
 
       setTimeout(() => {
@@ -232,7 +238,8 @@ export class SurveyComponent implements OnInit, OnChanges {
 
   pushToFormArray(name: string, length: number, arrayIndex?: number) {
     let field = this.getModelData(this.model.sections, name);
-    for (let i = 0; i < length-1; i++) {
+    while (this.getFormControl(this.form, name, arrayIndex).length < length) {
+    // for (let i = 0; i < length-1; i++) {
       this.getFormControl(this.form, name, arrayIndex).push(this.formControlService.createField(field));
     }
   }

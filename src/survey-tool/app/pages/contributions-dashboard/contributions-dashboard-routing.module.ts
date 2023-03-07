@@ -7,6 +7,8 @@ import { MyGroupComponent } from "./my-group/my-group.component";
 import {AuthenticationGuardService} from "../../services/authentication-guard.service";
 import {CoordinatorsComponent} from "./coordinators/coordinators.component";
 import {SurveysListComponent} from "./coordinators/surveys-list/surveys-list.component";
+import {HistoryComponent} from "./survey-history/history.component";
+import {SurveyCompareComponent} from "./compare/survey-compare.component";
 
 const contributionsDashboardRoutes: Routes = [
   {
@@ -52,8 +54,8 @@ const contributionsDashboardRoutes: Routes = [
         canActivate: [AuthenticationGuardService]
       },
       {
-        path: 'mySurveys/:surveyId/printPdf',
-        component: SurveyFormComponent,
+        path: 'mySurveys/:answerId/history',
+        component: HistoryComponent,
         canActivate: [AuthenticationGuardService]
       },
       {
@@ -69,6 +71,11 @@ const contributionsDashboardRoutes: Routes = [
       {
         path: 'surveyList',
         component: SurveysListComponent,
+        canActivate: [AuthenticationGuardService]
+      },
+      {
+        path: 'compare',
+        component: SurveyCompareComponent,
         canActivate: [AuthenticationGuardService]
       },
     ]
