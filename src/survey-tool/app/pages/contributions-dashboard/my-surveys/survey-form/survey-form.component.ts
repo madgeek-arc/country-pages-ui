@@ -5,7 +5,7 @@ import {SurveyComponent} from "../../../../../catalogue-ui/pages/dynamic-form/su
 import {Model} from "../../../../../catalogue-ui/domain/dynamic-form-model";
 import {SurveyService} from "../../../../services/survey.service";
 import {SurveyAnswer} from "../../../../domain/survey";
-import {Stakeholder, UserInfo} from "../../../../domain/userInfo";
+import {Stakeholder, UserActivity, UserInfo} from "../../../../domain/userInfo";
 import {WebsocketService} from "../../../../services/websocket.service";
 import {Subscriber} from "rxjs";
 import UIkit from "uikit";
@@ -23,7 +23,7 @@ export class SurveyFormComponent implements OnInit, OnDestroy {
   survey: Model = null;
   subType: string;
   surveyAnswers: SurveyAnswer = null
-  activeUsers: string[] = [];
+  activeUsers: UserActivity[] = [];
   userInfo: UserInfo = null;
   tabsHeader: string = null;
   mandatoryFieldsText: string = 'Fields with (*) are mandatory and must be completed in order for the survey to be validated.';
@@ -32,6 +32,7 @@ export class SurveyFormComponent implements OnInit, OnDestroy {
   stakeholderId: string = null;
   freeView = false;
   ready = false;
+  action: string = null;
 
   constructor(private surveyService: SurveyService, private route: ActivatedRoute,
               private router: Router, private wsService: WebsocketService) {}
@@ -58,10 +59,10 @@ export class SurveyFormComponent implements OnInit, OnDestroy {
               this.subscriptions.push(
                 this.wsService.msg.subscribe(
                   next => {
-                    if (next) {
-                      this.activeUsers = JSON.parse(next)
-                      this.activeUsers.splice(this.activeUsers.indexOf(this.userInfo.user.fullname), 1);
-                    }
+                    // if (next) {
+                      this.activeUsers = next;
+                      // console.log(this.activeUsers);
+                    // }
                   }
                 )
               );
@@ -77,8 +78,16 @@ export class SurveyFormComponent implements OnInit, OnDestroy {
                     error => {console.log(error)},
                     () => {
                       this.ready = true;
-                      if (!this.router.url.includes('/view')) {
-                        this.wsService.initializeWebSocketConnection(this.surveyAnswers.id);
+                      this.wsService.initializeWebSocketConnection(this.surveyAnswers.id, 'surveyAnswer');
+                      if (this.router.url.includes('/view')) {
+                        this.wsService.WsJoin(this.surveyAnswers.id, 'surveyAnswer', 'view');
+                        this.action = 'view';
+                      } else if (this.router.url.includes('/validate')) {
+                        this.wsService.WsJoin(this.surveyAnswers.id, 'surveyAnswer', 'validate');
+                        this.action = 'validate';
+                      } else {
+                        this.wsService.WsJoin(this.surveyAnswers.id, 'surveyAnswer', 'edit');
+                        this.action = 'edit';
                       }
                     }
                   )
@@ -103,6 +112,9 @@ export class SurveyFormComponent implements OnInit, OnDestroy {
         subscription.unsubscribe();
       }
     });
+    if (this.surveyAnswers?.id) {
+      this.wsService.WsLeave(this.surveyAnswers.id, 'surveyAnswer', this.action);
+    }
   }
 
   findSubType(stakeholders: Stakeholder[], stakeholderId: string): string {

@@ -13,6 +13,8 @@ export class CompareSurveysComponent implements OnChanges{
 
   @Input() payloadA: any = null;
   @Input() payloadB: any = null;
+  @Input() entryA: any = null;
+  @Input() entryB: any = null;
   @Input() model: Model = null;
   @Input() subType: string = null;
   @Input() vocabulariesMap: Map<string, object[]> = null;
@@ -28,11 +30,13 @@ export class CompareSurveysComponent implements OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.model && this.payloadA?.answer && this.payloadB?.answer) {
+    if (this.model && this.payloadA?.answer) {
       this.createForm(this.formA);
       this.patchForm(this.formA, this.payloadA.answer);
-      this.createForm(this.formB);
-      this.patchForm(this.formB, this.payloadB.answer);
+      if (this.payloadB?.answer) {
+        this.createForm(this.formB);
+        this.patchForm(this.formB, this.payloadB.answer);
+      }
       this.ready = true;
     } else {
       this.formA = this.fb.group({});
