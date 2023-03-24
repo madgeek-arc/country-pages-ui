@@ -7,9 +7,9 @@ export const environment = {
   beta: true,
   API_LOGIN: '/api/oauth2/authorization/eosc',
   API_ENDPOINT: '/api',
+  WS_ENDPOINT: '/api',
   STATS_API_ENDPOINT: 'https://stats.madgik.di.uoa.gr/stats-api/',
-  WS_ENDPOINT: 'http://localhost:8280/observatory',
-  projectName: 'Observatory',
+  projectName: 'CountryPages',
   profileName: 'eosc-obs',
   OSO_STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
   osoStatsProfileName: 'observatory'
