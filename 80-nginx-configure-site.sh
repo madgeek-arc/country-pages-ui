@@ -94,10 +94,7 @@ else
             EMAIL_ARG="-m $SSL_EMAIL"
         fi
 
-        certbot install --cert-name $SERVER_NAME || certbot --nginx -d $SERVER_NAME --non-interactive --agree-tos $EMAIL_ARG
+        ((certbot install --cert-name $SERVER_NAME || certbot --nginx -d $SERVER_NAME --non-interactive --agree-tos $EMAIL_ARG) && nginx -t && cat $PROXY_CONF_FILE && nginx -s reload) &
 
-        nginx -t
-        cat $PROXY_CONF_FILE
-        nginx -s reload
     fi
 fi
