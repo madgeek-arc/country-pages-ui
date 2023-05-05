@@ -1,17 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {FormControlService} from "../../services/form-control.service";
 import {Section, Field, Model, Tabs} from "../../domain/dynamic-form-model";
-import {
-  Columns,
-  Content,
-  DocDefinition,
-  PdfImage,
-  PdfMetadata,
-  PdfTable,
-  TableDefinition
-} from "../../domain/PDFclasses";
+import {Columns, Content, DocDefinition, PdfImage, PdfMetadata, PdfTable, TableDefinition} from "../../domain/PDFclasses";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import BitSet from "bitset";
@@ -49,22 +41,24 @@ export class SurveyComponent implements OnInit, OnChanges {
   editMode: boolean = false;
   bitset: Tabs = new Tabs;
 
-  ready = false;
-  readonly : boolean = false;
-  validate : boolean = false;
+  ready: boolean = false;
+  readonly: boolean = false;
+  freeView: boolean = false;
+  validate: boolean = false;
   errorMessage = '';
   successMessage = '';
 
   form: FormGroup;
 
-  constructor(private formControlService: FormControlService, private fb: FormBuilder, private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private formControlService: FormControlService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({});
   }
 
   ngOnInit() {
     if (this.router.url.includes('/view')) {
       this.readonly = true;
+    } else if (this.router.url.includes('/freeView')) {
+      this.freeView = true;
     } else if (this.router.url.includes('/validate')) {
       this.validate = true;
     }
@@ -109,6 +103,12 @@ export class SurveyComponent implements OnInit, OnChanges {
       } else if (this.validate) {
         UIkit.modal('#validation-modal').show();
       }
+      if (this.readonly) {
+        this.form.disable();
+        this.form.markAsUntouched();
+      }
+      this.ready = true;
+
       if (this.activeUsers?.length > 0) {
         setTimeout(()=> {
           let users = [];
@@ -116,16 +116,9 @@ export class SurveyComponent implements OnInit, OnChanges {
             users.push(' '+user.fullname);
           });
           UIkit.tooltip('#concurrentEdit', {title: users.toString(), pos: 'bottom'});
-          }, 0);
+        }, 0);
       }
 
-      setTimeout(() => {
-        if (this.readonly) {
-          this.form.disable();
-          this.form.markAsUntouched();
-        }
-      }, 0);
-      this.ready = true;
     }
   }
 
@@ -198,6 +191,8 @@ export class SurveyComponent implements OnInit, OnChanges {
   }
 
   showUnsavedChangesPrompt(chapter: Section) {
+    if (this.readonly || this.freeView)
+      return;
     if (this.chapterChangeMap.get(this.currentChapter.id)) {
       this.chapterForSubmission = this.currentChapter;
       UIkit.modal('#unsaved-changes-modal').show();
@@ -245,7 +240,6 @@ export class SurveyComponent implements OnInit, OnChanges {
   pushToFormArray(name: string, length: number, arrayIndex?: number) {
     let field = this.getModelData(this.model.sections, name);
     while (this.getFormControl(this.form, name, arrayIndex).length < length) {
-    // for (let i = 0; i < length-1; i++) {
       this.getFormControl(this.form, name, arrayIndex).push(this.formControlService.createField(field));
     }
   }
@@ -291,10 +285,12 @@ export class SurveyComponent implements OnInit, OnChanges {
           return abstractControl as FormArray;
         } else if (key !== name) {
           if (abstractControl instanceof FormArray) {
-            if (abstractControl.value.length > position) {
+            if (abstractControl.controls.length > position) {
               abstractControl = this.getFormControl(abstractControl.controls[position] as FormGroup | FormArray, name, position);
               if (abstractControl !== null)
                 return abstractControl;
+            } else {
+              abstractControl = null;
             }
           } else {
             abstractControl = this.getFormControl(abstractControl, name, position);
