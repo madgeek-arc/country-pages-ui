@@ -1,0 +1,13 @@
+<div class="uk-container">
+  <div>
+    question3-1-1: {{surveyAnswer?.answer['Chapter Name']['question3']['question3-1']['question3-1-1']}}
+  </div>
+  <div>
+    question3-1-4:
+    <span *ngFor="let element of surveyAnswer?.answer['Chapter Name']['question3']['question3-1']['question3-1-4']">
+      {{element + ','}}
+    </span>
+  </div>
+</div>
+
+<pre>{{surveyAnswer?.answer | json}}</pre>

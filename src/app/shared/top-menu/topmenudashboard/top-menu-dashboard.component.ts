@@ -4,10 +4,10 @@ import {UserService} from "../../../../survey-tool/app/services/user.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../../../survey-tool/app/services/authentication.service";
 import {PrivacyPolicyService} from "../../../../survey-tool/app/services/privacy-policy.service";
-
-import * as UIkit from 'uikit';
 import {AcceptedPrivacyPolicy} from "../../../../survey-tool/app/domain/privacy-policy";
 import {Subscriber} from "rxjs";
+
+import * as UIkit from 'uikit';
 
 @Component({
   selector: 'app-top-menu-dashboard',
