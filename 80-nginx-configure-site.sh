@@ -81,6 +81,7 @@ else
     if [ "$ENABLE_SSL" = "TRUE" ]; then export CACHE_CONF=$(echo "$CACHE_CONFIGURATION"); fi
     envsubst '${ADD_SERVER_NAME} ${ADD_PROXY_API} ${ADD_PROXY_STATS_API} ${CACHE_CONF}' < $CONF_TMPL > $PROXY_CONF_FILE
 
+    rm /etc/nginx/conf.d/default.conf || echo "File '/etc/nginx/conf.d/default.conf' already deleted. OK"
     nginx -t
     cat $PROXY_CONF_FILE
     nginx -s reload
