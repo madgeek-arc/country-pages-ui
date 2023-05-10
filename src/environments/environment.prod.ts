@@ -3,7 +3,7 @@ export const environment = {
   beta: false,
   API_LOGIN: '/api/oauth2/authorization/openaire',
   API_ENDPOINT: '/api',
-  WS_ENDPOINT: '/api',
+  WS_ENDPOINT: '/api/websocket',
   STATS_API_ENDPOINT: '/stats/api/',
   projectName: 'CountryPages',
   profileName: 'country-pages',

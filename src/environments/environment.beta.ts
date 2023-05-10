@@ -7,7 +7,7 @@ export const environment = {
   beta: true,
   API_LOGIN: '/api/oauth2/authorization/openaire',
   API_ENDPOINT: '/api',
-  WS_ENDPOINT: '/api',
+  WS_ENDPOINT: '/api/websocket',
   STATS_API_ENDPOINT: 'https://stats.madgik.di.uoa.gr/stats-api/',
   projectName: 'CountryPages',
   profileName: 'country-pages',
