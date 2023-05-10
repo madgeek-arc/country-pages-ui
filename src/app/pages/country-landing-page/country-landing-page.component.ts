@@ -23,9 +23,13 @@ export class CountryLandingPageComponent implements OnInit {
       params => {
         this.countryCode = params['code'];
         this.stakeholderId = 'sh-country-'+this.countryCode;
-        this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
+        // this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
+        this.surveyService.getSurveys('type', 'country').subscribe(
           next => {
             this.surveyId = next.results[0].id;
+            // TODO: REMOVE LINE BELLOW
+            this.surveyId = 'm-GPFhURKK';
+            // TODO: REMOVE LINE ABOVE
             this.surveyService.getLatestAnswer(this.stakeholderId, this.surveyId).subscribe(
               res=> {
                 this.surveyAnswer = res;

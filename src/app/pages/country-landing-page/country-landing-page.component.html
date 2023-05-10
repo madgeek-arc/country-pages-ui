@@ -1,11 +1,11 @@
 <div class="uk-container">
   <div>
-    question3-1-1: {{surveyAnswer?.answer['Chapter Name']['question3']['question3-1']['question3-1-1']}}
+    question1: {{surveyAnswer?.answer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question1']}}
   </div>
   <div>
-    question3-1-4:
-    <span *ngFor="let element of surveyAnswer?.answer['Chapter Name']['question3']['question3-1']['question3-1-4']">
-      {{element + ','}}
+    question11:
+    <span *ngFor="let element of surveyAnswer?.answer['OPEN SCIENCE POLICY']['Question11']">
+      {{element['Question11-1'] + ','}}
     </span>
   </div>
 </div>
