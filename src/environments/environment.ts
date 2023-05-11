@@ -7,7 +7,7 @@ export const environment = {
   beta: false,
   API_LOGIN: 'http://localhost:8280/observatory/login',
   API_ENDPOINT: '/observatory',
-  STATS_API_ENDPOINT: 'http://dl123.madgik.di.uoa.gr/stats/api/',
+  STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
   WS_ENDPOINT: 'http://localhost:8280/observatory',
   // STATS_API_ENDPOINT: 'https://stats.madgik.di.uoa.gr/stats-api/',
   projectName: 'Observatory',

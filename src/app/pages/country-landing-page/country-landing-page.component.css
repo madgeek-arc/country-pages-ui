@@ -1,0 +1,65 @@
+.small-flag-image {
+  box-shadow: 5px 5px 15px #E0E1ED;
+  border: 2px solid #EAEAEA;
+  border-radius: 100px;
+}
+
+.flag-image {
+  box-shadow: 5px 5px 15px #E0E1ED;
+  border: 2px solid #EAEAEA;
+  border-radius: 100px;
+}
+
+.uk-card-primary {
+  background-color: var(--eosc-observatory-primary-color);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.uk-tab {
+  border-bottom: 1px solid transparent;
+  position: relative;
+}
+
+.uk-tab::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 0;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.uk-tab > * > a {
+  padding: 15px 20px;
+  line-height: 20px;
+}
+
+.uk-tab > .uk-active > a {
+  border-bottom-color: var(--eosc-observatory-primary-color);
+}
+
+.uk-subnav-pill > * > :first-child {
+  padding: 10px 15px;
+  /*background: transparent;*/
+  background-color: #EAEAEA;
+  border-radius: 6px;
+  color: #999;
+}
+
+.uk-subnav-pill > .uk-active > a {
+  background-color: var(--eosc-observatory-primary-color);
+  color: #fff;
+}
+
+/********* MOBILE ********/
+@media only screen and (max-width: 960px) {
+  .overviewMobile .number.big {
+    font-size: 24px;
+  }
+}

@@ -2,10 +2,14 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {SurveyService} from "../../../survey-tool/app/services/survey.service";
 import {SurveyAnswer} from "../../../survey-tool/app/domain/survey";
+import { CountryPageOverviewData } from "src/app/domain/external-info-data";
+import {DataService} from "../services/data.service";
+import {DataHandlerService} from "../services/data-handler.service";
 
 @Component({
   selector: 'app-country-landing-page',
-  templateUrl: 'country-landing-page.component.html'
+  templateUrl: 'country-landing-page.component.html',
+  styleUrls: ['./country-landing-page.component.css'],
 })
 
 export class CountryLandingPageComponent implements OnInit {
@@ -15,7 +19,10 @@ export class CountryLandingPageComponent implements OnInit {
   surveyId: string = null;
   surveyAnswer: SurveyAnswer = null;
 
-  constructor(private route: ActivatedRoute, private surveyService: SurveyService) {
+  countryPageOverviewData: CountryPageOverviewData;
+
+  constructor(private route: ActivatedRoute, private surveyService: SurveyService,
+              private dataService: DataService, private dataHandlerService: DataHandlerService) {
   }
 
   ngOnInit() {
@@ -35,7 +42,16 @@ export class CountryLandingPageComponent implements OnInit {
                 this.surveyAnswer = res;
               }
             );
-          })
+          });
+
+        this.dataService.getCountryPageOverviewData(this.countryCode).subscribe(
+          rawData => {
+            this.countryPageOverviewData = this.dataHandlerService.convertRawDataToCountryPageOverviewData(rawData);
+            console.log(this.countryPageOverviewData.name);
+          }, error => {
+            console.log(error);
+          }
+        );
       }
     );
   }

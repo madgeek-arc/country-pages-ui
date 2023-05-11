@@ -10,6 +10,8 @@ import {UserService} from "../survey-tool/app/services/user.service";
 import {SharedModule} from "./shared/shared.module";
 import {HttpInterceptorService} from "./pages/services/http-interceptor.service";
 import {CountryLandingPageComponent} from "./pages/country-landing-page/country-landing-page.component";
+import {DataService} from "./pages/services/data.service";
+import {DataHandlerService} from "./pages/services/data-handler.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {CountryLandingPageComponent} from "./pages/country-landing-page/country-
       useClass: HttpInterceptorService,
       multi: true
     },
-    UserService
+    UserService,
+    DataService,
+    DataHandlerService
   ],
   bootstrap: [AppComponent]
 })
