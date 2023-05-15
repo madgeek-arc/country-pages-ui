@@ -34,9 +34,6 @@ export class CountryLandingPageComponent implements OnInit {
         this.surveyService.getSurveys('type', 'country').subscribe(
           next => {
             this.surveyId = next.results[0].id;
-            // TODO: REMOVE LINE BELLOW
-            this.surveyId = 'm-GPFhURKK';
-            // TODO: REMOVE LINE ABOVE
             this.surveyService.getLatestAnswer(this.stakeholderId, this.surveyId).subscribe(
               res=> {
                 this.surveyAnswer = res;
