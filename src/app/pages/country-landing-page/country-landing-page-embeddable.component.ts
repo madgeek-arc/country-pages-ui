@@ -1,18 +1,18 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {SurveyService} from "../../../survey-tool/app/services/survey.service";
-import {SurveyAnswer, SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
+import {SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 import {DataService} from "../services/data.service";
 import {DataHandlerService} from "../services/data-handler.service";
 
 @Component({
-  selector: 'app-country-landing-page',
-  templateUrl: 'country-landing-page.component.html',
+  selector: 'app-country-landing-page-embeddable',
+  templateUrl: 'country-landing-page-embeddable.component.html',
   styleUrls: ['./country-landing-page.component.css'],
 })
 
-export class CountryLandingPageComponent implements OnInit {
+export class CountryLandingPageEmbeddableComponent implements OnInit {
 
   countryCode: string = null;
   stakeholderId: string = null;

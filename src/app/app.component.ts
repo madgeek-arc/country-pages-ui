@@ -21,4 +21,7 @@ export class AppComponent {
     return (this.router.url.startsWith('/eoscreadiness'));
   }
 
+  isEmbedRoute() {
+    return (this.router.url.startsWith('/embeddable'));
+  }
 }

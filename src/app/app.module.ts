@@ -12,20 +12,28 @@ import {HttpInterceptorService} from "./pages/services/http-interceptor.service"
 import {CountryLandingPageComponent} from "./pages/country-landing-page/country-landing-page.component";
 import {DataService} from "./pages/services/data.service";
 import {DataHandlerService} from "./pages/services/data-handler.service";
+import {CountryLandingPageContentComponent} from "./pages/country-landing-page/country-landing-page-content.component";
+import {
+  CountryLandingPageEmbeddableComponent
+} from "./pages/country-landing-page/country-landing-page-embeddable.component";
+import {CatalogueUiSharedModule} from "../survey-tool/catalogue-ui/shared/catalogue-ui-shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountryLandingPageComponent
+    CountryLandingPageComponent,
+    CountryLandingPageContentComponent,
+    CountryLandingPageEmbeddableComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    SurveyToolModule,
-    NgxMatomoTrackerModule.forRoot({trackerUrl: '', siteId: ''}),
-    NgxMatomoRouterModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule,
+        SurveyToolModule,
+        NgxMatomoTrackerModule.forRoot({trackerUrl: '', siteId: ''}),
+        NgxMatomoRouterModule,
+        CatalogueUiSharedModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
