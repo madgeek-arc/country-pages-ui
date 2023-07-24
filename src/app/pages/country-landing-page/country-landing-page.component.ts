@@ -35,8 +35,7 @@ export class CountryLandingPageComponent implements OnInit {
         if (params['show']) {
           this.showFullContent = params['show'];
         }
-        console.log(location.host);
-        this.embedUrl = location.host + `/embeddable/country/${this.countryCode}/showFull/`
+        this.embedUrl = location.origin + `/embeddable/country/${this.countryCode}/showFull/`
         this.stakeholderId = 'sh-country-'+this.countryCode;
         // this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
         this.surveyService.getSurveys('type', 'country').subscribe(
