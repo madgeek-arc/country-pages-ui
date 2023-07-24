@@ -15,7 +15,9 @@ import {DataHandlerService} from "../services/data-handler.service";
 export class CountryLandingPageComponent implements OnInit {
 
   countryCode: string = null;
+  showFullContent: string = null;
   stakeholderId: string = null;
+  embedUrl: string = null;
   surveyId: string = null;
   surveyAnswer: Object = null;
   surveyAnswerMetadata: SurveyAnswerPublicMetadata = null;
@@ -30,6 +32,11 @@ export class CountryLandingPageComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this.countryCode = params['code'];
+        if (params['show']) {
+          this.showFullContent = params['show'];
+        }
+        console.log(location.host);
+        this.embedUrl = location.host + `/embeddable/country/${this.countryCode}/showFull/`
         this.stakeholderId = 'sh-country-'+this.countryCode;
         // this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
         this.surveyService.getSurveys('type', 'country').subscribe(

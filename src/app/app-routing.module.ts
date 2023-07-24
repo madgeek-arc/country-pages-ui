@@ -21,8 +21,8 @@ const routes: Routes = [
     component: CountryLandingPageComponent
   },
   {
-    path: 'embeddable/country/:code',
-    component: CountryLandingPageEmbeddableComponent
+    path: 'embeddable/country/:code/showFull/:show',
+    component: CountryLandingPageComponent
   },
   {
     path: '',

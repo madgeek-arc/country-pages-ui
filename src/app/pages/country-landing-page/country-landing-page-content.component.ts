@@ -15,6 +15,6 @@ export class CountryLandingPageContentComponent {
   @Input('surveyAnswerMetadata') surveyAnswerMetadata: SurveyAnswerPublicMetadata = null;
   @Input('countryPageOverviewData') countryPageOverviewData: CountryPageOverviewData;
 
-  @Input('displayFullContent') displayFullContent: boolean = true;
+  @Input('displayFullContent') displayFullContent: string = null;
 
 }
