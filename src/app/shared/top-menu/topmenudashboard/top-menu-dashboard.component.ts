@@ -120,6 +120,10 @@ export class TopMenuDashboardComponent implements OnInit, OnChanges, OnDestroy {
     return this.userInfo.coordinators.filter(c => c.type === name).length > 0;
   }
 
+  logInButton() {
+    this.authentication.login();
+  }
+
   logout() {
     this.authentication.logout();
   }

@@ -79,6 +79,9 @@
                     </ul>
                   </div>
                 </li>
+                <li *ngIf="!userInfo" class="uk-animation-fade">
+                  <a class="uk-button uk-button-link" (click)="logInButton()">Login</a>
+                </li>
               </ul>
             </div>
           </div>
