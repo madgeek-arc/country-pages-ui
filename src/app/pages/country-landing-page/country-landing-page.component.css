@@ -26,7 +26,7 @@
   position: relative;
 }
 
-.uk-tab::before {
+.horizontal-tabs.uk-tab::before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -42,12 +42,16 @@
   /*font-size: 18px;*/
 }
 
-.uk-tab li a:hover {
+.horizontal-tabs.uk-tab li a:hover {
   border-bottom: 2px solid var(--eosc-observatory-secondary-color);
 }
 
-.uk-tab > .uk-active > a {
+.horizontal-tabs.uk-tab > .uk-active > a {
   border-bottom: 2px solid var(--eosc-observatory-primary-color);
+  font-weight: 600;
+}
+
+.uk-tab-right.uk-tab > .uk-active > a {
   font-weight: 600;
 }
 
@@ -78,4 +82,16 @@ pre {
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
+}
+
+.osobservatory-button {
+  /*background: #EC4386 0% 0% no-repeat padding-box;*/
+  border-radius: 6px;
+  /*color: var(--white);*/
+  color: #EC4386 !important;
+}
+
+.osobservatory-button:hover {
+  /*background: #CA4D9A 0% 0% no-repeat padding-box;*/
+  color: #CA4D9A !important;
 }
