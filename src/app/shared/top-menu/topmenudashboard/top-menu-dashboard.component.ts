@@ -33,6 +33,18 @@ export class TopMenuDashboardComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+
+    this.subscriptions.push(
+      this.userService.getUserInfo().subscribe(
+        res => {
+          this.userService.setUserInfo(res);
+          this.userInfo = res;
+          this.userService.userId = this.userInfo.user.email;
+        }, error => {
+          console.error(error);
+        }
+      )
+    );
     this.subscriptions.push(
       this.userService.currentStakeholder.subscribe(next => {
         this.currentStakeholder = !!next ? next : JSON.parse(sessionStorage.getItem('currentStakeholder'));
