@@ -26,7 +26,7 @@
   position: relative;
 }
 
-.uk-tab::before {
+.horizontal-tabs.uk-tab::before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -38,10 +38,21 @@
 .uk-tab > * > a {
   padding: 15px 20px;
   line-height: 20px;
+  color: var(--black);
+  /*font-size: 18px;*/
 }
 
-.uk-tab > .uk-active > a {
-  border-bottom-color: var(--eosc-observatory-primary-color);
+.horizontal-tabs.uk-tab li a:hover {
+  border-bottom: 2px solid var(--eosc-observatory-secondary-color);
+}
+
+.horizontal-tabs.uk-tab > .uk-active > a {
+  border-bottom: 2px solid var(--eosc-observatory-primary-color);
+  font-weight: 600;
+}
+
+.uk-tab-right.uk-tab > .uk-active > a {
+  font-weight: 600;
 }
 
 .uk-subnav-pill > * > :first-child {
@@ -49,7 +60,7 @@
   /*background: transparent;*/
   background-color: #EAEAEA;
   border-radius: 6px;
-  color: #999;
+  color: var(--black);
 }
 
 .uk-subnav-pill > .uk-active > a {
@@ -62,4 +73,25 @@
   .overviewMobile .number.big {
     font-size: 24px;
   }
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.osobservatory-button {
+  /*background: #EC4386 0% 0% no-repeat padding-box;*/
+  border-radius: 6px;
+  /*color: var(--white);*/
+  color: #EC4386 !important;
+}
+
+.osobservatory-button:hover {
+  /*background: #CA4D9A 0% 0% no-repeat padding-box;*/
+  color: #CA4D9A !important;
 }

@@ -134,7 +134,12 @@
                 <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
 
                 <div class="indicator uk-grid-margin">
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</h5>
+                  <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">
+                    <span>{{countryPageOverviewData.ec_fundedProjects}}</span>
+                    <picture>
+                      <img class="el-image" src="https://www.openaire.eu/templates/yootheme/cache/eb/flag_yellow_low-eb85c46c.jpeg" width="39" height="26">
+                    </picture>
+                  </h5>
                   <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
                   <div class="uk-text-light uk-text-muted">projects funded by the European Commission since 2013</div>
                 </div>
@@ -202,17 +207,24 @@
   </div>
 </div>
 
-<div class="uk-section uk-section-primary uk-section-medium uk-preserve-color">
+<div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
   <div class="uk-container uk-container-expand">
 
     <div *ngIf="surveyAnswer">
 
-      <ul uk-tab data-uk-tab="{connect:'#sections_tabbed',animation: 'slide-bottom'}">
+      <ul uk-tab data-uk-tab="{connect:'#sections_tabbed',animation: 'slide-bottom'}" class="horizontal-tabs">
         <li class="uk-active"><a href="#">Overview</a></li>
         <li><a href="#">Policies</a></li>
         <li><a href="#">Infrastructure</a></li>
         <li><a>Skills</a></li>
         <li><a>About this page</a></li>
+        <div class="uk-margin-small-bottom" style="position: absolute; right: 0; bottom: 5px">
+          <a class="uk-button uk-button-default osobservatory-button">
+            <img src="../assets/images/logos/OS_Logo_small.svg" width="20" class="uk-margin-small-right">
+            <span>Open Science Observatory</span>
+          </a>
+        </div>
+
       </ul>
 
       <ul id="sections_tabbed" class="uk-switcher">
@@ -234,64 +246,112 @@
             </li>
 
             <li>
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']">
-                <div class="uk-margin-large-top uk-text-secondary">Research Funding Organisations</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question2-1']"></div>
-                </div>
-              </ng-container>
 
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']">
-                <div class="uk-margin-large-top uk-text-secondary">Research Performing Organisations</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question3-1']"></div>
+              <div class="uk-grid uk-flex uk-margin-large-top">
+                <div class="uk-width-1-4 uk-flex-last">
+                  <div class="tabsTitle uk-margin-bottom">Content</div>
+                  <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_overview_keyactors">
+                    <li class="uk-active"><a href="#">Research Funding Organisations</a></li>
+                    <li><a href="#">Research Performing Organisations</a></li>
+                    <li><a href="#">Research Support Organisations</a></li>
+                    <li><a href="#">Other Organisations</a></li>
+                  </ul>
                 </div>
-              </ng-container>
-
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']">
-                <div class="uk-margin-large-top uk-text-secondary">Research Support Organisations</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question4-1']"></div>
+                <div class="uk-width-3-4">
+                  <ul id="sub_sections_overview_keyactors" class="uk-switcher">
+                    <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']">
+                        <div class="uk-text-secondary">Research Funding Organisations</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question2-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']">
+                        <div class="uk-text-secondary">Research Performing Organisations</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question3-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']">
+                        <div class="uk-text-secondary">Research Support Organisations</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question4-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']">
+                        <div class="uk-text-secondary">Other Organisations</div>
+                        <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top"></div>
+                      </ng-container>
+                    </li>
+                  </ul>
                 </div>
-              </ng-container>
 
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']">
-                <div class="uk-margin-large-top uk-text-secondary">Other Organisations</div>
-                <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top"></div>
-              </ng-container>
+              </div>
+
             </li>
 
             <li>
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']">
-                <div class="uk-margin-large-top uk-text-secondary">EOSC National Initiative</div>
-                <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']['Question5-1']" class="uk-margin-medium-top"></div>
-              </ng-container>
 
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']">
-                <div class="uk-margin-large-top uk-text-secondary">Open Science and FAIR National Initiatives</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question6-1']"></div>
+              <div class="uk-grid uk-flex uk-margin-large-top">
+                <div class="uk-width-1-4 uk-flex-last">
+                  <div class="tabsTitle uk-margin-bottom">Content</div>
+                  <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_overview_initiatives">
+                    <li class="uk-active"><a href="#">EOSC National Initiative</a></li>
+                    <li><a href="#">Open Science and FAIR National Initiatives</a></li>
+                    <li><a href="#">Open Access Publishing</a></li>
+                    <li><a href="#">Regional / EC Initiatives</a></li>
+                    <li><a href="#">Global Initiatives</a></li>
+                  </ul>
                 </div>
-              </ng-container>
-
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']">
-                <div class="uk-margin-large-top uk-text-secondary">Open Access Publishing</div>
-                <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']" class="uk-margin-medium-top"></div>
-              </ng-container>
-
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']">
-                <div class="uk-margin-large-top uk-text-secondary">Regional / EC Initiatives</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question8-1']"></div>
+                <div class="uk-width-3-4">
+                  <ul id="sub_sections_overview_initiatives" class="uk-switcher">
+                    <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']">
+                        <div class="uk-text-secondary">EOSC National Initiative</div>
+                        <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']['Question5-1']" class="uk-margin-medium-top"></div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']">
+                        <div class="uk-text-secondary">Open Science and FAIR National Initiatives</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question6-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']">
+                        <div class="uk-text-secondary">Open Access Publishing</div>
+                        <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']" class="uk-margin-medium-top"></div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']">
+                        <div class="uk-text-secondary">Regional / EC Initiatives</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question8-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']">
+                        <div class="uk-text-secondary">Global Initiatives</div>
+                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']" class="uk-margin-medium-top">
+                          <div [innerHTML]="element['Question31-1']"></div>
+                        </div>
+                      </ng-container>
+                    </li>
+                  </ul>
                 </div>
-              </ng-container>
 
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']">
-                <div class="uk-margin-large-top uk-text-secondary">Global Initiatives</div>
-                <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']" class="uk-margin-medium-top">
-                  <div [innerHTML]="element['Question31-1']"></div>
-                </div>
-              </ng-container>
+              </div>
+
             </li>
 
             <li>
@@ -304,124 +364,203 @@
 
         <li aria-hidden="true" class="" style="animation-duration: 200ms;">
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question10']">
-            <div class="uk-margin-large-top uk-text-secondary">Overview</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question10']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question11']">
-            <div class="uk-margin-large-top uk-text-secondary">National Policy and Legislation</div>
-            <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question11']" class="uk-margin-medium-top">
-              <div [innerHTML]="element['Question11-1']"></div>
+          <div class="uk-grid uk-flex uk-margin-large-top">
+            <div class="uk-width-1-4 uk-flex-last">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_policies">
+                <li class="uk-active"><a href="#">Overview</a></li>
+                <li><a href="#">National Policy and Legislation</a></li>
+                <li><a href="#">Funder Policies</a></li>
+                <li><a href="#">Institutional policies</a></li>
+              </ul>
             </div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question12']">
-            <div class="uk-margin-large-top uk-text-secondary">Funder Policies</div>
-            <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top">
-              <div [innerHTML]="element['Question12-1']"></div>
+            <div class="uk-width-3-4">
+              <ul id="sub_sections_policies" class="uk-switcher">
+                <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question10']">
+                    <div class="uk-text-secondary">Overview</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question10']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question11']">
+                    <div class="uk-text-secondary">National Policy and Legislation</div>
+                    <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question11']" class="uk-margin-medium-top">
+                      <div [innerHTML]="element['Question11-1']"></div>
+                    </div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question12']">
+                    <div class="uk-text-secondary">Funder Policies</div>
+                    <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top">
+                      <div [innerHTML]="element['Question12-1']"></div>
+                    </div>
+                    <!--            <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top"></div>-->
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question13']">
+                    <div class="uk-text-secondary">Institutional policies</div>
+                    <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question13']" class="uk-margin-medium-top">
+                      <div [innerHTML]="element['Question13-1']"></div>
+                    </div>
+                  </ng-container>
+                </li>
+              </ul>
             </div>
-<!--            <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top"></div>-->
-          </ng-container>
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question13']">
-            <div class="uk-margin-large-top uk-text-secondary">Institutional policies</div>
-            <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question13']" class="uk-margin-medium-top">
-              <div [innerHTML]="element['Question13-1']"></div>
-            </div>
-          </ng-container>
+          </div>
 
         </li>
 
         <li aria-hidden="true" class="" style="animation-duration: 200ms;">
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']">
-            <div class="uk-margin-large-top uk-text-secondary">Overview</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']" class="uk-margin-medium-top"></div>
-          </ng-container>
+          <div class="uk-grid uk-flex uk-margin-large-top">
+            <div class="uk-width-1-4 uk-flex-last">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_infrastructure">
+                <li class="uk-active"><a href="#">Overview</a></li>
+                <li><a href="#">National Data Service</a></li>
+                <li><a href="#">Networks & Aggregators of Scientific/Research Content</a></li>
+                <li><a href="#">Literature repositories</a></li>
+                <li><a href="#">Data repositories</a></li>
+                <li><a href="#">Software repositories</a></li>
+                <li><a href="#">OA Publishing Platforms</a></li>
+                <li><a href="#">Monitoring Infrastructure</a></li>
+                <li><a href="#">Helpdesk and Support</a></li>
+                <li><a href="#">Links to European and Global Infrastructures</a></li>
+              </ul>
+            </div>
+            <div class="uk-width-3-4">
+              <ul id="sub_sections_infrastructure" class="uk-switcher">
+                <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']">
+                    <div class="uk-text-secondary">Overview</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']">
+                    <div class="uk-text-secondary">National Data Service</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']['Question15-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']">
+                    <div class="uk-text-secondary">Networks & Aggregators of Scientific/Research Content</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']['Question16-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']">
+                    <div class="uk-text-secondary">Literature repositories</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']['Question17-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']">
+                    <div class="uk-text-secondary">Data repositories</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']['Question18-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']">
+                    <div class="uk-text-secondary">Software repositories</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']['Question19-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']">
+                    <div class="uk-text-secondary">OA Publishing Platforms</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']['Question20-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']">
+                    <div class="uk-text-secondary">Monitoring Infrastructure</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']['Question21-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']">
+                    <div class="uk-text-secondary">Helpdesk and Support</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']['Question22-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']">
+                    <div class="uk-text-secondary">Links to European and Global Infrastructures</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']['Question23-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+              </ul>
+            </div>
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']">
-            <div class="uk-margin-large-top uk-text-secondary">National Data Service</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']['Question15-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']">
-            <div class="uk-margin-large-top uk-text-secondary">Networks & Aggregators of Scientific/Research Content</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']['Question16-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']">
-            <div class="uk-margin-large-top uk-text-secondary">Literature repositories</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']['Question17-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']">
-            <div class="uk-margin-large-top uk-text-secondary">Data repositories</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']['Question18-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']">
-            <div class="uk-margin-large-top uk-text-secondary">Software repositories</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']['Question19-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']">
-            <div class="uk-margin-large-top uk-text-secondary">OA Publishing Platforms</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']['Question20-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']">
-            <div class="uk-margin-large-top uk-text-secondary">Monitoring Infrastructure</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']['Question21-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']">
-            <div class="uk-margin-large-top uk-text-secondary">Helpdesk and Support</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']['Question22-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']">
-            <div class="uk-margin-large-top uk-text-secondary">Links to European and Global Infrastructures</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']['Question23-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
+          </div>
 
         </li>
 
         <li aria-hidden="true" class="" style="animation-duration: 200ms;">
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']">
-            <div class="uk-margin-large-top uk-text-secondary">Overview</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']">
-            <div class="uk-margin-large-top uk-text-secondary">Training Infrastructure</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']">
-            <div class="uk-margin-large-top uk-text-secondary">Open Science/Digital Competence centers</div>
-            <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']" class="uk-margin-medium-top">
-              <div [innerHTML]="element['Question26-1']"></div>
+          <div class="uk-grid uk-flex uk-margin-large-top">
+            <div class="uk-width-1-4 uk-flex-last">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_skills">
+                <li class="uk-active"><a href="#">Overview</a></li>
+                <li><a href="#">Training Infrastructure</a></li>
+                <li><a href="#">Open Science/Digital Competence centers</a></li>
+                <li><a href="#">Open Science Professionals</a></li>
+                <li><a href="#">Open Science Curricula</a></li>
+                <li><a href="#">Links to national initiatives on Digital Skills</a></li>
+              </ul>
             </div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']">
-            <div class="uk-margin-large-top uk-text-secondary">Open Science Professionals</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']" class="uk-margin-medium-top"></div>
-          </ng-container>
-
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']">
-            <div class="uk-margin-large-top uk-text-secondary">Open Science Curricula</div>
-            <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']" class="uk-margin-medium-top">
-              <div [innerHTML]="element"></div>
+            <div class="uk-width-3-4">
+              <ul id="sub_sections_skills" class="uk-switcher">
+                <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']">
+                    <div class="uk-text-secondary">Overview</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']">
+                    <div class="uk-text-secondary">Training Infrastructure</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']">
+                    <div class="uk-text-secondary">Open Science/Digital Competence centers</div>
+                    <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']" class="uk-margin-medium-top">
+                      <div [innerHTML]="element['Question26-1']"></div>
+                    </div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']">
+                    <div class="uk-text-secondary">Open Science Professionals</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']">
+                    <div class="uk-text-secondary">Open Science Curricula</div>
+                    <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']" class="uk-margin-medium-top">
+                      <div [innerHTML]="element"></div>
+                    </div>
+                  </ng-container>
+                </li>
+                <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']">
+                    <div class="uk-text-secondary">Links to national initiatives on Digital Skills</div>
+                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']['Question29-1']" class="uk-margin-medium-top"></div>
+                  </ng-container>
+                </li>
+              </ul>
             </div>
-          </ng-container>
 
-          <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']">
-            <div class="uk-margin-large-top uk-text-secondary">Links to national initiatives on Digital Skills</div>
-            <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']['Question29-1']" class="uk-margin-medium-top"></div>
-          </ng-container>
+          </div>
 
         </li>
 
