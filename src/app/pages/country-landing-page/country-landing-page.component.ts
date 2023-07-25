@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../../survey-tool/app/services/survey.service";
 import {SurveyAnswer, SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
@@ -24,18 +24,27 @@ export class CountryLandingPageComponent implements OnInit {
 
   countryPageOverviewData: CountryPageOverviewData;
 
-  constructor(private route: ActivatedRoute, private surveyService: SurveyService,
+  constructor(private route: ActivatedRoute, private router:Router, private surveyService: SurveyService,
               private dataService: DataService, private dataHandlerService: DataHandlerService) {
   }
 
   ngOnInit() {
+
     this.route.params.subscribe(
       params => {
         this.countryCode = params['code'];
-        if (params['show']) {
-          this.showFullContent = params['show'];
-        }
-        this.embedUrl = location.origin + `/embeddable/country/${this.countryCode}/showFull/`
+        this.route.queryParams.subscribe(
+          qParams => {
+            console.log(qParams)
+            if (qParams['showFull']) {
+              console.log(qParams['showFull']);
+              this.showFullContent = qParams['showFull'];
+            } else {
+              this.showFullContent = 'true';
+            }
+            this.embedUrl = location.origin + `/embeddable/country/${this.countryCode}`
+          }
+        );
         this.stakeholderId = 'sh-country-'+this.countryCode;
         // this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
         this.surveyService.getSurveys('type', 'country').subscribe(
@@ -64,6 +73,10 @@ export class CountryLandingPageComponent implements OnInit {
         );
       }
     );
+  }
+
+  isEmbedRoute() {
+    return (this.router.url.startsWith('/embeddable'));
   }
 
 }

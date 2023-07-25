@@ -2,9 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
 import {CountryLandingPageComponent} from "./pages/country-landing-page/country-landing-page.component";
-import {
-  CountryLandingPageEmbeddableComponent
-} from "./pages/country-landing-page/country-landing-page-embeddable.component";
 
 const routes: Routes = [
   {
@@ -21,7 +18,7 @@ const routes: Routes = [
     component: CountryLandingPageComponent
   },
   {
-    path: 'embeddable/country/:code/showFull/:show',
+    path: 'embeddable/country/:code',
     component: CountryLandingPageComponent
   },
   {
