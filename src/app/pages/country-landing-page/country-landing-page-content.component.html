@@ -134,7 +134,12 @@
                 <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
 
                 <div class="indicator uk-grid-margin">
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</h5>
+                  <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">
+                    <span>{{countryPageOverviewData.ec_fundedProjects}}</span>
+                    <picture>
+                      <img class="el-image" src="https://www.openaire.eu/templates/yootheme/cache/eb/flag_yellow_low-eb85c46c.jpeg" width="39" height="26">
+                    </picture>
+                  </h5>
                   <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
                   <div class="uk-text-light uk-text-muted">projects funded by the European Commission since 2013</div>
                 </div>
@@ -202,7 +207,7 @@
   </div>
 </div>
 
-<div class="uk-section uk-section-primary uk-section-medium uk-preserve-color">
+<div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
   <div class="uk-container uk-container-expand">
 
     <div *ngIf="surveyAnswer">

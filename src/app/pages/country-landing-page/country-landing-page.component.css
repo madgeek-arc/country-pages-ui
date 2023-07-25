@@ -38,10 +38,17 @@
 .uk-tab > * > a {
   padding: 15px 20px;
   line-height: 20px;
+  color: var(--black);
+  /*font-size: 18px;*/
+}
+
+.uk-tab li a:hover {
+  border-bottom: 2px solid var(--eosc-observatory-secondary-color);
 }
 
 .uk-tab > .uk-active > a {
-  border-bottom-color: var(--eosc-observatory-primary-color);
+  border-bottom: 2px solid var(--eosc-observatory-primary-color);
+  font-weight: 600;
 }
 
 .uk-subnav-pill > * > :first-child {
@@ -49,7 +56,7 @@
   /*background: transparent;*/
   background-color: #EAEAEA;
   border-radius: 6px;
-  color: #999;
+  color: var(--black);
 }
 
 .uk-subnav-pill > .uk-active > a {
@@ -62,4 +69,13 @@
   .overviewMobile .number.big {
     font-size: 24px;
   }
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
 }

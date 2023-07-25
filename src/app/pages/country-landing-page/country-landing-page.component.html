@@ -9,16 +9,25 @@
 
       <!-- TODO uncomment when implemented -->
       <div class="actionButtonsCountryPage">
-        <a class="uk-button uk-button-default uk-button-small"><i class="fas fa-code uk-margin-small-right"></i>Embed</a>
-        <div uk-dropdown="mode: click; pos: bottom-left" class="filters-dropdown" style="max-height: 80vh; overflow-y: scroll">
+        <a class="uk-button uk-button-default uk-button-small uk-flex uk-flex-middle">
+          <span class="material-icons uk-margin-small-right ">code</span>
+          <span>Embed</span>
+        </a>
+        <div uk-dropdown="mode: click; pos: bottom-left" class="filters-dropdown" style="width: 500px;">
           <div class="uk-padding-small">
             <p>
               Copy the text below and insert it in your site.
             </p>
-            <code>
-              &lt;iframe width="100%" height="550" src="{{embedUrl}}" frameborder="0" &gt;&lt;/iframe&gt;<br>
-              &lt;iframe width="100%" height="550" src="{{embedUrl+'?showFull=false'}}" frameborder="0" &gt;&lt;/iframe&gt;
-            </code>
+            <ul>
+              <li>
+                For the full page use:
+                <pre class="uk-margin-small-top">&lt;iframe width="100%" height="100%" src="{{embedUrl}}" frameborder="0" style="position: fixed"&gt;&lt;/iframe&gt;</pre>
+              </li>
+              <li>
+                For the survey content below use:
+                <pre class="uk-margin-small-top">&lt;iframe width="100%" height="100%" src="{{embedUrl+'?showFull=false'}}" frameborder="0" style="position: fixed"&gt;&lt;/iframe&gt;</pre>
+              </li>
+            </ul>
           </div>
         </div>
         <!--<a class="uk-margin-left"><i class="fas fa-download uk-margin-small-right"></i>Download CSV</a>-->
