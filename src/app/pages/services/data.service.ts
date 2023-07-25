@@ -12,9 +12,7 @@ const headerOptions = {
 
 @Injectable ()
 export class DataService {
-
-  private statsAPIURL = environment.STATS_API_ENDPOINT + 'raw?json=';
-  private profileName = environment.profileName;
+  
   private OSOStatsAPIURL = environment.OSO_STATS_API_ENDPOINT + 'raw?json=';
   private osoProfileName = environment.osoStatsProfileName;
 
@@ -22,7 +20,7 @@ export class DataService {
 
   public getCountryPageOverviewData(countryCode: string): Observable<RawData> {
     const countryPageOverviewDataQuery = `{"series":[{"query":{"name":"oso.rnd.country","parameters":["${countryCode}"],"profile":"${this.osoProfileName}"}},{"query":{"name":"oso.funder.country", "parameters":["${countryCode}"],"profile":"${this.osoProfileName}"}},{"query":{"name":"oso.funding_organizations.country", "parameters":["${countryCode}"],"profile":"${this.osoProfileName}"}},{"query":{"name":"oso.ec_funded_organizations.country", "parameters":["${countryCode}"],"profile":"${this.osoProfileName}"}},{"query":{"name":"new.oso.ec_funded_projects.country", "parameters":["${countryCode}"],"profile":"${this.osoProfileName}"}}],"verbose":true}`;
-    return this.httpClient.get<RawData>(this.statsAPIURL + encodeURIComponent(countryPageOverviewDataQuery), headerOptions);
+    return this.httpClient.get<RawData>(this.OSOStatsAPIURL + encodeURIComponent(countryPageOverviewDataQuery), headerOptions);
   }
 
 }

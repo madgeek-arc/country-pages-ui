@@ -8,5 +8,5 @@ export const environment = {
   projectName: 'CountryPages',
   profileName: 'country-pages',
   OSO_STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
-  osoStatsProfileName: 'country-pages'
+  osoStatsProfileName: 'observatory'
 };

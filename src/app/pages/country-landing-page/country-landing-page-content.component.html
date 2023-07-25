@@ -212,18 +212,19 @@
 
     <div *ngIf="surveyAnswer">
 
+      <div class="uk-flex uk-flex-right uk-margin-small-bottom">
+        <a class="uk-button uk-button-default osobservatory-button" href="https://osobservatory.openaire.eu/country/{{countryCode}}/overview" target="_blank">
+          <img src="../assets/images/logos/OS_Logo_small.svg" width="20" class="uk-margin-small-right">
+          <span>Open Science Observatory</span>
+        </a>
+      </div>
+
       <ul uk-tab data-uk-tab="{connect:'#sections_tabbed',animation: 'slide-bottom'}" class="horizontal-tabs">
         <li class="uk-active"><a href="#">Overview</a></li>
         <li><a href="#">Policies</a></li>
         <li><a href="#">Infrastructure</a></li>
         <li><a>Skills</a></li>
         <li><a>About this page</a></li>
-        <div class="uk-margin-small-bottom" style="position: absolute; right: 0; bottom: 5px">
-          <a class="uk-button uk-button-default osobservatory-button">
-            <img src="../assets/images/logos/OS_Logo_small.svg" width="20" class="uk-margin-small-right">
-            <span>Open Science Observatory</span>
-          </a>
-        </div>
 
       </ul>
 
