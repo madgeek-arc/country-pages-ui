@@ -12,7 +12,7 @@ const headerOptions = {
 
 @Injectable ()
 export class DataService {
-  
+
   private OSOStatsAPIURL = environment.OSO_STATS_API_ENDPOINT + 'raw?json=';
   private osoProfileName = environment.osoStatsProfileName;
 

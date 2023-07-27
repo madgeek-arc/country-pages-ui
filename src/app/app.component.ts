@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../survey-tool/app/services/authentication.service";
+import {SmoothScroll} from "./pages/services/smooth-scroll";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {AuthenticationService} from "../survey-tool/app/services/authentication.
 export class AppComponent {
   title = 'country-pages-ui';
 
-  constructor(private router: Router, private auth: AuthenticationService) {
+  constructor(private router: Router, private auth: AuthenticationService, private smoothScroll: SmoothScroll) {
     this.auth.redirect();
   }
 

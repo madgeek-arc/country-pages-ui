@@ -26,6 +26,14 @@
   position: relative;
 }
 
+.horizontal-tabs.uk-tab.uk-sticky-fixed > li.first-tab {
+  padding-left: 0;
+}
+
+.horizontal-tabs.uk-tab {
+  padding-top: 20px;
+}
+
 .horizontal-tabs.uk-tab::before {
   content: "";
   position: absolute;
@@ -53,6 +61,14 @@
 
 .uk-tab-right.uk-tab > .uk-active > a {
   font-weight: 600;
+}
+
+.horizontal-subnav {
+  /*padding-top: 20px;*/
+}
+
+.horizontal-subnav.uk-sticky-fixed > li.first-tab {
+  padding-left: 0;
 }
 
 .uk-subnav-pill > * > :first-child {
