@@ -213,33 +213,27 @@
 
     <div *ngIf="surveyAnswer">
 
-<!--      <div class="uk-flex uk-flex-right uk-margin-small-bottom">-->
-<!--        <a class="uk-button uk-button-default osobservatory-button" href="https://osobservatory.openaire.eu/country/{{countryCode}}/overview" target="_blank">-->
-<!--          <img src="../assets/images/logos/OS_Logo_small.svg" width="20" class="uk-margin-small-right">-->
-<!--          <span>Open Science Observatory</span>-->
-<!--        </a>-->
-<!--      </div>-->
-
-      <div class="uk-section-primary" uk-sticky="offset: 80px">
-        <ul uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
-          <li class="uk-active first-tab"><a href="#">Overview</a></li>
-          <li><a href="#">Policies</a></li>
-          <li><a href="#">Infrastructure</a></li>
-          <li><a>Skills</a></li>
-          <li><a>About this page</a></li>
+      <div class="uk-section-primary" uk-sticky="offset: 80px" >
+        <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
+          <li class="uk-active first-tab"><a [routerLink]="['/country', code, 'overview']">Overview</a></li>
+          <li><a [routerLink]="['/country', code, 'policies']">Policies</a></li>
+          <li><a [routerLink]="['/country', code, 'infrastructure']">Infrastructure</a></li>
+          <li><a [routerLink]="['/country', code, 'skills']">Skills</a></li>
+          <li><a [routerLink]="['/country', code, 'about']">About this page</a></li>
 
         </ul>
       </div>
 
-      <ul id="sections_tabbed" class="uk-switcher">
+<!--      <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>-->
+      <ul id="sections_tabbed" class="uk-switcher" #sections>
         <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
 
           <div class="uk-section-primary" uk-sticky="offset: 170px">
             <ul class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
-              <li class="first-tab"><a href="#">Overview</a></li>
-              <li><a href="#">Key Actors</a></li>
-              <li><a href="#">Initiatives</a></li>
-              <li><a href="#">Miscellaneous</a></li>
+              <li class="first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
+              <li [routerLink]="['/country', code, 'overview', 'keyActors']"><a>Key Actors</a></li>
+              <li [routerLink]="['/country', code, 'overview', 'initiatives']"><a href="#">Initiatives</a></li>
+              <li [routerLink]="['/country', code, 'overview', 'miscellaneous']"><a href="#">Miscellaneous</a></li>
             </ul>
           </div>
 

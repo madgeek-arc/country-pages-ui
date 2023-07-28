@@ -21,15 +21,15 @@ import {CatalogueUiSharedModule} from "../survey-tool/catalogue-ui/shared/catalo
     CountryLandingPageComponent,
     CountryLandingPageContentComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        SharedModule,
-        SurveyToolModule,
-        NgxMatomoTrackerModule.forRoot({trackerUrl: '', siteId: ''}),
-        NgxMatomoRouterModule,
-        CatalogueUiSharedModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    SurveyToolModule,
+    NgxMatomoTrackerModule.forRoot({trackerUrl: '', siteId: ''}),
+    NgxMatomoRouterModule,
+    CatalogueUiSharedModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

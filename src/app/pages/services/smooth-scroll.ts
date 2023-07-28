@@ -12,12 +12,14 @@ export class SmoothScroll {
   private lastComponent;
   private currentComponent: string;
   private extraOffset: number = 0;
+  private scrollToTop: boolean = true;
 
   constructor(private router: Router) {
     if (typeof window !== "undefined") {
       this.sub = router.events.subscribe(event => {
         if (event instanceof ActivationStart) {
          this.extraOffset = event.snapshot.data.extraOffset?event.snapshot.data.extraOffset:0;
+         this.scrollToTop = event.snapshot.data.scrollToTop;
           if(event.snapshot.component instanceof Type) {
             this.currentComponent = event.snapshot.component.name;
           }
@@ -60,7 +62,8 @@ export class SmoothScroll {
                   clearInterval(this.interval);
                 }
               }, 100);
-            } else {
+            }
+            else if (this.scrollToTop) {
               setTimeout( () => {
                 window.scrollTo({top: 0, behavior: 'smooth'});
               }, 0);
