@@ -17,7 +17,8 @@ const routes: Routes = [
     matcher: userPageMatcher,
     component: CountryLandingPageComponent,
     data: {
-      scrollToTop: false
+      scrollToTop: false,
+      extraOffset: 150
     }
   },
   // {

@@ -211,9 +211,9 @@
 <div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
   <div class="uk-container uk-container-expand">
 
-    <div *ngIf="surveyAnswer">
+    <div>
 
-      <div class="uk-section-primary" uk-sticky="offset: 80px" >
+      <div class="uk-section-primary" uk-sticky="offset: 80px">
         <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
           <li class="uk-active first-tab"><a [routerLink]="['/country', code, 'overview']">Overview</a></li>
           <li><a [routerLink]="['/country', code, 'policies']">Policies</a></li>
@@ -224,20 +224,19 @@
         </ul>
       </div>
 
-<!--      <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>-->
-      <ul id="sections_tabbed" class="uk-switcher" #sections>
+      <ul id="sections_tabbed" class="uk-switcher">
         <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
 
           <div class="uk-section-primary" uk-sticky="offset: 170px">
-            <ul class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
+            <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
               <li class="first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
-              <li [routerLink]="['/country', code, 'overview', 'keyActors']"><a>Key Actors</a></li>
+              <li [routerLink]="['/country', code, 'overview', 'keyActors']" (click)="getDomElement('keyActors')"><a>Key Actors</a></li>
               <li [routerLink]="['/country', code, 'overview', 'initiatives']"><a href="#">Initiatives</a></li>
               <li [routerLink]="['/country', code, 'overview', 'miscellaneous']"><a href="#">Miscellaneous</a></li>
             </ul>
           </div>
 
-          <ul id="overview_subtabs" class="uk-switcher uk-margin">
+          <ul *ngIf="surveyAnswer" id="overview_subtabs" class="uk-switcher uk-margin">
 
             <li>
               <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question1']">
@@ -249,7 +248,27 @@
 
               <div class="uk-grid uk-flex uk-margin-large-top">
 
-                <div class="uk-width-3-4">
+                <div class="uk-width-1-4 uk-flex-last">
+                  <div uk-sticky="offset: 250px">
+                    <div class="tabsTitle uk-margin-bottom">Content</div>
+                    <ul class="uk-nav uk-nav-default" uk-nav>
+                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
+                      </li>
+                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a>
+                      </li>
+                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a>
+                      </li>
+                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="other_organisations">Other Organisations</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="uk-width-3-4" id="keyActors">
 
                   <div id="research_funding_organisations">
                     <div class="uk-text-secondary">Research Funding Organisations</div>
@@ -286,17 +305,6 @@
                   </div>
 
                 </div>
-                <div class="uk-width-1-4">
-                  <div uk-sticky="offset: 250px">
-                    <div class="tabsTitle uk-margin-bottom">Content</div>
-                    <ul class="uk-nav uk-nav-default" uk-nav>
-                      <li class="uk-active" routerLinkActive="uk-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a></li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a></li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a></li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="./" fragment="other_organisations">Other Organisations</a></li>
-                    </ul>
-                  </div>
-                </div>
               </div>
 
             </li>
@@ -305,46 +313,62 @@
 
               <div class="uk-grid uk-flex uk-margin-large-top">
                 <div class="uk-width-1-4 uk-flex-last">
-                  <div class="tabsTitle uk-margin-bottom">Content</div>
-                  <ul class="uk-tab-right" uk-tab uk-switcher="connect: #sub_sections_overview_initiatives">
-                    <li class="uk-active"><a href="#">EOSC National Initiative</a></li>
-                    <li><a href="#">Open Science and FAIR National Initiatives</a></li>
-                    <li><a href="#">Open Access Publishing</a></li>
-                    <li><a href="#">Regional / EC Initiatives</a></li>
-                    <li><a href="#">Global Initiatives</a></li>
-                  </ul>
+                  <div uk-sticky="offset: 250px">
+                    <div class="tabsTitle uk-margin-bottom">Content</div>
+                    <ul class="uk-nav uk-nav-default" uk-nav>
+                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"
+                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
+                      </li>
+                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']"
+                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives">Open Science and FAIR National Initiatives</a>
+                      </li>
+                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']"
+                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="open_access_publishing">Open Access Publishing</a>
+                      </li>
+                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']"
+                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="regional_EC_initiatives">Regional / EC Initiatives</a>
+                      </li>
+                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']"
+                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                        <a routerLink="./" fragment="global_initiatives">Global Initiatives</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="uk-width-3-4">
-                  <ul id="sub_sections_overview_initiatives" class="uk-switcher">
-                    <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
-                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']">
-                        <div class="uk-text-secondary">EOSC National Initiative</div>
-                        <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']['Question5-1']" class="uk-margin-medium-top"></div>
-                      </ng-container>
-                    </li>
-                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
-                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']">
-                        <div class="uk-text-secondary">Open Science and FAIR National Initiatives</div>
-                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']" class="uk-margin-medium-top">
-                          <div [innerHTML]="element['Question6-1']"></div>
-                        </div>
-                      </ng-container>
-                    </li>
-                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
-                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']">
-                        <div class="uk-text-secondary">Open Access Publishing</div>
-                        <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']" class="uk-margin-medium-top"></div>
-                      </ng-container>
-                    </li>
-                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
-                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']">
-                        <div class="uk-text-secondary">Regional / EC Initiatives</div>
-                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']" class="uk-margin-medium-top">
-                          <div [innerHTML]="element['Question8-1']"></div>
-                        </div>
-                      </ng-container>
-                    </li>
-                    <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+                <div class="uk-width-3-4" #rightContent>
+                  <div id="eosc_national_initiative">
+                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']">
+                      <div class="uk-text-secondary">EOSC National Initiative</div>
+                      <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']['Question5-1']" class="uk-margin-medium-top"></div>
+                    </ng-container>
+                  </div>
+                  <div id="open_science_and_FAIR_national_initiatives">
+                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']">
+                      <div class="uk-text-secondary">Open Science and FAIR National Initiatives</div>
+                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']" class="uk-margin-medium-top">
+                        <div [innerHTML]="element['Question6-1']"></div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div id="open_access_publishing">
+                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']">
+                      <div class="uk-text-secondary">Open Access Publishing</div>
+                      <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']" class="uk-margin-medium-top"></div>
+                    </ng-container>
+                  </div>
+                  <div id="regional_EC_initiatives">
+                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']">
+                      <div class="uk-text-secondary">Regional / EC Initiatives</div>
+                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']" class="uk-margin-medium-top">
+                        <div [innerHTML]="element['Question8-1']"></div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <li id="global_initiatives">
                       <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']">
                         <div class="uk-text-secondary">Global Initiatives</div>
                         <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']" class="uk-margin-medium-top">
@@ -352,7 +376,6 @@
                         </div>
                       </ng-container>
                     </li>
-                  </ul>
                 </div>
 
               </div>
@@ -367,7 +390,7 @@
           </ul>
         </li>
 
-        <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
           <div class="uk-grid uk-flex uk-margin-large-top">
             <div class="uk-width-1-4 uk-flex-last">
@@ -419,7 +442,7 @@
 
         </li>
 
-        <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
           <div class="uk-grid uk-flex uk-margin-large-top">
             <div class="uk-width-1-4 uk-flex-last">
@@ -506,7 +529,7 @@
 
         </li>
 
-        <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
           <div class="uk-grid uk-flex uk-margin-large-top">
             <div class="uk-width-1-4 uk-flex-last">
@@ -569,7 +592,7 @@
 
         </li>
 
-        <li aria-hidden="true" class="" style="animation-duration: 200ms;">
+        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
           <p>About this page content</p>
         </li>
       </ul>

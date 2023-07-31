@@ -84,6 +84,10 @@
   color: #fff;
 }
 
+.active-fragment {
+  color: black;
+}
+
 /********* MOBILE ********/
 @media only screen and (max-width: 960px) {
   .overviewMobile .number.big {

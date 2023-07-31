@@ -35,9 +35,7 @@ export class CountryLandingPageComponent implements OnInit {
         this.countryCode = params['code'];
         this.route.queryParams.subscribe(
           qParams => {
-            console.log(qParams)
             if (qParams['showFull']) {
-              console.log(qParams['showFull']);
               this.showFullContent = qParams['showFull'];
             } else {
               this.showFullContent = 'true';
@@ -58,7 +56,6 @@ export class CountryLandingPageComponent implements OnInit {
             this.surveyService.getPublicAnswerMetadata(this.stakeholderId, this.surveyId).subscribe(
               res=> {
                 this.surveyAnswerMetadata = res;
-                console.log(res);
               }
             );
           });
@@ -66,7 +63,6 @@ export class CountryLandingPageComponent implements OnInit {
         this.dataService.getCountryPageOverviewData(this.countryCode).subscribe(
           rawData => {
             this.countryPageOverviewData = this.dataHandlerService.convertRawDataToCountryPageOverviewData(rawData);
-            console.log(this.countryPageOverviewData.name);
           }, error => {
             console.log(error);
           }
