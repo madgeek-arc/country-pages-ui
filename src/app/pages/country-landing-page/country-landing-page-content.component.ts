@@ -1,20 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren
-} from "@angular/core";
+import {Component, HostListener, Input, OnInit} from "@angular/core";
 import {SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 import {ActivatedRoute, IsActiveMatchOptions, Router} from "@angular/router";
-import * as UIkit from 'uikit';
 import {BehaviorSubject} from "rxjs";
+import * as UIkit from 'uikit';
 
 @Component({
   selector: 'app-country-landing-page-content',
@@ -23,9 +12,7 @@ import {BehaviorSubject} from "rxjs";
 })
 
 export class CountryLandingPageContentComponent implements OnInit {
-
-
-  test: HTMLElement;
+  tabContent: HTMLElement;
 
   @Input('countryCode') countryCode: string = null;
   @Input('surveyAnswer') surveyAnswer: Object = null;
@@ -58,12 +45,10 @@ export class CountryLandingPageContentComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.tabSwitcher = UIkit.switcher('#chapter-tabs',{});
-    console.log(this.tabSwitcher);
-
+    // console.log(this.tabSwitcher);
     this.subTabSwitcher = UIkit.switcher('#sections-tab',{});
-    console.log(this.subTabSwitcher);
+    // console.log(this.subTabSwitcher);
 
     this.route.params.subscribe(
       params => {
@@ -87,37 +72,24 @@ export class CountryLandingPageContentComponent implements OnInit {
 
   getDomElement(id: string) {
     setTimeout(()=> {
-      this.test = document.getElementById(id);
-
-      // this.test?.childNodes.forEach(node => {
-      //   console.log(node);
-      //   console.log(node['offsetTop']);
-      // });
-    }, 0);
-
+      this.tabContent = document.getElementById(id);
+      // console.log(this.tabContent);
+      if (!this.tabContent) {
+        this.getDomElement(id);
+      }
+    }, 100);
   }
 
   @HostListener('window:scroll', ['$event'])
   private _update_active_fragment(event: any) {
-    if (this.test) {
-      this.test.childNodes.forEach(child => {
-        const scrollY = window.scrollY + 300;
+    event.preventDefault();
+    if (this.tabContent) {
+      this.tabContent.childNodes.forEach(child => {
+        const scrollY = window.scrollY + 250;
         if (child['offsetTop'] > scrollY)
           return;
 
         if (child.nextSibling === null &&  scrollY > child['offsetTop']) {
-          this.active_fragment.next(child['id']);
-          console.log(child['id']);
-          return;
-        }
-
-        if (scrollY > child['offsetTop'] && scrollY < child.nextSibling?.['offsetTop']) {
-          // console.log(child['id']);
-          // console.log('window scrollY: '+scrollY);
-          // console.log('child offsetTop: ' + child['offsetTop']);
-          // console.log('next child offsetTop: ' + child.nextSibling?.['offsetTop']);
-          if (this.active_fragment === child['id'])
-            return;
           if (this.timeout) {
             clearTimeout(this.timeout);
           }
@@ -125,8 +97,25 @@ export class CountryLandingPageContentComponent implements OnInit {
             this.router.navigate(['./'], {
               fragment: child['id'],
               relativeTo: this.route,
-              // state: {disableScroll: true},
-              // queryParamsHandling: 'merge'
+              state: {disableScroll: true}
+            });
+          }, 200);
+          return;
+        }
+
+        if (scrollY > child['offsetTop'] && scrollY < child.nextSibling?.['offsetTop']) {
+          // console.log(child['id']);
+          // console.log('window scrollY: '+scrollY );
+          // console.log('child offsetTop: ' + child['offsetTop']);
+          // console.log('next child offsetTop: ' + child.nextSibling?.['offsetTop']);
+          if (this.timeout) {
+            clearTimeout(this.timeout);
+          }
+          this.timeout = setTimeout(() => {
+            this.router.navigate(['./'], {
+              fragment: child['id'],
+              relativeTo: this.route,
+              state: {disableScroll: true}
             });
           }, 200);
           return;
@@ -134,57 +123,30 @@ export class CountryLandingPageContentComponent implements OnInit {
 
       });
     }
-    event.preventDefault();
   }
-
-  // private setObserver() {
-  //   if (this.observer) {
-  //     this.observer.disconnect();
-  //   }
-  //   this.observer = new IntersectionObserver((entries) => {
-  //     entries.forEach(entry => {
-  //       if (entry.isIntersecting) {
-  //         if (this.timeout) {
-  //           clearTimeout(this.timeout);
-  //         }
-  //         this.timeout = setTimeout(() => {
-  //           this.router.navigate(['./'], {
-  //             fragment: entry.target.id,
-  //             relativeTo: this.route,
-  //             state: {disableScroll: true},
-  //             queryParamsHandling: 'merge'
-  //           });
-  //         }, 200);
-  //       }
-  //     });
-  //   }, {threshold: 0.1});
-  //   this.tabs.forEach(tab => {
-  //     let element = document.getElementById(tab['id']);
-  //     if (element) {
-  //       this.observer.observe(element);
-  //     }
-  //   });
-  // }
 
   tabSelector(tab: string) {
     switch (tab) {
       case 'overview':
-        this.tabSwitcher.show(0)
+        this.tabSwitcher.show(0);
         break;
       case 'policies':
-        this.tabSwitcher.show(1)
+        this.tabSwitcher.show(1);
+        this.getDomElement('policies');
         break;
       case 'infrastructure':
-        this.tabSwitcher.show(2)
+        this.tabSwitcher.show(2);
+        this.getDomElement('infrastructure');
         break;
       case 'skills':
-        this.tabSwitcher.show(3)
+        this.tabSwitcher.show(3);
+        this.getDomElement('skills');
         break;
       case 'about':
-        this.tabSwitcher.show(4)
+        this.tabSwitcher.show(4);
         break;
       default:
-        this.tabSwitcher.show(0)
+        this.tabSwitcher.show(0);
     }
   }
 
@@ -195,9 +157,11 @@ export class CountryLandingPageContentComponent implements OnInit {
         break;
       case 'keyActors':
         this.subTabSwitcher.show(1)
+        this.getDomElement('keyActors');
         break;
       case 'initiatives':
         this.subTabSwitcher.show(2)
+        this.getDomElement('initiatives');
         break;
       case 'miscellaneous':
         this.subTabSwitcher.show(3)
