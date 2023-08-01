@@ -59,8 +59,16 @@
   font-weight: 600;
 }
 
-.uk-tab-right.uk-tab > .uk-active > a {
+.uk-nav.uk-tab-right > li > a {
+  padding: 15px 20px;
+  line-height: 20px;
+  color: var(--black);
+  font-size: 16px;
+}
+
+.uk-nav.uk-tab-right > .uk-active > a {
   font-weight: 600;
+  border-color: var(--eosc-observatory-primary-color);
 }
 
 .horizontal-subnav {

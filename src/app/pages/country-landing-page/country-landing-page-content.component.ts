@@ -144,6 +144,7 @@ export class CountryLandingPageContentComponent implements OnInit {
         break;
       case 'about':
         this.tabSwitcher.show(4);
+        this.getDomElement('about');
         break;
       default:
         this.tabSwitcher.show(0);

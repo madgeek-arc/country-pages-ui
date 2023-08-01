@@ -27,7 +27,7 @@
 
 <!--              <div class="uk-position-relative uk-margin-large-top uk-width-xlarge uk-margin-auto-right@s uk-margin-remove-left@s uk-margin-auto uk-text-left">-->
 <!--                <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-2@m uk-grid-column-small uk-grid-match uk-grid" uk-grid="">-->
-                <div class="uk-margin-large-top uk-margin-right">
+                <div class="uk-margin-large-top uk-margin-medium-right">
                   <p>This information has been compiled by our National Open Access Desks</p>
                   <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-3@l uk-grid-column-small uk-grid-match uk-grid" uk-grid="">
                   <div *ngFor="let editor of surveyAnswerMetadata?.editors" class="uk-first-column">
@@ -135,14 +135,18 @@
                 <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
 
                 <div class="indicator uk-grid-margin">
-                  <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">
-                    <span>{{countryPageOverviewData.ec_fundedProjects}}</span>
-                    <picture>
-                      <img class="el-image" src="https://www.openaire.eu/templates/yootheme/cache/eb/flag_yellow_low-eb85c46c.jpeg" width="39" height="26">
-                    </picture>
-                  </h5>
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
-                  <div class="uk-text-light uk-text-muted">projects funded by the European Commission since 2013</div>
+                  <div class="uk-flex uk-flex-between">
+                    <div>
+                      <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</h5>
+                      <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
+                      <div class="uk-text-light uk-text-muted">projects</div>
+                    </div>
+                    <div>
+                      <picture>
+                        <img class="el-image" src="../assets/images/EN%20V%20Funded%20by%20the%20EU_POS.png" width="60" height="40">
+                      </picture>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -261,7 +265,7 @@
                 <div class="uk-width-1-4 uk-flex-last">
                   <div uk-sticky="offset: 250px">
                     <div class="tabsTitle uk-margin-bottom">Content</div>
-                    <ul class="uk-nav uk-nav-default" uk-nav>
+                    <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                       <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                         <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
                       </li>
@@ -325,7 +329,7 @@
                 <div class="uk-width-1-4 uk-flex-last">
                   <div uk-sticky="offset: 250px">
                     <div class="tabsTitle uk-margin-bottom">Content</div>
-                    <ul class="uk-nav uk-nav-default" uk-nav>
+                    <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                       <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"
                           routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                         <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
@@ -378,14 +382,14 @@
                       </div>
                     </ng-container>
                   </div>
-                  <li id="global_initiatives">
+                  <div id="global_initiatives">
                       <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']">
                         <div class="uk-text-secondary">Global Initiatives</div>
                         <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']" class="uk-margin-medium-top">
                           <div [innerHTML]="element['Question31-1']"></div>
                         </div>
                       </ng-container>
-                    </li>
+                    </div>
                 </div>
 
               </div>
@@ -407,7 +411,7 @@
             <div class="uk-width-1-4 uk-flex-last">
               <div uk-sticky="offset: 250px">
                 <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default" uk-nav>
+                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                   <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                     <a routerLink="./" fragment="policies_overview">Overview</a>
                   </li>
@@ -467,7 +471,7 @@
             <div class="uk-width-1-4 uk-flex-last">
               <div uk-sticky="offset: 250px">
                 <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default" uk-nav>
+                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                   <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                     <a routerLink="./" fragment="infrastructure_overview">Overview</a>
                   </li>
@@ -574,7 +578,7 @@
             <div class="uk-width-1-4 uk-flex-last">
               <div uk-sticky="offset: 250px">
                 <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default" uk-nav>
+                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                   <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                     <a routerLink="./" fragment="skills_overview">Overview</a>
                   </li>
@@ -644,7 +648,88 @@
         </li>
 
         <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
-          <p>About this page content</p>
+
+          <div class="uk-grid uk-flex uk-margin-large-top">
+            <div class="uk-width-1-4 uk-flex-last">
+              <div uk-sticky="offset: 250px">
+                <div class="tabsTitle uk-margin-bottom">Content</div>
+                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                    <a routerLink="./" fragment="what">What is the Country Page</a>
+                  </li>
+                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                    <a routerLink="./" fragment="who">Who is involved</a>
+                  </li>
+                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                    <a routerLink="./" fragment="how">How information is gathered</a>
+                  </li>
+                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                    <a routerLink="./" fragment="why">Why is it important</a>
+                  </li>
+                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                    <a routerLink="./" fragment="linksWithERAAndEOSC">What are the links with the ERA and EOSC</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="uk-width-3-4" id="about">
+              <div id="what" class="uk-margin-medium-bottom">
+                <div class="uk-text-secondary">What is the Country Page</div>
+                <div class="uk-margin-top">
+                  <p>
+                    The OpenAIRE Country Pages map the diverse national Research and Development (R&D) landscapes in Europe to
+                    provide a 360o view on the Open Science maturity of more than 35 countries. The Country Pages compile information
+                    about Open Science policies, key actors, initiatives, digital infrastructure and repositories as well as on training
+                    and skills employed to realise them.
+                  </p>
+                </div>
+              </div>
+
+              <div id="who" class="uk-margin-medium-bottom">
+                <div class="uk-text-secondary">Who is involved</div>
+                <div class="uk-margin-top">
+                  <p>
+                    OpenAIRE maintains a strong network of experts known as the National Open Access Desks (NOADs) who are committed
+                    to supporting the adoption and implementation of Open Science in their national research environments. They nurture
+                    collaborations with national stakeholders and experts and leverage on those connections to populate, curate and
+                    update the content of their country pages on a regular basis.
+                  </p>
+                </div>
+              </div>
+
+              <div id="how" class="uk-margin-medium-bottom">
+                <div class="uk-text-secondary">How information is gathered</div>
+                <div class="uk-margin-top">
+                  <p>
+                    Two major sources that feed the Country Pages with text, numbers and figures are the NOADS with their national
+                    networks and the OpenAIRE Graph.
+                  </p>
+                </div>
+              </div>
+
+              <div id="why" class="uk-margin-medium-bottom">
+                <div class="uk-text-secondary">Why is it important</div>
+                <div class="uk-margin-top">
+                  <p>
+                    This service allows to trace the implementation of Open Science practices in different national settings and
+                    displays the potential for further development and collaboration in all areas of Open Science.
+                  </p>
+                </div>
+              </div>
+
+              <div id="linksWithERAAndEOSC" class="uk-margin-medium-bottom">
+                <div class="uk-text-secondary">What are the links with the ERA and EOSC</div>
+                <div class="uk-margin-top">
+                  <p>
+                    The OpenAIRE Country Pages form the most complete and validated resource for Open Science in Europe complementing
+                    policy efforts and monitoring services, such as the Open Science Observatory.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </li>
       </ul>
 
