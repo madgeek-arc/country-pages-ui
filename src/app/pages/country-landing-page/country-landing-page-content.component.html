@@ -1,739 +1,227 @@
-<div *ngIf="displayFullContent === 'true'" class="uk-section uk-section-default uk-section-small"
-     xmlns:routerLinkActiveOptions="http://www.w3.org/1999/xhtml">
-  <div class="uk-container uk-container-expand">
+<ng-container *ngIf="displayFullContent === 'true'; else onlySurveyContent">
+  <div *ngIf="displayFullContent === 'true'" class="uk-section uk-section-default uk-section-small"
+       xmlns:routerLinkActiveOptions="http://www.w3.org/1999/xhtml">
+    <div class="uk-container uk-container-expand">
 
-    <div class="uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-scale-up uk-padding-remove" data-uk-scrollspy="{cls:'uk-animation-scale-up uk-invisible',delay:300,topoffset:-100}">
+      <div class="uk-scrollspy-init-inview uk-scrollspy-inview uk-animation-scale-up uk-padding-remove" data-uk-scrollspy="{cls:'uk-animation-scale-up uk-invisible',delay:300,topoffset:-100}">
 
-      <div class="uk-grid uk-grid-match uk-grid-small uk-margin-medium-top">
+        <div class="uk-grid uk-grid-match uk-grid-small uk-margin-medium-top">
 
-        <div class="uk-width-2-3@m uk-width-2-3@l uk-width-1-1@s">
+          <div class="uk-width-2-3@m uk-width-2-3@l uk-width-1-1@s">
 
-          <div class="uk-container uk-container-expand">
+            <div class="uk-container uk-container-expand">
 
-            <!--LAPTOP & PAD LANDSCAPE-->
-            <div class="uk-visible@m">
+              <!--LAPTOP & PAD LANDSCAPE-->
+              <div class="uk-visible@m">
 
-              <div class="uk-flex uk-flex-between">
-                <div class="">
-                  <img src="../../survey-tool/assets/images/flags/{{countryCode | lowercase}}-flag-round.png" class="flag-image" width="132" height="132">
-                  <div class="uk-inline uk-margin-left">
-                    <h1 *ngIf="countryPageOverviewData && countryPageOverviewData.name">{{countryPageOverviewData.name}}</h1>
-                    <span class="lastUpdateInfo">Data Last Updated: </span>
-                    <span *ngIf="surveyAnswerMetadata?.lastUpdate" class="lastUpdateInfo">{{surveyAnswerMetadata?.lastUpdate | date:'mediumDate'}}</span>
+                <div class="uk-flex uk-flex-between">
+                  <div class="">
+                    <img src="../../survey-tool/assets/images/flags/{{countryCode | lowercase}}-flag-round.png" class="flag-image" width="132" height="132">
+                    <div class="uk-inline uk-margin-left">
+                      <h1 *ngIf="countryPageOverviewData && countryPageOverviewData.name">{{countryPageOverviewData.name}}</h1>
+                      <span class="lastUpdateInfo">Data Last Updated: </span>
+                      <span *ngIf="surveyAnswerMetadata?.lastUpdate" class="lastUpdateInfo">{{surveyAnswerMetadata?.lastUpdate | date:'mediumDate'}}</span>
+                    </div>
                   </div>
+
                 </div>
 
-              </div>
-
-<!--              <div class="uk-position-relative uk-margin-large-top uk-width-xlarge uk-margin-auto-right@s uk-margin-remove-left@s uk-margin-auto uk-text-left">-->
-<!--                <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-2@m uk-grid-column-small uk-grid-match uk-grid" uk-grid="">-->
+                <!--              <div class="uk-position-relative uk-margin-large-top uk-width-xlarge uk-margin-auto-right@s uk-margin-remove-left@s uk-margin-auto uk-text-left">-->
+                <!--                <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-2@m uk-grid-column-small uk-grid-match uk-grid" uk-grid="">-->
                 <div class="uk-margin-large-top uk-margin-medium-right">
                   <p>This information has been compiled by our National Open Access Desks</p>
                   <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-3@l uk-grid-column-small uk-grid-match uk-grid" uk-grid="">
-                  <div *ngFor="let editor of surveyAnswerMetadata?.editors" class="uk-first-column">
-                    <div class="el-item uk-card uk-card-primary uk-card-small uk-card-body uk-margin-remove-first-child">
+                    <div *ngFor="let editor of surveyAnswerMetadata?.editors" class="uk-first-column">
+                      <div class="el-item uk-card uk-card-primary uk-card-small uk-card-body uk-margin-remove-first-child">
 
-                      <div class="uk-child-width-expand uk-grid-small uk-flex-middle uk-grid" uk-grid="">
-                        <div class="uk-width-auto uk-first-column">
-                          <picture>
-                            <img *ngIf="editor.profile?.picture; else noPicture" [src]="'data:image;base64,' + editor.profile?.picture | safeUrl:'resourceUrl'"
-                                 class="el-image uk-border-circle" alt="" loading="lazy" width="90" height="90">
-                            <ng-template #noPicture>
-                              <img src="../assets/images/icons/user.png"
+                        <div class="uk-child-width-expand uk-grid-small uk-flex-middle uk-grid" uk-grid="">
+                          <div class="uk-width-auto uk-first-column">
+                            <picture>
+                              <img *ngIf="editor.profile?.picture; else noPicture" [src]="'data:image;base64,' + editor.profile?.picture | safeUrl:'resourceUrl'"
                                    class="el-image uk-border-circle" alt="" loading="lazy" width="90" height="90">
-                            </ng-template>
-                          </picture>
-                        </div>
-                        <div class="uk-margin-remove-first-child">
+                              <ng-template #noPicture>
+                                <img src="../assets/images/icons/user.png"
+                                     class="el-image uk-border-circle" alt="" loading="lazy" width="90" height="90">
+                              </ng-template>
+                            </picture>
+                          </div>
+                          <div class="uk-margin-remove-first-child">
 
-                          <div *ngIf="editor.fullname" class="el-title uk-h5 uk-margin-remove-top uk-margin-remove-bottom">
-                            <a *ngIf="editor.profile?.webpage; else noWebpage" href="{{editor.profile.webpage}}" class="uk-link-reset">{{editor.fullname}}</a>
-                            <ng-template #noWebpage>
-                              <div>{{editor.fullname}}</div>
-                            </ng-template>
-                          </div>
-                          <div *ngIf="editor.profile?.affiliation" class="el-content uk-panel uk-text-small uk-text-left">
-<!--                            ATHENA Research &amp; Innovation Center-->
-                            {{editor.profile.affiliation}}
+                            <div *ngIf="editor.fullname" class="el-title uk-h5 uk-margin-remove-top uk-margin-remove-bottom">
+                              <a *ngIf="editor.profile?.webpage; else noWebpage" href="{{editor.profile.webpage}}" class="uk-link-reset">{{editor.fullname}}</a>
+                              <ng-template #noWebpage>
+                                <div>{{editor.fullname}}</div>
+                              </ng-template>
+                            </div>
+                            <div *ngIf="editor.profile?.affiliation" class="el-content uk-panel uk-text-small uk-text-left">
+                              <!--                            ATHENA Research &amp; Innovation Center-->
+                              {{editor.profile.affiliation}}
+                            </div>
                           </div>
                         </div>
+
+
                       </div>
-
-
                     </div>
                   </div>
-                </div>
 
-              </div>
-            </div>
-
-            <!--MOBILE & PAD PORTRAIT-->
-            <div class="uk-hidden@m uk-text-center">
-              <div class="">
-                <img src="../../../assets/img/flags/{{countryCode | lowercase}}-flag-round.png" class="flag-image uk-display-block uk-margin-auto-left uk-margin-auto-right" width="103" height="103">
-                <div class="uk-margin-top">
-                  <h1 *ngIf="countryPageOverviewData && countryPageOverviewData.name" class="uk-margin-small-bottom">{{countryPageOverviewData.name}}</h1>
-                  <span class="lastUpdateInfo">Data Last Updated: </span>
-<!--                  TODO-->
-<!--                  <span *ngIf="surveyAnswer?.metadata?.modificationDate" class="lastUpdateInfo">{{surveyAnswer.metadata.modificationDate | date:'mediumDate'}}</span>-->
                 </div>
               </div>
+
+              <!--MOBILE & PAD PORTRAIT-->
+              <div class="uk-hidden@m uk-text-center">
+                <div class="">
+                  <img src="../../../assets/img/flags/{{countryCode | lowercase}}-flag-round.png" class="flag-image uk-display-block uk-margin-auto-left uk-margin-auto-right" width="103" height="103">
+                  <div class="uk-margin-top">
+                    <h1 *ngIf="countryPageOverviewData && countryPageOverviewData.name" class="uk-margin-small-bottom">{{countryPageOverviewData.name}}</h1>
+                    <span class="lastUpdateInfo">Data Last Updated: </span>
+                    <!--                  TODO-->
+                    <!--                  <span *ngIf="surveyAnswer?.metadata?.modificationDate" class="lastUpdateInfo">{{surveyAnswer.metadata.modificationDate | date:'mediumDate'}}</span>-->
+                  </div>
+                </div>
+              </div>
+
+
+
             </div>
-
-
 
           </div>
+
+          <!--Research Overview-->
+          <!--LAPTOP & PAD LANDSCAPE-->
+          <div class="uk-visible@m uk-width-1-3@m uk-width-1-3@l">
+            <div class="uk-card uk-card-default infoBox">
+
+              <div class="uk-card-body">
+
+                <div class="">
+                  <h5 class="uk-margin-small-top uk-margin-remove">R&D Information</h5>
+                  <div class="uk-text-muted uk-margin-small-top">From Eurostat</div>
+                </div>
+
+                <div class="numbers uk-margin-top uk-grid uk-child-width-1-2 uk-grid-match" uk-height-match="target: > div > div">
+
+                  <div class="indicator uk-grid-margin">
+                    <ng-container *ngIf="countryPageOverviewData?.rndExpenditure">
+                      <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.rndExpenditure?.expenditure">{{countryPageOverviewData.rndExpenditure.expenditure}}%</h5>
+                      <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure || !countryPageOverviewData.rndExpenditure.expenditure">--</h5>
+                      <div class="uk-text-light uk-text-muted">
+                        <span> of GDP for </span>
+                        <span class="number uk-text-primary">{{countryPageOverviewData.rndExpenditure.year}}</span>
+                        <div> R&D expenditure</div>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure">
+                      <h5 class="number uk-text-primary uk-margin-small-bottom">--</h5>
+                      <div class="uk-text-light uk-text-muted">R&D expenditure</div>
+                    </ng-container>
+                  </div>
+
+                  <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
+
+                  <div class="indicator uk-grid-margin">
+                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.funders">{{countryPageOverviewData.funders}}</h5>
+                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.funders">--</h5>
+                    <div class="uk-text-light uk-text-muted">funders</div>
+                  </div>
+
+                  <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
+
+                  <div class="indicator uk-grid-margin">
+                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.fundingOrganizations">{{countryPageOverviewData.fundingOrganizations}}</h5>
+                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.fundingOrganizations">--</h5>
+                    <div class="uk-text-light uk-text-muted">funding organizations</div>
+                  </div>
+
+                  <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
+
+                  <div class="indicator uk-grid-margin">
+                    <div class="uk-flex uk-flex-between">
+                      <div>
+                        <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</h5>
+                        <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
+                        <div class="uk-text-light uk-text-muted">projects</div>
+                      </div>
+                      <div>
+                        <picture>
+                          <img class="el-image" src="../assets/images/EN%20V%20Funded%20by%20the%20EU_POS.png" width="60" height="40">
+                        </picture>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!--Research Overview-->
+          <!--MOBILE & PAD PORTRAIT-->
+          <!--        <div class="uk-hidden@m uk-width-1-1@s uk-margin-medium-top">-->
+          <!--          <div class="uk-container uk-container-expand">-->
+          <!--            <div *ngIf="countryPageOverviewData" class="uk-card uk-card-default chartCard overviewMobile">-->
+          <!--              <div class="uk-card-body">-->
+          <!--                <div class="numbers">-->
+
+          <!--                  <div class="">-->
+          <!--                    <ng-container *ngIf="countryPageOverviewData?.rndExpenditure">-->
+          <!--                      <span class="number big uk-text-primary">{{countryPageOverviewData.rndExpenditure.expenditure}}%</span>-->
+          <!--                      <span>-->
+          <!--                      <span class="uk-margin-small-right uk-margin-small-left"> OF GDP FOR </span>-->
+          <!--                      <span class="number big uk-text-primary">{{countryPageOverviewData.rndExpenditure.year}}</span>-->
+          <!--                      <div class="uk-margin-small-top"> R&D EXPENDITURE</div>-->
+          <!--                    </span>-->
+          <!--                    </ng-container>-->
+          <!--                    <ng-container *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure">-->
+          <!--                      <div class="number big uk-text-primary">&#45;&#45;</div>-->
+          <!--                      <div class="uk-margin-small-top">R&D EXPENDITURE</div>-->
+          <!--                    </ng-container>-->
+          <!--                  </div>-->
+
+          <!--                  <div class="uk-margin-medium-top">-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.funders">{{countryPageOverviewData.funders}}</div>-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.funders">&#45;&#45;</div>-->
+          <!--                    <div class="uk-margin-small-top">FUNDERS</div>-->
+          <!--                  </div>-->
+
+          <!--                  <div class="uk-margin-medium-top">-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.fundingOrganizations">{{countryPageOverviewData.fundingOrganizations}}</div>-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.fundingOrganizations">&#45;&#45;</div>-->
+          <!--                    <div class="uk-margin-small-top">FUNDING ORGANIZATIONS</div>-->
+          <!--                  </div>-->
+
+          <!--                  <div class=" uk-margin-medium-top">-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</div>-->
+          <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">&#45;&#45;</div>-->
+          <!--                    <div class="uk-margin-small-top">PROJECTS FUNDED BY THE EUROPEAN COMMISSION SINCE 2013</div>-->
+          <!--                  </div>-->
+
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--        </div>-->
+
 
         </div>
 
-        <!--Research Overview-->
-        <!--LAPTOP & PAD LANDSCAPE-->
-        <div class="uk-visible@m uk-width-1-3@m uk-width-1-3@l">
-          <div class="uk-card uk-card-default infoBox">
-
-            <div class="uk-card-body">
-
-              <div class="">
-                <h5 class="uk-margin-small-top uk-margin-remove">R&D Information</h5>
-                <div class="uk-text-muted uk-margin-small-top">From Eurostat</div>
-              </div>
-
-              <div class="numbers uk-margin-top uk-grid uk-child-width-1-2 uk-grid-match" uk-height-match="target: > div > div">
-
-                <div class="indicator uk-grid-margin">
-                  <ng-container *ngIf="countryPageOverviewData?.rndExpenditure">
-                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.rndExpenditure?.expenditure">{{countryPageOverviewData.rndExpenditure.expenditure}}%</h5>
-                    <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure || !countryPageOverviewData.rndExpenditure.expenditure">--</h5>
-                    <div class="uk-text-light uk-text-muted">
-                      <span> of GDP for </span>
-                      <span class="number uk-text-primary">{{countryPageOverviewData.rndExpenditure.year}}</span>
-                      <div> R&D expenditure</div>
-                    </div>
-                  </ng-container>
-                  <ng-container *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure">
-                    <h5 class="number uk-text-primary uk-margin-small-bottom">--</h5>
-                    <div class="uk-text-light uk-text-muted">R&D expenditure</div>
-                  </ng-container>
-                </div>
-
-                <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
-
-                <div class="indicator uk-grid-margin">
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.funders">{{countryPageOverviewData.funders}}</h5>
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.funders">--</h5>
-                  <div class="uk-text-light uk-text-muted">funders</div>
-                </div>
-
-                <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
-
-                <div class="indicator uk-grid-margin">
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="countryPageOverviewData?.fundingOrganizations">{{countryPageOverviewData.fundingOrganizations}}</h5>
-                  <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.fundingOrganizations">--</h5>
-                  <div class="uk-text-light uk-text-muted">funding organizations</div>
-                </div>
-
-                <!--                <hr class="greyBoldDivider uk-margin-medium-top uk-margin-medium-bottom">-->
-
-                <div class="indicator uk-grid-margin">
-                  <div class="uk-flex uk-flex-between">
-                    <div>
-                      <h5 class="number uk-text-primary uk-margin-small-bottom uk-flex uk-flex-between" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</h5>
-                      <h5 class="number uk-text-primary uk-margin-small-bottom" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">--</h5>
-                      <div class="uk-text-light uk-text-muted">projects</div>
-                    </div>
-                    <div>
-                      <picture>
-                        <img class="el-image" src="../assets/images/EN%20V%20Funded%20by%20the%20EU_POS.png" width="60" height="40">
-                      </picture>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!--Research Overview-->
-        <!--MOBILE & PAD PORTRAIT-->
-        <!--        <div class="uk-hidden@m uk-width-1-1@s uk-margin-medium-top">-->
-        <!--          <div class="uk-container uk-container-expand">-->
-        <!--            <div *ngIf="countryPageOverviewData" class="uk-card uk-card-default chartCard overviewMobile">-->
-        <!--              <div class="uk-card-body">-->
-        <!--                <div class="numbers">-->
-
-        <!--                  <div class="">-->
-        <!--                    <ng-container *ngIf="countryPageOverviewData?.rndExpenditure">-->
-        <!--                      <span class="number big uk-text-primary">{{countryPageOverviewData.rndExpenditure.expenditure}}%</span>-->
-        <!--                      <span>-->
-        <!--                      <span class="uk-margin-small-right uk-margin-small-left"> OF GDP FOR </span>-->
-        <!--                      <span class="number big uk-text-primary">{{countryPageOverviewData.rndExpenditure.year}}</span>-->
-        <!--                      <div class="uk-margin-small-top"> R&D EXPENDITURE</div>-->
-        <!--                    </span>-->
-        <!--                    </ng-container>-->
-        <!--                    <ng-container *ngIf="!countryPageOverviewData || !countryPageOverviewData.rndExpenditure">-->
-        <!--                      <div class="number big uk-text-primary">&#45;&#45;</div>-->
-        <!--                      <div class="uk-margin-small-top">R&D EXPENDITURE</div>-->
-        <!--                    </ng-container>-->
-        <!--                  </div>-->
-
-        <!--                  <div class="uk-margin-medium-top">-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.funders">{{countryPageOverviewData.funders}}</div>-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.funders">&#45;&#45;</div>-->
-        <!--                    <div class="uk-margin-small-top">FUNDERS</div>-->
-        <!--                  </div>-->
-
-        <!--                  <div class="uk-margin-medium-top">-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.fundingOrganizations">{{countryPageOverviewData.fundingOrganizations}}</div>-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.fundingOrganizations">&#45;&#45;</div>-->
-        <!--                    <div class="uk-margin-small-top">FUNDING ORGANIZATIONS</div>-->
-        <!--                  </div>-->
-
-        <!--                  <div class=" uk-margin-medium-top">-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="countryPageOverviewData?.ec_fundedProjects">{{countryPageOverviewData.ec_fundedProjects}}</div>-->
-        <!--                    <div class="number big uk-text-primary" *ngIf="!countryPageOverviewData || !countryPageOverviewData.ec_fundedProjects">&#45;&#45;</div>-->
-        <!--                    <div class="uk-margin-small-top">PROJECTS FUNDED BY THE EUROPEAN COMMISSION SINCE 2013</div>-->
-        <!--                  </div>-->
-
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-
       </div>
 
-    </div>
 
-
-
-  </div>
-</div>
-
-<div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
-  <div class="uk-container uk-container-expand">
-
-    <div>
-
-      <div class="uk-section-primary" uk-sticky="offset: 80px">
-        <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
-          <li class="uk-active first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
-          <li><a [routerLink]="['/country', code, 'policies']" fragment="policies_overview"
-                 (click)="getDomElement('policies')">Policies</a>
-          </li>
-          <li><a [routerLink]="['/country', code, 'infrastructure']" fragment="infrastructure_overview"
-                 (click)="getDomElement('infrastructure')">Infrastructure</a>
-          </li>
-          <li><a [routerLink]="['/country', code, 'skills']" fragment="skills_overview"
-                 (click)="getDomElement('skills')">Skills</a>
-          </li>
-          <li><a [routerLink]="['/country', code, 'about']">About this page</a></li>
-
-        </ul>
-      </div>
-
-      <ul id="sections_tabbed" class="uk-switcher">
-        <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
-
-          <div class="uk-section-primary" uk-sticky="offset: 170px">
-            <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
-              <li class="first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
-              <li [routerLink]="['/country', code, 'overview', 'keyActors']" fragment="research_funding_organisations"
-                  (click)="getDomElement('keyActors')"><a>Key Actors</a>
-              </li>
-              <li [routerLink]="['/country', code, 'overview', 'initiatives']" fragment="eosc_national_initiative"
-                  (click)="getDomElement('initiatives')"><a>Initiatives</a>
-              </li>
-              <li [routerLink]="['/country', code, 'overview', 'miscellaneous']"><a>Miscellaneous</a></li>
-            </ul>
-          </div>
-
-          <ul *ngIf="surveyAnswer" id="overview_subtabs" class="uk-switcher uk-margin">
-
-            <li>
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question1']">
-                <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question1']" class="uk-margin-large-top"></div>
-              </ng-container>
-            </li>
-
-            <li>
-
-              <div class="uk-grid uk-flex uk-margin-large-top">
-
-                <div class="uk-width-1-4 uk-flex-last">
-                  <div uk-sticky="offset: 250px">
-                    <div class="tabsTitle uk-margin-bottom">Content</div>
-                    <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
-                      </li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a>
-                      </li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a>
-                      </li>
-                      <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="other_organisations">Other Organisations</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="uk-width-3-4" id="keyActors">
-
-                  <div id="research_funding_organisations">
-                    <div class="uk-text-secondary">Research Funding Organisations</div>
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']">
-                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']" class="uk-margin-medium-top">
-                        <div [innerHTML]="element['Question2-1']"></div>
-                      </div>
-                    </ng-container>
-                  </div>
-
-                  <div id="research_performing_organisations">
-                    <div class="uk-text-secondary">Research Performing Organisations</div>
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']">
-                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']" class="uk-margin-medium-top">
-                        <div [innerHTML]="element['Question3-1']"></div>
-                      </div>
-                    </ng-container>
-                  </div>
-
-                  <div id="research_support_organisations">
-                    <div class="uk-text-secondary">Research Support Organisations</div>
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']">
-                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']" class="uk-margin-medium-top">
-                        <div [innerHTML]="element['Question4-1']"></div>
-                      </div>
-                    </ng-container>
-                  </div>
-
-                  <div id="other_organisations">
-                    <div class="uk-text-secondary">Other Organisations</div>
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']">
-                      <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top"></div>
-                    </ng-container>
-                  </div>
-
-                </div>
-              </div>
-
-            </li>
-
-            <li>
-
-              <div class="uk-grid uk-flex uk-margin-large-top">
-                <div class="uk-width-1-4 uk-flex-last">
-                  <div uk-sticky="offset: 250px">
-                    <div class="tabsTitle uk-margin-bottom">Content</div>
-                    <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"
-                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
-                      </li>
-                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']"
-                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives">Open Science and FAIR National Initiatives</a>
-                      </li>
-                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']"
-                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="open_access_publishing">Open Access Publishing</a>
-                      </li>
-                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']"
-                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="regional_EC_initiatives">Regional / EC Initiatives</a>
-                      </li>
-                      <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']"
-                          routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                        <a routerLink="./" fragment="global_initiatives">Global Initiatives</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="uk-width-3-4" id="initiatives">
-                  <div id="eosc_national_initiative">
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']">
-                      <div class="uk-text-secondary">EOSC National Initiative</div>
-                      <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']['Question5-1']" class="uk-margin-medium-top"></div>
-                    </ng-container>
-                  </div>
-                  <div id="open_science_and_FAIR_national_initiatives">
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']">
-                      <div class="uk-text-secondary">Open Science and FAIR National Initiatives</div>
-                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']" class="uk-margin-medium-top">
-                        <div [innerHTML]="element['Question6-1']"></div>
-                      </div>
-                    </ng-container>
-                  </div>
-                  <div id="open_access_publishing">
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']">
-                      <div class="uk-text-secondary">Open Access Publishing</div>
-                      <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']" class="uk-margin-medium-top"></div>
-                    </ng-container>
-                  </div>
-                  <div id="regional_EC_initiatives">
-                    <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']">
-                      <div class="uk-text-secondary">Regional / EC Initiatives</div>
-                      <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']" class="uk-margin-medium-top">
-                        <div [innerHTML]="element['Question8-1']"></div>
-                      </div>
-                    </ng-container>
-                  </div>
-                  <div id="global_initiatives">
-                      <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']">
-                        <div class="uk-text-secondary">Global Initiatives</div>
-                        <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']" class="uk-margin-medium-top">
-                          <div [innerHTML]="element['Question31-1']"></div>
-                        </div>
-                      </ng-container>
-                    </div>
-                </div>
-
-              </div>
-
-            </li>
-
-            <li>
-              <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question9']">
-                <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question9']" class="uk-margin-large-top"></div>
-              </ng-container>
-            </li>
-          </ul>
-        </li>
-
-        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
-
-          <div class="uk-grid uk-flex uk-margin-large-top">
-
-            <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky="offset: 250px">
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="policies_overview">Overview</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="national_policy_and_legislation">National Policy and Legislation</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="funder_policies">Funder Policies</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="institutional_policies">Institutional policies</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="uk-width-3-4" id="policies">
-              <div id="policies_overview">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question10']">
-                  <div class="uk-text-secondary">Overview</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question10']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="national_policy_and_legislation">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question11']">
-                  <div class="uk-text-secondary">National Policy and Legislation</div>
-                  <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question11']" class="uk-margin-medium-top">
-                    <div [innerHTML]="element['Question11-1']"></div>
-                  </div>
-                </ng-container>
-              </div>
-              <div id="funder_policies">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question12']">
-                  <div class="uk-text-secondary">Funder Policies</div>
-                  <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top">
-                    <div [innerHTML]="element['Question12-1']"></div>
-                  </div>
-                  <!--            <div [innerHTML]="surveyAnswer['OPEN SCIENCE POLICY']['Question12']" class="uk-margin-medium-top"></div>-->
-                </ng-container>
-              </div>
-              <div id="institutional_policies">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE POLICY']['Question13']">
-                  <div class="uk-text-secondary">Institutional policies</div>
-                  <div *ngFor="let element of surveyAnswer['OPEN SCIENCE POLICY']['Question13']" class="uk-margin-medium-top">
-                    <div [innerHTML]="element['Question13-1']"></div>
-                  </div>
-                </ng-container>
-              </div>
-            </div>
-
-          </div>
-
-        </li>
-
-        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
-
-          <div class="uk-grid uk-flex uk-margin-large-top">
-            <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky="offset: 250px">
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="infrastructure_overview">Overview</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="national_data_service">National Data Service</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="networks_&_aggregators">Networks & Aggregators of Scientific/Research Content</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="literature_repositories">Literature repositories</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="data_repositories">Data repositories</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="software_repositories">Software repositories</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="OA_publishing_platforms">OA Publishing Platforms</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="monitoring_infrastructure">Monitoring Infrastructure</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="helpdesk_and_support">Helpdesk and Support</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="links_to_european_and_global_infrastructures">Links to European and Global Infrastructures</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="uk-width-3-4" id="infrastructure">
-              <div id="infrastructure_overview">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']">
-                  <div class="uk-text-secondary">Overview</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question14']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="national_data_service">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']">
-                  <div class="uk-text-secondary">National Data Service</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question15']['Question15-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="networks_&_aggregators">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']">
-                  <div class="uk-text-secondary">Networks & Aggregators of Scientific/Research Content</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question16']['Question16-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="literature_repositories">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']">
-                  <div class="uk-text-secondary">Literature repositories</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question17']['Question17-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="data_repositories">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']">
-                  <div class="uk-text-secondary">Data repositories</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question18']['Question18-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="software_repositories">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']">
-                  <div class="uk-text-secondary">Software repositories</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question19']['Question19-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="OA_publishing_platforms">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']">
-                  <div class="uk-text-secondary">OA Publishing Platforms</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question20']['Question20-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="monitoring_infrastructure">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']">
-                  <div class="uk-text-secondary">Monitoring Infrastructure</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question21']['Question21-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="helpdesk_and_support">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']">
-                  <div class="uk-text-secondary">Helpdesk and Support</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question22']['Question22-1']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="links_to_european_and_global_infrastructures">
-                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']">
-                    <div class="uk-text-secondary">Links to European and Global Infrastructures</div>
-                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question23']['Question23-1']" class="uk-margin-medium-top"></div>
-                  </ng-container>
-                </div>
-            </div>
-
-          </div>
-
-        </li>
-
-        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
-
-          <div class="uk-grid uk-flex uk-margin-large-top">
-            <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky="offset: 250px">
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="skills_overview">Overview</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="training_infrastructure">Training Infrastructure</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="competence_centers">Open Science/Digital Competence centers</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="open_science_professionals">Open Science Professionals</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="open_science_curricula">Open Science Curricula</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="links">Links to national initiatives on Digital Skills</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="uk-width-3-4" id="skills">
-              <div id="skills_overview">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']">
-                  <div class="uk-text-secondary">Overview</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question24']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="training_infrastructure">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']">
-                  <div class="uk-text-secondary">Training Infrastructure</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question25']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="competence_centers">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']">
-                  <div class="uk-text-secondary">Open Science/Digital Competence centers</div>
-                  <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question26']" class="uk-margin-medium-top">
-                    <div [innerHTML]="element['Question26-1']"></div>
-                  </div>
-                </ng-container>
-              </div>
-              <div id="open_science_professionals">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']">
-                  <div class="uk-text-secondary">Open Science Professionals</div>
-                  <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question27']" class="uk-margin-medium-top"></div>
-                </ng-container>
-              </div>
-              <div id="open_science_curricula">
-                <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']">
-                  <div class="uk-text-secondary">Open Science Curricula</div>
-                  <div *ngFor="let element of surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question28']" class="uk-margin-medium-top">
-                    <div [innerHTML]="element"></div>
-                  </div>
-                </ng-container>
-              </div>
-              <div id="links">
-                  <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']">
-                    <div class="uk-text-secondary">Links to national initiatives on Digital Skills</div>
-                    <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']['Question29-1']" class="uk-margin-medium-top"></div>
-                  </ng-container>
-                </div>
-            </div>
-
-          </div>
-
-        </li>
-
-        <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
-
-          <div class="uk-grid uk-flex uk-margin-large-top">
-            <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky="offset: 250px">
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="what">What is the Country Page</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="who">Who is involved</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="how">How information is gathered</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="why">Why is it important</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="linksWithERAAndEOSC">What are the links with the ERA and EOSC</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="uk-width-3-4" id="about">
-              <div id="what" class="uk-margin-medium-bottom">
-                <div class="uk-text-secondary">What is the Country Page</div>
-                <div class="uk-margin-top">
-                  <p>
-                    The OpenAIRE Country Pages map the diverse national Research and Development (R&D) landscapes in Europe to
-                    provide a 360o view on the Open Science maturity of more than 35 countries. The Country Pages compile information
-                    about Open Science policies, key actors, initiatives, digital infrastructure and repositories as well as on training
-                    and skills employed to realise them.
-                  </p>
-                </div>
-              </div>
-
-              <div id="who" class="uk-margin-medium-bottom">
-                <div class="uk-text-secondary">Who is involved</div>
-                <div class="uk-margin-top">
-                  <p>
-                    OpenAIRE maintains a strong network of experts known as the National Open Access Desks (NOADs) who are committed
-                    to supporting the adoption and implementation of Open Science in their national research environments. They nurture
-                    collaborations with national stakeholders and experts and leverage on those connections to populate, curate and
-                    update the content of their country pages on a regular basis.
-                  </p>
-                </div>
-              </div>
-
-              <div id="how" class="uk-margin-medium-bottom">
-                <div class="uk-text-secondary">How information is gathered</div>
-                <div class="uk-margin-top">
-                  <p>
-                    Two major sources that feed the Country Pages with text, numbers and figures are the NOADS with their national
-                    networks and the OpenAIRE Graph.
-                  </p>
-                </div>
-              </div>
-
-              <div id="why" class="uk-margin-medium-bottom">
-                <div class="uk-text-secondary">Why is it important</div>
-                <div class="uk-margin-top">
-                  <p>
-                    This service allows to trace the implementation of Open Science practices in different national settings and
-                    displays the potential for further development and collaboration in all areas of Open Science.
-                  </p>
-                </div>
-              </div>
-
-              <div id="linksWithERAAndEOSC" class="uk-margin-medium-bottom">
-                <div class="uk-text-secondary">What are the links with the ERA and EOSC</div>
-                <div class="uk-margin-top">
-                  <p>
-                    The OpenAIRE Country Pages form the most complete and validated resource for Open Science in Europe complementing
-                    policy efforts and monitoring services, such as the Open Science Observatory.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </li>
-      </ul>
 
     </div>
-
   </div>
-</div>
+
+  <div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
+    <div class="uk-container uk-container-expand">
+      <app-country-landing-page-survey-content [surveyAnswer]="surveyAnswer" [countryCode]="countryCode"></app-country-landing-page-survey-content>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #onlySurveyContent>
+  <app-country-landing-page-survey-content [surveyAnswer]="surveyAnswer" [countryCode]="countryCode"></app-country-landing-page-survey-content>
+</ng-template>
+
+

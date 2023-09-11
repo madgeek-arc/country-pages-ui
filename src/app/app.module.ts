@@ -14,12 +14,16 @@ import {DataService} from "./pages/services/data.service";
 import {DataHandlerService} from "./pages/services/data-handler.service";
 import {CountryLandingPageContentComponent} from "./pages/country-landing-page/country-landing-page-content.component";
 import {CatalogueUiSharedModule} from "../survey-tool/catalogue-ui/shared/catalogue-ui-shared.module";
+import {
+  CountryLandingPageSurveyContentComponent
+} from "./pages/country-landing-page/country-landing-page-survey-content.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryLandingPageComponent,
     CountryLandingPageContentComponent,
+    CountryLandingPageSurveyContentComponent
   ],
   imports: [
     BrowserModule,
