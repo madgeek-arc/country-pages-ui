@@ -25,6 +25,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
   fragment: string = null;
   tabSwitcher = null;
   subTabSwitcher = null;
+  pathStart: string = 'country'
   private observer: IntersectionObserver;
   private timeout: any;
 
@@ -46,6 +47,10 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
     // console.log(this.tabSwitcher);
     this.subTabSwitcher = UIkit.switcher('#sections-tab',{});
     // console.log(this.subTabSwitcher);
+
+    if (this.router.url.startsWith('/embeddable')) {
+      this.pathStart= 'embeddable/country'
+    }
 
     this.route.params.subscribe(
       params => {

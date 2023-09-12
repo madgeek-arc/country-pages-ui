@@ -2,17 +2,17 @@
 
   <div class="uk-section-primary" uk-sticky="offset: 80px">
     <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
-      <li class="uk-active first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
-      <li><a [routerLink]="['/country', code, 'policies']" fragment="policies_overview"
+      <li class="uk-active first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']">Overview</a></li>
+      <li><a [routerLink]="[pathStart, code, 'policies']" fragment="policies_overview"
              (click)="getDomElement('policies')">Policies</a>
       </li>
-      <li><a [routerLink]="['/country', code, 'infrastructure']" fragment="infrastructure_overview"
+      <li><a [routerLink]="[pathStart, code, 'infrastructure']" fragment="infrastructure_overview"
              (click)="getDomElement('infrastructure')">Infrastructure</a>
       </li>
-      <li><a [routerLink]="['/country', code, 'skills']" fragment="skills_overview"
+      <li><a [routerLink]="[pathStart, code, 'skills']" fragment="skills_overview"
              (click)="getDomElement('skills')">Skills</a>
       </li>
-      <li><a [routerLink]="['/country', code, 'about']">About this page</a></li>
+      <li><a [routerLink]="[pathStart, code, 'about']">About this page</a></li>
 
     </ul>
   </div>
@@ -22,14 +22,14 @@
 
       <div class="uk-section-primary" uk-sticky="offset: 170px">
         <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
-          <li class="first-tab"><a [routerLink]="['/country', code, 'overview', 'overview']">Overview</a></li>
-          <li [routerLink]="['/country', code, 'overview', 'keyActors']" fragment="research_funding_organisations"
+          <li class="first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']">Overview</a></li>
+          <li [routerLink]="[pathStart, code, 'overview', 'keyActors']" fragment="research_funding_organisations"
               (click)="getDomElement('keyActors')"><a>Key Actors</a>
           </li>
-          <li [routerLink]="['/country', code, 'overview', 'initiatives']" fragment="eosc_national_initiative"
+          <li [routerLink]="[pathStart, code, 'overview', 'initiatives']" fragment="eosc_national_initiative"
               (click)="getDomElement('initiatives')"><a>Initiatives</a>
           </li>
-          <li [routerLink]="['/country', code, 'overview', 'miscellaneous']"><a>Miscellaneous</a></li>
+          <li [routerLink]="[pathStart, code, 'overview', 'miscellaneous']"><a>Miscellaneous</a></li>
         </ul>
       </div>
 
