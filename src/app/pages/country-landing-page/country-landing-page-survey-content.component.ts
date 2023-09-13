@@ -25,7 +25,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
   fragment: string = null;
   tabSwitcher = null;
   subTabSwitcher = null;
-  pathStart: string = 'country'
+  pathStart: string = '/country'
   private observer: IntersectionObserver;
   private timeout: any;
 
@@ -49,7 +49,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
     // console.log(this.subTabSwitcher);
 
     if (this.router.url.startsWith('/embeddable')) {
-      this.pathStart= 'embeddable/country'
+      this.pathStart = '/embeddable/country'
     }
 
     this.route.params.subscribe(

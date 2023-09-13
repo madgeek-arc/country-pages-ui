@@ -21,60 +21,6 @@ const routes: Routes = [
       extraOffset: 150
     }
   },
-  // {
-  //   path: 'country/:code',
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: CountryLandingPageComponent
-  //     },
-  //     {
-  //       path: 'overview',
-  //       component: OverviewTabsComponent,
-  //       children: [
-  //         {
-  //           path: '',
-  //           redirectTo: 'overview',
-  //           pathMatch: 'full'
-  //         },
-  //         {
-  //           path: 'overview',
-  //           component: OverviewComponent
-  //         },
-  //         {
-  //           path: 'keyActors',
-  //           component: CountryLandingPageComponent
-  //         },
-  //         {
-  //           path: 'keyActors',
-  //           component: CountryLandingPageComponent
-  //         },
-  //         {
-  //           path: 'Miscellaneous',
-  //           component: CountryLandingPageComponent
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'policies',
-  //       component: CountryLandingPageComponent
-  //     },
-  //     {
-  //       path: 'infrastructure',
-  //       component: CountryLandingPageComponent
-  //     },
-  //     {
-  //       path: 'skills',
-  //       component: CountryLandingPageComponent
-  //     },
-  //     {
-  //       path: 'about',
-  //       component: CountryLandingPageComponent
-  //     }
-  //
-  //   ],
-  //   component: CountryLandingPageComponent
-  // },
   {
     path: 'embeddable/country/:code',
     component: CountryLandingPageComponent

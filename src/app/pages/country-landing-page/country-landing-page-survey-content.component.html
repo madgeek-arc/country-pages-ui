@@ -12,8 +12,8 @@
       <li><a [routerLink]="[pathStart, code, 'skills']" fragment="skills_overview"
              (click)="getDomElement('skills')">Skills</a>
       </li>
-      <li><a [routerLink]="[pathStart, code, 'about']">About this page</a></li>
-
+      <li><a [routerLink]="[pathStart, code, 'about']" fragment="what"
+             (click)="getDomElement('about')">About this page</a></li>
     </ul>
   </div>
 
@@ -22,7 +22,7 @@
 
       <div class="uk-section-primary" uk-sticky="offset: 170px">
         <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
-          <li class="first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']">Overview</a></li>
+          <li class="first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']" fragment="">Overview</a></li>
           <li [routerLink]="[pathStart, code, 'overview', 'keyActors']" fragment="research_funding_organisations"
               (click)="getDomElement('keyActors')"><a>Key Actors</a>
           </li>
