@@ -26,6 +26,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
   tabSwitcher = null;
   subTabSwitcher = null;
   pathStart: string = '/country'
+  offset = 80;
   private observer: IntersectionObserver;
   private timeout: any;
 
@@ -50,6 +51,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
 
     if (this.router.url.startsWith('/embeddable')) {
       this.pathStart = '/embeddable/country'
+      this.offset = 0;
     }
 
     this.route.params.subscribe(
