@@ -62,13 +62,13 @@
 .uk-nav.uk-tab-right > li > a {
   padding: 15px 20px;
   line-height: 20px;
-  color: var(--black);
+  /*color: var(--black);*/
   font-size: 16px;
 }
 
 .uk-nav.uk-tab-right > .uk-active > a {
   font-weight: 600;
-  border-color: var(--eosc-observatory-primary-color);
+  /*border-color: var(--eosc-observatory-primary-color);*/
 }
 
 .horizontal-subnav {
@@ -122,4 +122,25 @@ pre {
 .osobservatory-button:hover {
   /*background: #CA4D9A 0% 0% no-repeat padding-box;*/
   color: #CA4D9A !important;
+}
+
+
+.uk-tile-secondary {
+  background-color: #222080;
+  background-image: linear-gradient(-40deg,#222080,#1d1b6c);
+}
+
+.uk-tile-secondary:not(.uk-preserve-color) a {
+  color: rgba(255,255,255,.8);
+  /*color: #fff !important;*/
+}
+
+.tabsTitle {
+  /*color: rgba(255,255,255,.7);*/
+  color: #fff !important;
+  opacity: 1;
+}
+
+.uk-tab-right > .uk-active > a {
+  border-left: 1px solid #fff;
 }

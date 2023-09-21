@@ -1,4 +1,4 @@
-<div class="uk-section-primary uk-section-small uk-preserve-color">
+<div class="">
 
   <div class="uk-section-primary" uk-sticky [attr.offset]=offset>
     <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
@@ -47,21 +47,23 @@
 
             <div class="uk-width-1-4 uk-flex-last">
               <div uk-sticky [attr.offset]=offset+170>
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a>
-                  </li>
-                  <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="other_organisations">Other Organisations</a>
-                  </li>
-                </ul>
+                <div class="uk-tile uk-tile-secondary">
+                  <div class="tabsTitle uk-margin-bottom">Content</div>
+                  <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
+                    </li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a>
+                    </li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a>
+                    </li>
+                    <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="other_organisations">Other Organisations</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
