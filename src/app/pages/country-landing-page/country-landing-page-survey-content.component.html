@@ -99,7 +99,9 @@
               <div id="other_organisations">
                 <div class="uk-text-secondary">Other Organisations</div>
                 <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']">
-                  <div [innerHTML]="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top"></div>
+                  <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top">
+                    <div [innerHTML]="element['Question30-1']"></div>
+                  </div>
                 </ng-container>
               </div>
 
