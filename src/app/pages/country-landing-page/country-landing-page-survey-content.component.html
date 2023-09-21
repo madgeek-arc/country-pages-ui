@@ -115,29 +115,31 @@
           <div class="uk-grid uk-flex uk-margin-large-top">
             <div class="uk-width-1-4 uk-flex-last">
               <div uk-sticky [attr.offset]=offset+170>
-                <div class="tabsTitle uk-margin-bottom">Content</div>
-                <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
-                  <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"
-                      routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
-                  </li>
-                  <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']"
-                      routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives">Open Science and FAIR National Initiatives</a>
-                  </li>
-                  <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']"
-                      routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="open_access_publishing">Open Access Publishing</a>
-                  </li>
-                  <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']"
-                      routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="regional_EC_initiatives">Regional / EC Initiatives</a>
-                  </li>
-                  <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']"
-                      routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                    <a routerLink="./" fragment="global_initiatives">Global Initiatives</a>
-                  </li>
-                </ul>
+                <div class="uk-tile uk-tile-secondary">
+                  <div class="tabsTitle uk-margin-bottom">Content</div>
+                  <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"
+                        routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
+                    </li>
+                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']"
+                        routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives">Open Science and FAIR National Initiatives</a>
+                    </li>
+                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']"
+                        routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="open_access_publishing">Open Access Publishing</a>
+                    </li>
+                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']"
+                        routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="regional_EC_initiatives">Regional / EC Initiatives</a>
+                    </li>
+                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']"
+                        routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                      <a routerLink="./" fragment="global_initiatives">Global Initiatives</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="uk-width-3-4" id="initiatives">
@@ -197,8 +199,9 @@
 
         <div class="uk-width-1-4 uk-flex-last">
           <div uk-sticky [attr.offset]=offset+170>
-            <div class="tabsTitle uk-margin-bottom">Content</div>
-            <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+            <div class="uk-tile uk-tile-secondary">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                 <a routerLink="./" fragment="policies_overview">Overview</a>
               </li>
@@ -212,6 +215,7 @@
                 <a routerLink="./" fragment="institutional_policies">Institutional policies</a>
               </li>
             </ul>
+            </div>
           </div>
         </div>
         <div class="uk-width-3-4" id="policies">
@@ -257,8 +261,9 @@
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
           <div uk-sticky [attr.offset]=offset+170>
-            <div class="tabsTitle uk-margin-bottom">Content</div>
-            <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+            <div class="uk-tile uk-tile-secondary">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                 <a routerLink="./" fragment="infrastructure_overview">Overview</a>
               </li>
@@ -290,6 +295,7 @@
                 <a routerLink="./" fragment="links_to_european_and_global_infrastructures">Links to European and Global Infrastructures</a>
               </li>
             </ul>
+            </div>
           </div>
         </div>
         <div class="uk-width-3-4" id="infrastructure">
@@ -364,8 +370,9 @@
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
           <div uk-sticky [attr.offset]=offset+170>
-            <div class="tabsTitle uk-margin-bottom">Content</div>
-            <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+            <div class="uk-tile uk-tile-secondary">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                 <a routerLink="./" fragment="skills_overview">Overview</a>
               </li>
@@ -385,6 +392,7 @@
                 <a routerLink="./" fragment="links">Links to national initiatives on Digital Skills</a>
               </li>
             </ul>
+            </div>
           </div>
         </div>
         <div class="uk-width-3-4" id="skills">
@@ -439,8 +447,9 @@
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
           <div uk-sticky [attr.offset]=offset+170>
-            <div class="tabsTitle uk-margin-bottom">Content</div>
-            <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
+            <div class="uk-tile uk-tile-secondary">
+              <div class="tabsTitle uk-margin-bottom">Content</div>
+              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                 <a routerLink="./" fragment="what">What is the Country Page</a>
               </li>
@@ -457,6 +466,7 @@
                 <a routerLink="./" fragment="linksWithERAAndEOSC">What are the links with the ERA and EOSC</a>
               </li>
             </ul>
+            </div>
           </div>
         </div>
         <div class="uk-width-3-4" id="about">
