@@ -216,13 +216,23 @@
 <!--  <div class="uk-section uk-section-default uk-section-small uk-preserve-color">-->
   <div class="uk-section uk-section-primary uk-section-small uk-preserve-color">
     <div class="uk-container uk-container-expand">
-      <app-country-landing-page-survey-content [surveyAnswer]="surveyAnswer" [countryCode]="countryCode"></app-country-landing-page-survey-content>
+      <app-country-landing-page-survey-content *ngIf="!emptyAnswer; else elseBlock"
+        [surveyAnswer]="surveyAnswer" [countryCode]="countryCode">
+      </app-country-landing-page-survey-content>
+
+<!--      <ng-template #elseBlock>-->
+<!--        Currently there is no survey answer available-->
+<!--      </ng-template>-->
     </div>
   </div>
 </ng-container>
 
 <ng-template #onlySurveyContent>
-  <app-country-landing-page-survey-content [surveyAnswer]="surveyAnswer" [countryCode]="countryCode"></app-country-landing-page-survey-content>
+  <app-country-landing-page-survey-content *ngIf="!emptyAnswer; else elseBlock"
+    [surveyAnswer]="surveyAnswer" [countryCode]="countryCode">
+  </app-country-landing-page-survey-content>
 </ng-template>
 
-
+<ng-template #elseBlock>
+  <span><i>Currently there is no survey answer available</i></span>
+</ng-template>

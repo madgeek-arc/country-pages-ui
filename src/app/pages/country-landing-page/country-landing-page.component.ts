@@ -21,6 +21,7 @@ export class CountryLandingPageComponent implements OnInit {
   surveyId: string = null;
   surveyAnswer: Object = null;
   surveyAnswerMetadata: SurveyAnswerPublicMetadata = null;
+  emptyAnswer: boolean = false;
 
   countryPageOverviewData: CountryPageOverviewData;
 
@@ -56,6 +57,9 @@ export class CountryLandingPageComponent implements OnInit {
             this.surveyService.getPublicAnswerMetadata(this.stakeholderId, this.surveyId).subscribe(
               res=> {
                 this.surveyAnswerMetadata = res;
+                if (this.surveyAnswerMetadata.editors.length === 0) {
+                  this.emptyAnswer = true;
+                }
               }
             );
           });
