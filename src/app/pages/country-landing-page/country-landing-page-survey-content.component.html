@@ -2,17 +2,19 @@
 
   <div class="uk-section-primary" uk-sticky [attr.offset]=offset>
     <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
-      <li class="uk-active first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']">Overview</a></li>
+      <li class="uk-active first-tab">
+        <a [routerLink]="[pathStart, code, 'overview', 'overview']" [queryParams]="params">Overview</a>
+      </li>
       <li><a [routerLink]="[pathStart, code, 'policies']" fragment="policies_overview"
-             (click)="getDomElement('policies')">Policies</a>
+             [queryParams]="params" (click)="getDomElement('policies')">Policies</a>
       </li>
       <li><a [routerLink]="[pathStart, code, 'infrastructure']" fragment="infrastructure_overview"
-             (click)="getDomElement('infrastructure')">Infrastructure</a>
+             [queryParams]="params" (click)="getDomElement('infrastructure')">Infrastructure</a>
       </li>
       <li><a [routerLink]="[pathStart, code, 'skills']" fragment="skills_overview"
-             (click)="getDomElement('skills')">Skills</a>
+             [queryParams]="params" (click)="getDomElement('skills')">Skills</a>
       </li>
-      <li><a [routerLink]="[pathStart, code, 'about']" fragment="what"
+      <li><a [routerLink]="[pathStart, code, 'about']" fragment="what" [queryParams]="params"
              (click)="getDomElement('about')">About this page</a></li>
     </ul>
   </div>
@@ -22,14 +24,18 @@
 
       <div class="uk-section-primary" uk-sticky [attr.offset]=offset+90>
         <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
-          <li class="first-tab"><a [routerLink]="[pathStart, code, 'overview', 'overview']" fragment="">Overview</a></li>
-          <li [routerLink]="[pathStart, code, 'overview', 'keyActors']" fragment="research_funding_organisations"
-              (click)="getDomElement('keyActors')"><a>Key Actors</a>
+          <li class="first-tab" [routerLink]="[pathStart, code, 'overview', 'overview']" [queryParams]="params"
+              fragment=""><a>Overview</a>
           </li>
-          <li [routerLink]="[pathStart, code, 'overview', 'initiatives']" fragment="eosc_national_initiative"
-              (click)="getDomElement('initiatives')"><a>Initiatives</a>
+          <li [routerLink]="[pathStart, code, 'overview', 'keyActors']" [queryParams]="params"
+              fragment="research_funding_organisations" (click)="getDomElement('keyActors')"><a>Key Actors</a>
           </li>
-          <li [routerLink]="[pathStart, code, 'overview', 'miscellaneous']"><a>Miscellaneous</a></li>
+          <li [routerLink]="[pathStart, code, 'overview', 'initiatives']" [queryParams]="params"
+              fragment="eosc_national_initiative" (click)="getDomElement('initiatives')"><a>Initiatives</a>
+          </li>
+          <li [routerLink]="[pathStart, code, 'overview', 'miscellaneous']" [queryParams]="params">
+            <a>Miscellaneous</a>
+          </li>
         </ul>
       </div>
 
@@ -52,16 +58,24 @@
                   <div class="tabsTitle uk-margin-bottom">Content</div>
                   <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="research_funding_organisations">Research Funding Organisations</a>
+                      <a routerLink="./" fragment="research_funding_organisations" [queryParams]="params">
+                        Research Funding Organisations
+                      </a>
                     </li>
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="research_performing_organisations">Research Performing Organisations</a>
+                      <a routerLink="./" fragment="research_performing_organisations" [queryParams]="params">
+                        Research Performing Organisations
+                      </a>
                     </li>
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="research_support_organisations">Research Support Organisations</a>
+                      <a routerLink="./" fragment="research_support_organisations" [queryParams]="params">
+                        Research Support Organisations
+                      </a>
                     </li>
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="other_organisations">Other Organisations</a>
+                      <a routerLink="./" fragment="other_organisations" [queryParams]="params">
+                        Other Organisations
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -125,23 +139,31 @@
                   <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
 <!--                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question5']"-->
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="eosc_national_initiative">EOSC National Initiative</a>
+                      <a routerLink="./" fragment="eosc_national_initiative" [queryParams]="params">
+                        EOSC National Initiative
+                      </a>
                     </li>
 <!--                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question6']"-->
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives">Open Science and FAIR National Initiatives</a>
+                      <a routerLink="./" fragment="open_science_and_FAIR_national_initiatives" [queryParams]="params">
+                        Open Science and FAIR National Initiatives
+                      </a>
                     </li>
 <!--                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question7']"-->
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="open_access_publishing">Open Access Publishing</a>
+                      <a routerLink="./" fragment="open_access_publishing" [queryParams]="params">
+                        Open Access Publishing
+                      </a>
                     </li>
 <!--                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question8']"-->
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="regional_EC_initiatives">Regional / EC Initiatives</a>
+                      <a routerLink="./" fragment="regional_EC_initiatives" [queryParams]="params">
+                        Regional / EC Initiatives
+                      </a>
                     </li>
 <!--                    <li *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question31']"-->
                     <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                      <a routerLink="./" fragment="global_initiatives">Global Initiatives</a>
+                      <a routerLink="./" fragment="global_initiatives" [queryParams]="params">Global Initiatives</a>
                     </li>
                   </ul>
                 </div>
@@ -214,16 +236,18 @@
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="policies_overview">Overview</a>
+                  <a routerLink="./" fragment="policies_overview" [queryParams]="params">Overview</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="national_policy_and_legislation">National Policy and Legislation</a>
+                  <a routerLink="./" fragment="national_policy_and_legislation" [queryParams]="params">
+                    National Policy and Legislation
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="funder_policies">Funder Policies</a>
+                  <a routerLink="./" fragment="funder_policies" [queryParams]="params">Funder Policies</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="institutional_policies">Institutional policies</a>
+                  <a routerLink="./" fragment="institutional_policies" [queryParams]="params">Institutional policies</a>
                 </li>
               </ul>
             </div>
@@ -279,36 +303,42 @@
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="infrastructure_overview">Overview</a>
+                  <a routerLink="./" fragment="infrastructure_overview" [queryParams]="params">Overview</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="national_data_service">National Data Service</a>
+                  <a routerLink="./" fragment="national_data_service" [queryParams]="params">National Data Service</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="networks_&_aggregators">
+                  <a routerLink="./" fragment="networks_&_aggregators" [queryParams]="params">
                     Networks & Aggregators of Scientific/Research Content
                   </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="literature_repositories">Literature repositories</a>
+                  <a routerLink="./" fragment="literature_repositories" [queryParams]="params">
+                    Literature repositories
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="data_repositories">Data repositories</a>
+                  <a routerLink="./" fragment="data_repositories" [queryParams]="params">Data repositories</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="software_repositories">Software repositories</a>
+                  <a routerLink="./" fragment="software_repositories" [queryParams]="params">Software repositories</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="OA_publishing_platforms">OA Publishing Platforms</a>
+                  <a routerLink="./" fragment="OA_publishing_platforms" [queryParams]="params">
+                    OA Publishing Platforms
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="monitoring_infrastructure">Monitoring Infrastructure</a>
+                  <a routerLink="./" fragment="monitoring_infrastructure" [queryParams]="params">
+                    Monitoring Infrastructure
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="helpdesk_and_support">Helpdesk and Support</a>
+                  <a routerLink="./" fragment="helpdesk_and_support" [queryParams]="params">Helpdesk and Support</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="links_to_european_and_global_infrastructures">
+                  <a routerLink="./" fragment="links_to_european_and_global_infrastructures" [queryParams]="params">
                     Links to European and Global Infrastructures
                   </a>
                 </li>
@@ -402,22 +432,26 @@
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="skills_overview">Overview</a>
+                  <a routerLink="./" fragment="skills_overview" [queryParams]="params">Overview</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="training_infrastructure">Training Infrastructure</a>
+                  <a routerLink="./" fragment="training_infrastructure" [queryParams]="params">Training Infrastructure</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="competence_centers">Open Science/Digital Competence centers</a>
+                  <a routerLink="./" fragment="competence_centers" [queryParams]="params">
+                    Open Science/Digital Competence centers
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="open_science_professionals">Open Science Professionals</a>
+                  <a routerLink="./" fragment="open_science_professionals" [queryParams]="params">
+                    Open Science Professionals
+                  </a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="open_science_curricula">Open Science Curricula</a>
+                  <a routerLink="./" fragment="open_science_curricula" [queryParams]="params">Open Science Curricula</a>
                 </li>
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                  <a routerLink="./" fragment="links">Links to national initiatives on Digital Skills</a>
+                  <a routerLink="./" fragment="links" [queryParams]="params">Links to national initiatives on Digital Skills</a>
                 </li>
               </ul>
             </div>
@@ -485,19 +519,21 @@
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                <a routerLink="./" fragment="what">What is the Country Page</a>
+                <a routerLink="./" fragment="what" [queryParams]="params">What is the Country Page</a>
               </li>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                <a routerLink="./" fragment="who">Who is involved</a>
+                <a routerLink="./" fragment="who" [queryParams]="params">Who is involved</a>
               </li>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                <a routerLink="./" fragment="how">How information is gathered</a>
+                <a routerLink="./" fragment="how" [queryParams]="params">How information is gathered</a>
               </li>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                <a routerLink="./" fragment="why">Why is it important</a>
+                <a routerLink="./" fragment="why" [queryParams]="params">Why is it important</a>
               </li>
               <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
-                <a routerLink="./" fragment="linksWithERAAndEOSC">What are the links with the ERA and EOSC</a>
+                <a routerLink="./" fragment="linksWithERAAndEOSC" [queryParams]="params">
+                  What are the links with the ERA and EOSC
+                </a>
               </li>
             </ul>
             </div>

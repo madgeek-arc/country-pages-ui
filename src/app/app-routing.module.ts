@@ -21,10 +21,14 @@ const routes: Routes = [
       extraOffset: 150
     }
   },
-  {
-    path: 'embeddable/country/:code',
-    component: CountryLandingPageComponent
-  },
+  // {
+  //   matcher: userPageMatcher,
+  //   component: CountryLandingPageComponent,
+  //   data: {
+  //     scrollToTop: false,
+  //     // extraOffset: 150
+  //   }
+  // },
   {
     path: '',
     loadChildren: () => import('../survey-tool/app/survey-tool.module').then(m => m.SurveyToolModule)
@@ -57,7 +61,28 @@ export function userPageMatcher(segments: UrlSegment[]): UrlMatchResult {
         posParams: { code: segments[1], tab: segments[2], subTab: segments[3] },
       };
     }
-    return <UrlMatchResult>(null as any);
+    // return <UrlMatchResult>(null as any);
+  }
+  if (segments.length > 2 && segments[0].path === 'embeddable') {
+    if (segments.length === 3) {
+      return {
+        consumed: segments,
+        posParams: { code: segments[2] },
+      };
+    }
+    if (segments.length === 4) {
+      return {
+        consumed: segments,
+        posParams: { code: segments[2], tab: segments[3] },
+      };
+    }
+    if (segments.length === 5) {
+      return {
+        consumed: segments,
+        posParams: { code: segments[2], tab: segments[3], subTab: segments[4] },
+      };
+    }
+    // return <UrlMatchResult>(null as any);
   }
   return <UrlMatchResult>(null as any);
 }

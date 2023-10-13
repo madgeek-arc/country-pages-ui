@@ -1,7 +1,7 @@
 import {Component, HostListener, Input, OnInit} from "@angular/core";
 import {SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
-import {ActivatedRoute, IsActiveMatchOptions, Router} from "@angular/router";
+import {ActivatedRoute, IsActiveMatchOptions, Params, Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import * as UIkit from 'uikit';
 
@@ -18,6 +18,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
   @Input('surveyAnswer') surveyAnswer: Object = null;
 
   public active_fragment: BehaviorSubject<string> = new BehaviorSubject('');
+  params: Params;
 
   code: string = null;
   tab: string = null;
@@ -66,6 +67,11 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
           this.subTabSelector(this.subTab);
         }
       });
+
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.params = params;
+    })
     //
     // this.route.fragment.subscribe(
     //   fragment => {
@@ -118,6 +124,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
           this.timeout = setTimeout(() => {
             this.router.navigate(['./'], {
               fragment: child['id'],
+              queryParams: this.params,
               relativeTo: this.route,
               state: {disableScroll: true}
             });
