@@ -28,6 +28,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
   subTabSwitcher = null;
   pathStart: string = '/country'
   offset = 80;
+  sticky: boolean = true;
   private observer: IntersectionObserver;
   private timeout: any;
 
@@ -69,8 +70,10 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
       });
 
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.params = params;
+      if (params['showFull'] === 'false') {
+        this.sticky = null;
+      }
     })
     //
     // this.route.fragment.subscribe(

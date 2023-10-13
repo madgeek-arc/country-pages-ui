@@ -1,6 +1,6 @@
 <div class="">
 
-  <div class="uk-section-primary" uk-sticky [attr.offset]=offset>
+  <div class="uk-section-primary" [attr.uk-sticky]="sticky" [attr.offset]=offset>
     <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
       <li class="uk-active first-tab">
         <a [routerLink]="[pathStart, code, 'overview', 'overview']" [queryParams]="params">Overview</a>
@@ -22,7 +22,7 @@
   <ul id="sections_tabbed" class="uk-switcher">
     <li aria-hidden="false" class="uk-active" style="animation-duration: 200ms;">
 
-      <div class="uk-section-primary" uk-sticky [attr.offset]=offset+90>
+      <div class="uk-section-primary" [attr.uk-sticky]="sticky" [attr.offset]=offset+90>
         <ul id="sections-tab" class="uk-subnav horizontal-subnav uk-subnav-pill" uk-switcher="connect: #overview_subtabs">
           <li class="first-tab" [routerLink]="[pathStart, code, 'overview', 'overview']" [queryParams]="params"
               fragment=""><a>Overview</a>
@@ -53,7 +53,7 @@
           <div class="uk-grid uk-flex uk-margin-large-top">
 
             <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky [attr.offset]=offset+170>
+              <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
                 <div class="uk-tile uk-tile-secondary">
                   <div class="tabsTitle uk-margin-bottom">Content</div>
                   <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -133,7 +133,7 @@
 
           <div class="uk-grid uk-flex uk-margin-large-top">
             <div class="uk-width-1-4 uk-flex-last">
-              <div uk-sticky [attr.offset]=offset+170>
+              <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
                 <div class="uk-tile uk-tile-secondary">
                   <div class="tabsTitle uk-margin-bottom">Content</div>
                   <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -231,7 +231,7 @@
       <div class="uk-grid uk-flex uk-margin-large-top">
 
         <div class="uk-width-1-4 uk-flex-last">
-          <div uk-sticky [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -298,7 +298,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div uk-sticky [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -427,7 +427,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div uk-sticky [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -514,7 +514,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div uk-sticky [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
