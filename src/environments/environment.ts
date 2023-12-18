@@ -10,7 +10,7 @@ export const environment = {
   STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
   WS_ENDPOINT: 'http://localhost:8280/observatory',
   // STATS_API_ENDPOINT: 'https://stats.madgik.di.uoa.gr/stats-api/',
-  projectName: 'Observatory',
+  projectName: 'CountryPages',
   profileName: 'eosc-obs',
   OSO_STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
   osoStatsProfileName: 'observatory'
