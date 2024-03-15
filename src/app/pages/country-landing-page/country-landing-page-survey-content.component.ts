@@ -41,7 +41,6 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
 
   constructor(public route: ActivatedRoute, private router: Router) {
     this.route.fragment.subscribe((frag) => {
-      console.log(frag);
       this.active_fragment.next(frag);
     });
   }

@@ -57,7 +57,7 @@ export class TopMenuDashboardComponent implements OnInit, OnChanges, OnDestroy {
                   UIkit.modal('#consent-modal').show();
                 }
               },
-              error => { console.log(error)},
+              error => { console.error(error)},
               () => {}
             )
           );

@@ -38,8 +38,11 @@
           </li>
         </ul>
       </div>
+      test
+      {{surveyAnswer | json}}
 
-      <ul *ngIf="surveyAnswer" id="overview_subtabs" class="uk-switcher uk-margin">
+      <ul *ngIf="surveyAnswer && surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']"
+          id="overview_subtabs" class="uk-switcher uk-margin">
 
         <li>
           <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question1']; else overView">
@@ -226,7 +229,7 @@
       </ul>
     </li>
 
-    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE POLICY']" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
 
@@ -294,7 +297,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
@@ -423,7 +426,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
