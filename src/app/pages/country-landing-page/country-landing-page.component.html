@@ -2,9 +2,9 @@
   <div class="uk-container uk-container-expand">
     <div class="uk-visible@m uk-flex uk-flex-middle uk-flex-between">
 
-      <ul *ngIf="countryPageOverviewData && countryPageOverviewData.name" class="uk-breadcrumb">
+      <ul *ngIf="countryName" class="uk-breadcrumb">
         <li><a routerLink="/home">Home</a></li>
-        <li><span>{{countryPageOverviewData.name}}</span></li>
+        <li><span>{{ countryName }}</span></li>
       </ul>
 
       <!-- TODO uncomment when implemented -->
@@ -39,5 +39,6 @@
 
 <app-country-landing-page-content [surveyAnswer]="surveyAnswer" [surveyAnswerMetadata]="surveyAnswerMetadata"
                                   [countryPageOverviewData]="countryPageOverviewData" [countryCode]="countryCode"
-                                  [displayFullContent]="showFullContent" [emptyAnswer]="emptyAnswer">
+                                  [countryName]="countryName" [displayFullContent]="showFullContent"
+                                  [emptyAnswer]="emptyAnswer">
 </app-country-landing-page-content>

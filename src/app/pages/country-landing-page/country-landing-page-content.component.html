@@ -18,9 +18,11 @@
                   <div class="">
                     <img src="../../survey-tool/assets/images/flags/{{countryCode | lowercase}}-flag-round.png" class="flag-image" width="132" height="132">
                     <div class="uk-inline uk-margin-left">
-                      <h1 *ngIf="countryPageOverviewData && countryPageOverviewData.name">{{countryPageOverviewData.name}}</h1>
-                      <span class="lastUpdateInfo">Data Last Updated: </span>
-                      <span *ngIf="surveyAnswerMetadata?.lastUpdate" class="lastUpdateInfo">{{surveyAnswerMetadata?.lastUpdate | date:'mediumDate'}}</span>
+                      <h1 *ngIf="countryName">{{ countryName }}</h1>
+                      <span *ngIf="surveyAnswerMetadata?.lastUpdate" class="lastUpdateInfo">Data Last Updated: </span>
+                      <span *ngIf="surveyAnswerMetadata?.lastUpdate" class="lastUpdateInfo">
+                        {{ surveyAnswerMetadata?.lastUpdate | date:'mediumDate' }}
+                      </span>
                     </div>
                   </div>
 

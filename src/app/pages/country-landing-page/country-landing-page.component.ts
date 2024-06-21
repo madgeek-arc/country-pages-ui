@@ -1,10 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {SurveyService} from "../../../survey-tool/app/services/survey.service";
-import {SurveyAnswer, SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SurveyService } from "../../../survey-tool/app/services/survey.service";
+import { SurveyAnswerPublicMetadata } from "../../../survey-tool/app/domain/survey";
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
-import {DataService} from "../services/data.service";
-import {DataHandlerService} from "../services/data-handler.service";
+import { DataService } from "../services/data.service";
+import { DataHandlerService } from "../services/data-handler.service";
+import { countries } from "../../../survey-tool/app/domain/countries";
 
 @Component({
   selector: 'app-country-landing-page',
@@ -22,6 +23,8 @@ export class CountryLandingPageComponent implements OnInit {
   surveyAnswer: Object = null;
   surveyAnswerMetadata: SurveyAnswerPublicMetadata = null;
   emptyAnswer: boolean = false;
+  countryName: string = null;
+
 
   countryPageOverviewData: CountryPageOverviewData;
 
@@ -44,6 +47,7 @@ export class CountryLandingPageComponent implements OnInit {
             this.embedUrl = location.origin + `/embeddable/country/${this.countryCode}`
           }
         );
+        this.countryName = this.getCountryName(this.countryCode);
         this.stakeholderId = 'sh-country-'+this.countryCode;
         // this.surveyService.getSurveys('stakeholderId', this.stakeholderId).subscribe(
         this.surveyService.getSurveys('type', 'country').subscribe(
@@ -77,6 +81,10 @@ export class CountryLandingPageComponent implements OnInit {
 
   isEmbedRoute() {
     return (this.router.url.startsWith('/embeddable'));
+  }
+
+  getCountryName(code: string) {
+    return countries.find((country) => country.id === code).name || '';
   }
 
 }

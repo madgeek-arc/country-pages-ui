@@ -11,6 +11,7 @@ import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 export class CountryLandingPageContentComponent {
 
   @Input('countryCode') countryCode: string = null;
+  @Input('countryName') countryName: string = null;
   @Input('surveyAnswer') surveyAnswer: Object = null;
   @Input('surveyAnswerMetadata') surveyAnswerMetadata: SurveyAnswerPublicMetadata = null;
   @Input('countryPageOverviewData') countryPageOverviewData: CountryPageOverviewData;
