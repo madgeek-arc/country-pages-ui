@@ -1,6 +1,7 @@
 export class UserInfo {
   stakeholders: Stakeholder[];
   coordinators: Coordinator[];
+  administrators: Administrator[];
   user: User;
   admin: boolean;
 
@@ -30,6 +31,9 @@ export class Stakeholder extends UserGroup {
 
   constructor() {
     super();
+    this.id = null;
+    this.associationMember = null;
+    this.mandated = false;
     this.country = null;
     this.subType = null;
   }
@@ -37,6 +41,8 @@ export class Stakeholder extends UserGroup {
 }
 
 export class Coordinator extends UserGroup{}
+
+export class Administrator extends UserGroup{}
 
 
 export class User {
@@ -83,5 +89,6 @@ export class UserActivity {
   sessionId: string;
   fullname: string;
   action: string;
+  position: string;
   date: Date;
 }
