@@ -20,7 +20,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         } else {
           if (response.status === 401) {
             // console.log('trying to login');
-            this.authenticationService.tryLogin();
+            // this.authenticationService.tryLogin();
           }
         }
         return throwError(response.message);
