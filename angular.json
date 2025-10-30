@@ -108,10 +108,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "country-pages-ui:build:production"
+              "buildTarget": "country-pages-ui:build:production"
             },
             "development": {
-              "browserTarget": "country-pages-ui:build:development"
+              "buildTarget": "country-pages-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -119,7 +119,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "country-pages-ui:build"
+            "buildTarget": "country-pages-ui:build"
           }
         },
         "test": {
