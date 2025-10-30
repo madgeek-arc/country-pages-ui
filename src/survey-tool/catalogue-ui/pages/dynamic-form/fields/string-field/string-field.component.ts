@@ -4,9 +4,10 @@ import {AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup,
 import {FormControlService} from "../../../../services/form-control.service";
 
 @Component({
-  selector: 'app-string-url-email-field',
-  templateUrl: './string-field.component.html',
-  styles: ['.clear-style { height: 0 !important;}']
+    selector: 'app-string-url-email-field',
+    templateUrl: './string-field.component.html',
+    styles: ['.clear-style { height: 0 !important;}'],
+    standalone: false
 })
 
 export class StringFieldComponent implements OnInit {

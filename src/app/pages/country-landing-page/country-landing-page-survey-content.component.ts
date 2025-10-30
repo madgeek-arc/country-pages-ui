@@ -4,9 +4,10 @@ import { BehaviorSubject } from "rxjs";
 import * as UIkit from 'uikit';
 
 @Component({
-  selector: 'app-country-landing-page-survey-content',
-  templateUrl: 'country-landing-page-survey-content.component.html',
-  styleUrls: ['./country-landing-page.component.css'],
+    selector: 'app-country-landing-page-survey-content',
+    templateUrl: 'country-landing-page-survey-content.component.html',
+    styleUrls: ['./country-landing-page.component.css'],
+    standalone: false
 })
 
 export class CountryLandingPageSurveyContentComponent implements OnInit {

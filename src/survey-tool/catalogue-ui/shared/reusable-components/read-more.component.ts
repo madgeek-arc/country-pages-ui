@@ -4,18 +4,19 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from "@angular/core";
 
 @Component({
-  selector: "read-more",
-  template: `
+    selector: "read-more",
+    template: `
     <div [class.collapsed]="isCollapsed" [style.height]="isCollapsed ? maxHeight+'px' : 'auto'" #readMoreDiv>
       <ng-content></ng-content>
     </div>
     <a *ngIf="isCollapsable" (click)="isCollapsed =! isCollapsed">View {{isCollapsed ? 'more' : 'less'}}...</a>
   `,
-  styles: [`
+    styles: [`
     div.collapsed {
       overflow: hidden;
     }
-  `]
+  `],
+    standalone: false
 })
 export class ReadMoreComponent implements AfterContentInit {
   //the text that need to be put in the container
@@ -44,19 +45,20 @@ export class ReadMoreComponent implements AfterContentInit {
 }
 
 @Component({
-  selector: "read-more-text",
-  template: `
+    selector: "read-more-text",
+    template: `
     <div [innerHTML]="text" [class.collapsed]="isCollapsed" [style.height]="isCollapsed ? maxHeight+'px' : 'auto'"
          #readMoreDiv>
       <!--{{text}}-->
     </div>
     <a *ngIf="isCollapsable" (click)="isCollapsed =! isCollapsed">View {{isCollapsed ? 'more' : 'less'}}...</a>
   `,
-  styles: [`
+    styles: [`
     div.collapsed {
       overflow: hidden;
     }
-  `]
+  `],
+    standalone: false
 })
 export class ReadMoreTextComponent extends ReadMoreComponent implements OnChanges, AfterViewInit {
 

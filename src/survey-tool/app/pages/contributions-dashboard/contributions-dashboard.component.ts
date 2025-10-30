@@ -7,8 +7,9 @@ import {Subscriber} from "rxjs";
 
 
 @Component({
-  selector: 'app-contributions-dashboard',
-  templateUrl: 'contributions-dashboard.component.html',
+    selector: 'app-contributions-dashboard',
+    templateUrl: 'contributions-dashboard.component.html',
+    standalone: false
 })
 
 export class ContributionsDashboardComponent implements OnInit, OnDestroy{

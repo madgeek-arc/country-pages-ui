@@ -5,8 +5,9 @@ import { BaseFieldComponent } from "../base-field.component";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'app-large-text-field',
-  templateUrl: './large-text-field.component.html'
+    selector: 'app-large-text-field',
+    templateUrl: './large-text-field.component.html',
+    standalone: false
 })
 
 export class LargeTextFieldComponent extends BaseFieldComponent implements OnInit {

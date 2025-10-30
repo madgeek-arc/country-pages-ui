@@ -10,10 +10,11 @@ import {Subscriber} from "rxjs";
 import * as UIkit from 'uikit';
 
 @Component({
-  selector: 'app-top-menu-dashboard',
-  templateUrl: 'top-menu-dashboard.component.html',
-  styleUrls: ['../top-menu.component.css'],
-  providers: [PrivacyPolicyService]
+    selector: 'app-top-menu-dashboard',
+    templateUrl: 'top-menu-dashboard.component.html',
+    styleUrls: ['../top-menu.component.css'],
+    providers: [PrivacyPolicyService],
+    standalone: false
 })
 
 export class TopMenuDashboardComponent implements OnInit, OnChanges, OnDestroy {

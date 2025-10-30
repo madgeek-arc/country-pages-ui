@@ -5,8 +5,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {FormControlService} from "../../../../services/form-control.service";
 
 @Component({
-  selector: 'app-rich-text-field',
-  templateUrl: './rich-text-field.component.html'
+    selector: 'app-rich-text-field',
+    templateUrl: './rich-text-field.component.html',
+    standalone: false
 })
 
 export class RichTextFieldComponent implements OnInit {

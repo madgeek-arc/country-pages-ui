@@ -3,8 +3,9 @@ import {Field, HandleBitSet} from "../../../../domain/dynamic-form-model";
 import {UntypedFormControl, UntypedFormGroup, FormGroupDirective} from "@angular/forms";
 
 @Component({
-  selector: 'app-radio-button-field',
-  templateUrl: './radio-button-field.component.html'
+    selector: 'app-radio-button-field',
+    templateUrl: './radio-button-field.component.html',
+    standalone: false
 })
 
 export class RadioButtonFieldComponent implements OnInit {

@@ -5,9 +5,10 @@ import {Subscriber} from "rxjs";
 
 
 @Component({
-  selector: 'app-dataset',
-  templateUrl: 'dataset-landing-page.component.html',
-  providers: [LandingPageService]
+    selector: 'app-dataset',
+    templateUrl: 'dataset-landing-page.component.html',
+    providers: [LandingPageService],
+    standalone: false
 })
 
 export class LandingPageComponent implements OnInit, OnDestroy {

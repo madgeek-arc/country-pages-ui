@@ -4,8 +4,9 @@ import {AuthenticationService} from "../survey-tool/app/services/authentication.
 import {SmoothScroll} from "./pages/services/smooth-scroll";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent {
   title = 'country-pages-ui';

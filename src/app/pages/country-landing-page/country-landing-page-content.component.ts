@@ -3,9 +3,10 @@ import {SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 
 @Component({
-  selector: 'app-country-landing-page-content',
-  templateUrl: 'country-landing-page-content.component.html',
-  styleUrls: ['./country-landing-page.component.css'],
+    selector: 'app-country-landing-page-content',
+    templateUrl: 'country-landing-page-content.component.html',
+    styleUrls: ['./country-landing-page.component.css'],
+    standalone: false
 })
 
 export class CountryLandingPageContentComponent {

@@ -11,7 +11,8 @@ import { Field } from "../../../domain/dynamic-form-model";
 import { WebsocketService } from "../../../../app/services/websocket.service";
 
 @Component({
-  template: ``
+    template: ``,
+    standalone: false
 })
 
 export class BaseFieldComponent {

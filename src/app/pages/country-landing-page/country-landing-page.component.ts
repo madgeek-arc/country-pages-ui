@@ -8,9 +8,10 @@ import { DataHandlerService } from "../services/data-handler.service";
 import { countries } from "../../../survey-tool/app/domain/countries";
 
 @Component({
-  selector: 'app-country-landing-page',
-  templateUrl: 'country-landing-page.component.html',
-  styleUrls: ['./country-landing-page.component.css'],
+    selector: 'app-country-landing-page',
+    templateUrl: 'country-landing-page.component.html',
+    styleUrls: ['./country-landing-page.component.css'],
+    standalone: false
 })
 
 export class CountryLandingPageComponent implements OnInit {

@@ -9,8 +9,9 @@ HC_ExportingOffline(Highcharts);
 let componentContext;
 
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './highcharts-bar.component.html'
+    selector: 'app-bar-chart',
+    templateUrl: './highcharts-bar.component.html',
+    standalone: false
 })
 
 export class HighchartsBarComponent implements OnChanges{

@@ -3,8 +3,9 @@ import {GroupedFields, Section} from "../../../domain/dynamic-form-model";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
-  selector: 'app-section-builder',
-  templateUrl: 'section-builder.component.html'
+    selector: 'app-section-builder',
+    templateUrl: 'section-builder.component.html',
+    standalone: false
 })
 
 export class SectionBuilderComponent {

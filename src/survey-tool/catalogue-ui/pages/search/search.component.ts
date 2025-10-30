@@ -9,10 +9,12 @@ import {SearchService} from "../../services/search.service";
 
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  providers: [SearchService]
-  // styleUrls: ['../../../lib/pages/search/search.component.scss']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    providers: [SearchService]
+    // styleUrls: ['../../../lib/pages/search/search.component.scss']
+    ,
+    standalone: false
 })
 
 export class SearchComponent implements OnInit {

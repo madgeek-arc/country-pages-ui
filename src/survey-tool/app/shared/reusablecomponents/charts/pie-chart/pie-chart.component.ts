@@ -2,8 +2,9 @@ import { Component, Input, OnChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
-  selector: 'app-pie-chart',
-  template: '<div *ngIf="chartId" [id]="chartId"></div>',
+    selector: 'app-pie-chart',
+    template: '<div *ngIf="chartId" [id]="chartId"></div>',
+    standalone: false
 })
 export class PieChartComponent implements OnChanges {
 

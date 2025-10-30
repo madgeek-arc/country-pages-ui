@@ -14,9 +14,10 @@ import { UserService } from "../../../../services/user.service";
 import UIkit from "uikit";
 
 @Component({
-  selector: 'app-survey-form',
-  templateUrl: 'survey-form.component.html',
-  providers: [SurveyService, StakeholdersService]
+    selector: 'app-survey-form',
+    templateUrl: 'survey-form.component.html',
+    providers: [SurveyService, StakeholdersService],
+    standalone: false
 })
 
 export class SurveyFormComponent implements OnInit, OnDestroy {

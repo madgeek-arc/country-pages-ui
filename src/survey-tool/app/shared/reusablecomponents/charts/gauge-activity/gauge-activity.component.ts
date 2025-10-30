@@ -8,8 +8,9 @@ import {ActivityGauge} from "../../../../domain/categorizedAreaData";
 HighchartsMore(Highcharts);
 SolidGauge(Highcharts);
 @Component({
-  selector: 'activity-gauge',
-  templateUrl: 'gauge-activity.component.html'
+    selector: 'activity-gauge',
+    templateUrl: 'gauge-activity.component.html',
+    standalone: false
 })
 
 export class GaugeActivityComponent implements OnChanges {
