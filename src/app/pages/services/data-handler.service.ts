@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {RawData} from "../../../survey-tool/app/domain/raw-data";
-import {CountryPageOverviewData, RnDExpenditure} from "../../domain/external-info-data";
+import { RawData } from "../../domain/raw-data";
+import { CountryPageOverviewData, RnDExpenditure } from "../../domain/external-info-data";
 
 
 @Injectable ()

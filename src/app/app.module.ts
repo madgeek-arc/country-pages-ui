@@ -13,10 +13,14 @@ import { DataHandlerService } from "./pages/services/data-handler.service";
 import {
   CountryLandingPageContentComponent
 } from './pages/country-landing-page/country-landing-page-content.component';
-import { CatalogueUiSharedModule } from "../survey-tool/catalogue-ui/shared/catalogue-ui-shared.module";
 import {
   CountryLandingPageSurveyContentComponent
 } from "./pages/country-landing-page/country-landing-page-survey-content.component";
+import { SafeUrlPipe } from "../survey-tool/catalogue-ui/shared/pipes/safeUrlPipe";
+import { ReusableComponentsModule } from "../survey-tool/app/shared/reusablecomponents/reusable-components.module";
+import {
+  ContributionsDashboardComponent
+} from "../survey-tool/app/pages/contributions-dashboard/contributions-dashboard.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import {
     AppRoutingModule,
     SharedModule,
     SurveyToolModule,
-    CatalogueUiSharedModule
+    ReusableComponentsModule,
+    SafeUrlPipe,
+    ContributionsDashboardComponent
   ],
   providers: [
     {

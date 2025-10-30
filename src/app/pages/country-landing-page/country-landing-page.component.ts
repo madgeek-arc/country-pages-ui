@@ -5,7 +5,7 @@ import { SurveyAnswerPublicMetadata } from "../../../survey-tool/app/domain/surv
 import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 import { DataService } from "../services/data.service";
 import { DataHandlerService } from "../services/data-handler.service";
-import { countries } from "../../../survey-tool/app/domain/countries";
+import { countries } from "../../domain/countries";
 
 @Component({
     selector: 'app-country-landing-page',

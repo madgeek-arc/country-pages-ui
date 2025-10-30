@@ -32,9 +32,8 @@
               "src/survey-tool/catalogue-ui/assets"
             ],
             "styles": [
-              "src/survey-tool/styles/styles.scss",
-              "src/styles/styles.scss",
-              "./node_modules/@angular/cdk/overlay-prebuilt.css"
+              "src/survey-tool/styles/styles.less",
+              "src/styles/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
