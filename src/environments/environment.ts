@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   beta: false,
-  API_LOGIN: 'http://localhost:8280/observatory/login',
-  API_ENDPOINT: '/observatory',
+  API_LOGIN: '/api/login',
+  API_ENDPOINT: '/api',
   STATS_API_ENDPOINT: 'https://services.openaire.eu/stats-tool/',
-  WS_ENDPOINT: 'http://localhost:8280/observatory',
+  WS_ENDPOINT: '/api/websocket',
   // STATS_API_ENDPOINT: 'https://stats.madgik.di.uoa.gr/stats-api/',
   projectName: 'CountryPages',
   profileName: 'eosc-obs',

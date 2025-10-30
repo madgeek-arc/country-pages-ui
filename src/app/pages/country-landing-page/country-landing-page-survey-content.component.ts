@@ -1,8 +1,6 @@
-import {Component, HostListener, Input, OnInit} from "@angular/core";
-import {SurveyAnswerPublicMetadata} from "../../../survey-tool/app/domain/survey";
-import { CountryPageOverviewData } from "src/app/domain/external-info-data";
-import {ActivatedRoute, IsActiveMatchOptions, Params, Router} from "@angular/router";
-import {BehaviorSubject} from "rxjs";
+import { Component, HostListener, Input, OnInit } from "@angular/core";
+import { ActivatedRoute, IsActiveMatchOptions, Params, Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 import * as UIkit from 'uikit';
 
 @Component({
@@ -121,7 +119,7 @@ export class CountryLandingPageSurveyContentComponent implements OnInit {
           // console.log(child['id']);
           // console.log('window scrollY: '+scrollY );
           // console.log('child offsetTop: ' + child['offsetTop']);
-          // console.log('next child offsetTop: ' + child.nextSibling?.['offsetTop']);
+          // console.log('next child offsetTop: '+ child.nextSibling?.['offsetTop']);
           if (this.timeout) {
             clearTimeout(this.timeout);
           }

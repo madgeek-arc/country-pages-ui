@@ -1,4 +1,4 @@
-<div class="">
+<div id="content">
 
   <div class="uk-section-primary" [attr.uk-sticky]="sticky" [attr.offset]=offset>
     <ul id="chapter-tabs" uk-tab uk-switcher="connect: #sections_tabbed" class="horizontal-tabs">
@@ -232,7 +232,7 @@
       <div class="uk-grid uk-flex uk-margin-large-top">
 
         <div class="uk-width-1-4 uk-flex-last">
-          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -299,7 +299,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -341,6 +341,16 @@
                 <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
                   <a routerLink="./" fragment="links_to_european_and_global_infrastructures" [queryParams]="params">
                     Links to European and Global Infrastructures
+                  </a>
+                </li>
+                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                  <a routerLink="./" fragment="authentication_and_authorization" [queryParams]="params">
+                    Authentication and Authorization Infrastructure (AAI) and Authentication and Authorization for Research and Collaboration (AARC)
+                  </a>
+                </li>
+                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">
+                  <a routerLink="./" fragment="cloud_services" [queryParams]="params">
+                    Cloud Services
                   </a>
                 </li>
               </ul>
@@ -418,6 +428,20 @@
             </ng-container>
             <ng-template #links_to_european_and_global_infrastructures><p>N/A</p></ng-template>
           </div>
+          <div id="authentication_and_authorization">
+            <div class="uk-text-secondary">Authentication and Authorization Infrastructure (AAI) and Authentication and Authorization for Research and Collaboration (AARC)</div>
+            <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question32']; else authentication_and_authorization">
+              <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question32']" class="uk-margin-medium-top"></div>
+            </ng-container>
+            <ng-template #authentication_and_authorization><p>N/A</p></ng-template>
+          </div>
+          <div id="cloud_services">
+            <div class="uk-text-secondary">Cloud Services</div>
+            <ng-container *ngIf="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question33']; else cloud_services">
+              <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']['Question33']" class="uk-margin-medium-top"></div>
+            </ng-container>
+            <ng-template #cloud_services><p>N/A</p></ng-template>
+          </div>
         </div>
 
       </div>
@@ -428,7 +452,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
@@ -515,7 +539,7 @@
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
-          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170>
+          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">
             <div class="uk-tile uk-tile-secondary">
               <div class="tabsTitle uk-margin-bottom">Content</div>
               <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>
