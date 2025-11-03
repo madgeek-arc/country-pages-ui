@@ -1,0 +1,252 @@
+@import "../assets/country-pages-theme/less/color";
+
+:root {
+
+  --eosc-observatory-primary-color: @primary-color;
+  --eosc-observatory-primary-color-light: @primary-light-color;
+  --eosc-observatory-primary-color-lighter: color-mix(in srgb, var(--eosc-observatory-primary-color) 50%, white);
+  --eosc-observatory-primary-color-extra-light: rgba(70, 135, 230, 0.04);
+
+  --eosc-observatory-secondary-color: @secondary-color;
+  ----eosc-observatory-secondary-color-lighter: color-mix(in srgb, var(--eosc-observatory-secondary-color) 50%, white);
+
+  --eosc-observatory-noads-color: #F79D5C;
+  --eosc-observatory-external-sources-color: #49306B;
+
+  --explore-sidebar-width: 290px;
+  --active-sidemenu-background-color: #b3dbde;
+
+  --sidebar-width: 320px;
+  --sidebar-width-invert: -320px;
+  --toggle-sidebar-closed: 338px;
+  --dashboard-transition-delay: 0.25s;
+  --sidebar-font-size: 16px;
+  --header-height: 80px;
+
+  //--main-font-family: 'Helvetica Neue', 'Montserrat', 'Open Sans', sans-serif;
+  //--main-font-family: 'Montserrat', 'Open Sans', sans-serif;
+  //--main-font-family: 'Aileron', 'Open Sans', sans-serif;
+  --main-font-family: 'Oxygen', 'Open Sans', sans-serif;
+  //--secondary-font-family: 'Ubuntu', sans-serif;
+  //--secondary-font-family: 'Aileron', sans-serif;
+  --secondary-font-family: 'Quicksand', sans-serif;
+  --black: #1A1A1A;
+  --grey: #6E6E6E;
+  --catalogue-light-purple: #AD20E7;
+  --catalogue-dark-purple: #1D193C;
+  --light-grey: #F9F9F9;
+  //--medium-grey: #F5F5F5;
+  --medium-grey: #F3F4F5;
+  --dark-grey: #2B2B2B;
+  --eosc-blue: #3A75AB;
+  --openaire-light-blue: #3086ED;
+  --default-element-bg: #DEDEDE;
+  --white: #fff;
+
+
+  --grey-900: #2C2C2C;
+  --grey-700: #6E6E6E;
+  --grey-200: #EAEAEA;
+
+  /* Alternative Pills*/
+  --placeholder-color: #8E8E8E;
+  --light-color: #FFFFFF;
+  --shadow-main: -15px -15px 20px rgba(255, 255, 255, 0.6), 15px 15px 20px rgba(0, 0, 0, 0.07);
+  --secondary-color: #3086ED;
+  --primary-light-color: #4687E6;
+  --primary-dark-color: #1F2379;
+  --pill-alt-color: var(--grey-900);
+  --pill-alt-background: var(--light-color);
+  --pill-alt-shadow: var(--shadow-main);
+  --pill-alt-color-hover: var(--secondary-color);
+  //--pill-alt-background-active: none;
+  --pill-alt-background-active: var(--eosc-observatory-secondary-color);
+  //--pill-alt-background-active-image: linear-gradient(122deg, var(--primary-light-color) 0, var(--primary-dark-color) 100%);
+  --pill-alt-background-active-image: none;
+  --pill-alt-color-active: var(--light-color);
+
+
+  --primary-color: #008792;
+  /*--primary-color: #AD20E7;*/
+  --link-color: #2D72D6;
+  --link-hover-color: #3665ab;
+  --breadcrumb-active-color: #4687E6;
+  --button-primary-hover-background-color: #9FCC52;
+  --button-secondary-color: #fff;
+  --button-secondary-background-color: #3086ED;
+  --button-secondary-hover-background-color: #0053ba;
+
+  --table-hover-background-color: rgba(0, 135, 146, 0.07);
+}
+
+
+.uk-tab > * > a {
+  //padding: 9px 20px;
+  padding: 9px 12px;
+  //text-transform: uppercase;
+  transition: color .1s ease-in-out;
+  line-height: 20px;
+}
+
+.uk-tab:not(.uk-tab-left):not(.uk-tab-right) > * > a {
+  border-bottom: 2px solid transparent;
+}
+
+.uk-tab > .uk-active > a {
+  //color: #222;
+  color: var(--eosc-observatory-primary-color);
+  font-weight: bold;
+  border-color: var(--eosc-observatory-primary-color);
+}
+
+.uk-subnav-pill > * > :first-child {
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--eosc-observatory-primary-color);
+  border: 1px solid #EAEAEA;
+  border-radius: 60px;
+  background-origin: border-box;
+}
+
+.uk-subnav-pill > .uk-active > a {
+  background-color: var(--eosc-observatory-primary-color);
+  color: #fff;
+  border-color: transparent;
+  background-image: linear-gradient(51deg,var(--eosc-observatory-primary-color-light) 0%,var(--eosc-observatory-primary-color) 100%);
+}
+
+.uk-subnav-pill > * > a:hover {
+  background-color: transparent;
+  color: var(--eosc-observatory-primary-color-light);
+  border-color: var(--eosc-observatory-primary-color-light);
+}
+
+.uk-subnav-pill > .uk-active > a:hover {
+  color: #fff;
+}
+
+
+//Table hover
+
+.uk-table-hover > tr:hover, .uk-table-hover tbody tr:hover {
+  background: var(--table-hover-background-color);
+}
+
+//Badge
+
+.badge-default {
+  background-color: var(--grey-200);
+  color: var(--eosc-observatory-primary-color) !important;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.card-simple {
+  background-color: var(--white);
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.card-explore {
+  background-color: var(--white);
+  border-radius: 6px;
+  border: 2px solid #DAEEF3;
+}
+
+a.button-osobservatory {
+  line-height: 35px !important;
+}
+
+.button-osobservatory {
+  background-color: var(--eosc-observatory-secondary-color);
+  padding: 5px 20px;
+}
+
+.button-osobservatory:hover {
+  background-color: #CA4D9A;
+}
+
+.button-osobservatory:visited {
+  color: #fff;
+}
+
+.number.big {
+  font-size: 24px;
+}
+
+
+.uk-navbar-nav > li > a {
+  font-family: var(--main-font-family);
+}
+
+.text-black {
+  color: var(--black);
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+}
+
+.material-symbols-outlined { font-size: 30px }
+
+.custom-disabled-link a {
+  //pointer-events: none; /* Disables clicks */
+  //color: gray; /* Optional: to indicate it's disabled */
+  cursor: not-allowed; /* Change the cursor to indicate disabled state */
+}
+
+.highcharts-root, .highcharts-caption {
+  //font-family: 'Source Sans 3', sans-serif !important;
+  font-family: var(--secondary-font-family), sans-serif !important;
+  //font-family: 'Roboto', sans-serif !important;
+}
+
+.overflow-wrap-break-word {
+  overflow-wrap: break-word;
+}
+
+.uk-padding-xsmall {
+  padding: 10px;
+}
+
+#sidebar_main {
+  /*fixme removed since importing the eosc-obs theme on the parent project. Will need to do something for just survey tool*/
+  top: 0 !important;
+}
+
+.landing-action-bar {
+  padding:10px 30px;
+  border-radius:4px;
+  border:var(--eosc-observatory-primary-color) solid 1px
+}
+.landing-action-bar .uk-grid-divider>:not(.uk-first-column):before {
+  border-color:#b3b3b3;
+  top:4px;
+  bottom:4px
+}
+.landing-action-bar-mobile {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:980
+}
+.landing-action-bar-mobile>div {
+  padding:8px 20px;
+  border-top:1px solid #EAEAEA
+}
+
+.badge-simple {
+  border: 1px solid var(--eosc-observatory-primary-color);
+  background-color: transparent;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 15px;
+  border-radius: 500px;
+  vertical-align: middle;
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+}

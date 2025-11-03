@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes, UrlMatchResult, UrlSegment} from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
 import {CountryLandingPageComponent} from "./pages/country-landing-page/country-landing-page.component";
+import { TemporaryUnavailableComponent } from "./shared/temporary-unavailable/temporary-unavailable.component";
 
 const routes: Routes = [
   {
@@ -21,14 +22,11 @@ const routes: Routes = [
       extraOffset: 150
     }
   },
-  // {
-  //   matcher: userPageMatcher,
-  //   component: CountryLandingPageComponent,
-  //   data: {
-  //     scrollToTop: false,
-  //     // extraOffset: 150
-  //   }
-  // },
+  {
+    path: 'contributions/:id/messages',
+    loadComponent: () => TemporaryUnavailableComponent
+    // loadChildren: () => import('../messaging-system-ui/app/messaging-system.module').then(m => m.MessagingSystemModule),
+  },
   {
     path: '',
     loadChildren: () => import('../survey-tool/app/survey-tool.module').then(m => m.SurveyToolModule)

@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "less"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -25,7 +25,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "less",
             "assets": [
               "src/assets",
               "src/survey-tool/assets",
@@ -33,13 +33,13 @@
             ],
             "styles": [
               "src/survey-tool/styles/styles.less",
-              "src/styles/styles.scss"
+              "src/styles/styles.less"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles",
                 "src/survey-tool/styles",
-                "./node_modules/uikit/src/scss"
+                "./node_modules/uikit/src/less"
               ]
             },
             "scripts": [
@@ -141,5 +141,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
