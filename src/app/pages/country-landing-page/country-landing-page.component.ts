@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SurveyService } from "../../../survey-tool/app/services/survey.service";
 import { SurveyAnswerPublicMetadata } from "../../../survey-tool/app/domain/survey";
@@ -6,19 +6,26 @@ import { CountryPageOverviewData } from "src/app/domain/external-info-data";
 import { DataService } from "../services/data.service";
 import { DataHandlerService } from "../services/data-handler.service";
 import { countries } from "../../domain/countries";
+import { StakeholdersService } from "../../../survey-tool/app/services/stakeholders.service";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { GroupMembers } from "../../../survey-tool/app/domain/userInfo";
 
 @Component({
-    selector: 'app-country-landing-page',
-    templateUrl: 'country-landing-page.component.html',
-    styleUrls: ['./country-landing-page.component.css'],
-    standalone: false
+  selector: 'app-country-landing-page',
+  templateUrl: 'country-landing-page.component.html',
+  styleUrls: ['./country-landing-page.component.css'],
+  providers: [StakeholdersService],
+  standalone: false
 })
 
 export class CountryLandingPageComponent implements OnInit {
+  private stakeholderService = inject(StakeholdersService);
+  private destroyRef = inject(DestroyRef);
 
   countryCode: string = null;
   showFullContent: string = null;
   stakeholderId: string = null;
+  members: GroupMembers;
   embedUrl: string = null;
   surveyId: string = null;
   surveyAnswer: Object = null;
@@ -68,6 +75,13 @@ export class CountryLandingPageComponent implements OnInit {
               }
             );
           });
+
+        this.stakeholderService.getStakeholderMembers(this.stakeholderId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+          next: stakeholderMembers => {
+            console.log(stakeholderMembers);
+            this.members = stakeholderMembers;
+          }, error: error => {console.error(error)}
+        });
 
         this.dataService.getCountryPageOverviewData(this.countryCode).subscribe(
           rawData => {
