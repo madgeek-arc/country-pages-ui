@@ -32,6 +32,7 @@
               "src/survey-tool/catalogue-ui/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/survey-tool/styles/styles.less",
               "src/styles/styles.less"
             ],
@@ -134,6 +135,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.sass"
             ],
             "scripts": []

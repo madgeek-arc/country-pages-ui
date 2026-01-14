@@ -8,7 +8,7 @@ import { DataHandlerService } from "../services/data-handler.service";
 import { countries } from "../../domain/countries";
 import { StakeholdersService } from "../../../survey-tool/app/services/stakeholders.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { GroupMembers } from "../../../survey-tool/app/domain/userInfo";
+import { User } from "../../../survey-tool/app/domain/userInfo";
 
 @Component({
   selector: 'app-country-landing-page',
@@ -25,7 +25,7 @@ export class CountryLandingPageComponent implements OnInit {
   countryCode: string = null;
   showFullContent: string = null;
   stakeholderId: string = null;
-  members: GroupMembers;
+  members: User[];
   embedUrl: string = null;
   surveyId: string = null;
   surveyAnswer: Object = null;
@@ -76,11 +76,11 @@ export class CountryLandingPageComponent implements OnInit {
             );
           });
 
-        this.stakeholderService.getStakeholderMembers(this.stakeholderId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-          next: stakeholderMembers => {
-            console.log(stakeholderMembers);
-            this.members = stakeholderMembers;
-          }, error: error => {console.error(error)}
+        this.stakeholderService.getStakeholderManagersPublic(this.stakeholderId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+          next: stakeholderManagers => {
+            this.members = stakeholderManagers;
+          },
+          error: error => {console.error(error)}
         });
 
         this.dataService.getCountryPageOverviewData(this.countryCode).subscribe(
