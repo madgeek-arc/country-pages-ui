@@ -14,6 +14,9 @@
       <li><a [routerLink]="[pathStart, code, 'skills']" fragment="skills_overview"
              [queryParams]="params" (click)="getDomElement('skills')">Skills</a>
       </li>
+      <li><a [routerLink]="[pathStart, code, 'contributors']" fragment="contributors"
+             [queryParams]="params" (click)="getDomElement('contributors_list')">Contributors</a>
+      </li>
       <li><a [routerLink]="[pathStart, code, 'about']" fragment="what" [queryParams]="params"
              (click)="getDomElement('about')">About this page</a></li>
     </ul>
@@ -227,7 +230,7 @@
       </ul>
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE POLICY']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
 
@@ -295,7 +298,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
@@ -448,7 +451,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
@@ -528,6 +531,64 @@
               <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']['Question29-1']" class="uk-margin-medium-top"></div>
             </ng-container>
             <ng-template #links><p>N/A</p></ng-template>
+          </div>
+        </div>
+
+      </div>
+
+    </li>
+
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
+
+      <div class="uk-grid uk-flex uk-margin-large-top">
+<!--        <div class="uk-width-1-4 uk-flex-last">-->
+<!--          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">-->
+<!--            <div class="uk-tile uk-tile-secondary">-->
+<!--              <div class="tabsTitle uk-margin-bottom">Content</div>-->
+<!--              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="skills_overview" [queryParams]="params">Overview</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="training_infrastructure" [queryParams]="params">Training Infrastructure</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="competence_centers" [queryParams]="params">-->
+<!--                    Open Science/Digital Competence centers-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="open_science_professionals" [queryParams]="params">-->
+<!--                    Open Science Professionals-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="open_science_curricula" [queryParams]="params">Open Science Curricula</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="links" [queryParams]="params">Links to national initiatives on Digital Skills</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="uk-width-1-1" id="contributors_list">
+          <div id="contributors">
+            <div class="uk-text-secondary">Contributors</div>
+            <ng-container *ngIf="surveyAnswer['CONTRIBUTORS']?.['Question34'] && surveyAnswer['CONTRIBUTORS']['Question34'][0]['Question34-1'] && surveyAnswer['CONTRIBUTORS']['Question34'][0]['Question34-2']; else contributors">
+              <ul class="uk-list uk-list-circle">
+                <li *ngFor="let element of surveyAnswer['CONTRIBUTORS']['Question34']" class="uk-margin-top">
+                  <span [innerHTML]="element['Question34-1']"></span>
+                  @if (element['Question34-2']) {
+                    &nbsp;<span [innerHTML]="element['Question34-2']"></span>
+                  }
+                  @if (element['Question34-3']) {
+                    ,&nbsp;<span [innerHTML]="element['Question34-3']"></span>
+                  }
+                </li>
+              </ul>
+            </ng-container>
+            <ng-template #contributors><p>N/A</p></ng-template>
           </div>
         </div>
 
