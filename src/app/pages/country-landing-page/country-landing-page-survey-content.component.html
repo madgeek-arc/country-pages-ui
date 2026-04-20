@@ -14,6 +14,9 @@
       <li><a [routerLink]="[pathStart, code, 'skills']" fragment="skills_overview"
              [queryParams]="params" (click)="getDomElement('skills')">Skills</a>
       </li>
+      <li><a [routerLink]="[pathStart, code, 'contributors']" fragment="contributors"
+             [queryParams]="params" (click)="getDomElement('contributors_list')">Contributors</a>
+      </li>
       <li><a [routerLink]="[pathStart, code, 'about']" fragment="what" [queryParams]="params"
              (click)="getDomElement('about')">About this page</a></li>
     </ul>
@@ -87,8 +90,9 @@
 
               <div id="research_funding_organisations">
                 <div class="uk-text-secondary">Research Funding Organisations</div>
-                <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']?.length > 0; else funding_organisations">
-                  <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2']" class="uk-margin-medium-top">
+                @let rfo = surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question2'];
+                <ng-container *ngIf="rfo?.length > 0 && rfo[0]['Question2-1'] !== null && rfo[0]['Question2-1'] !== ''; else funding_organisations">
+                  <div *ngFor="let element of rfo" class="uk-margin-medium-top">
                     <div [innerHTML]="element['Question2-1']"></div>
                   </div>
                 </ng-container>
@@ -97,8 +101,9 @@
 
               <div id="research_performing_organisations">
                 <div class="uk-text-secondary">Research Performing Organisations</div>
-                <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']?.length > 0; else performing_organisations">
-                  <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3']" class="uk-margin-medium-top">
+                @let rpo = surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question3'];
+                <ng-container *ngIf="rpo?.length > 0 && rpo[0]['Question3-1'] !== null && rpo[0]['Question3-1'] !== ''; else performing_organisations">
+                  <div *ngFor="let element of rpo" class="uk-margin-medium-top">
                     <div [innerHTML]="element['Question3-1']"></div>
                   </div>
                 </ng-container>
@@ -107,8 +112,9 @@
 
               <div id="research_support_organisations">
                 <div class="uk-text-secondary">Research Support Organisations</div>
-                <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']?.length > 0; else support_organisations">
-                  <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4']" class="uk-margin-medium-top">
+                @let rso = surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question4'];
+                <ng-container *ngIf="rso?.length > 0 && rso[0]['Question4-1'] !== null && rso[0]['Question4-1'] !== ''; else support_organisations">
+                  <div *ngFor="let element of rso" class="uk-margin-medium-top">
                     <div [innerHTML]="element['Question4-1']"></div>
                   </div>
                 </ng-container>
@@ -117,8 +123,9 @@
 
               <div id="other_organisations">
                 <div class="uk-text-secondary">Other Organisations</div>
-                <ng-container *ngIf="surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']?.length > 0; else other_organisations">
-                  <div *ngFor="let element of surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30']" class="uk-margin-medium-top">
+                @let other = surveyAnswer['SCIENCE, TECHNOLOGY & INNOVATION - STI POLICY FRAMEWORK']['Question30'];
+                <ng-container *ngIf="other?.length > 0 && other[0]['Question30-1'] !== null && other[0]['Question30-1'] !== ''; else other_organisations">
+                  <div *ngFor="let element of other" class="uk-margin-medium-top">
                     <div [innerHTML]="element['Question30-1']"></div>
                   </div>
                 </ng-container>
@@ -227,7 +234,7 @@
       </ul>
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE POLICY']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
 
@@ -295,7 +302,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL INFRASTRUCTURE']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
@@ -448,7 +455,7 @@
 
     </li>
 
-    <li *ngIf="surveyAnswer && surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']" aria-hidden="true" class="" style="animation-duration: 200ms;">
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
 
       <div class="uk-grid uk-flex uk-margin-large-top">
         <div class="uk-width-1-4 uk-flex-last">
@@ -528,6 +535,65 @@
               <div [innerHTML]="surveyAnswer['OPEN SCIENCE DIGITAL SKILLS']['Question29']['Question29-1']" class="uk-margin-medium-top"></div>
             </ng-container>
             <ng-template #links><p>N/A</p></ng-template>
+          </div>
+        </div>
+
+      </div>
+
+    </li>
+
+    <li *ngIf="surveyAnswer" aria-hidden="true" class="" style="animation-duration: 200ms;">
+
+      <div class="uk-grid uk-flex uk-margin-large-top">
+<!--        <div class="uk-width-1-4 uk-flex-last">-->
+<!--          <div [attr.uk-sticky]="sticky" [attr.offset]=offset+170 [attr.end]="'#content'">-->
+<!--            <div class="uk-tile uk-tile-secondary">-->
+<!--              <div class="tabsTitle uk-margin-bottom">Content</div>-->
+<!--              <ul class="uk-nav uk-nav-default uk-tab-right" uk-nav>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="skills_overview" [queryParams]="params">Overview</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="training_infrastructure" [queryParams]="params">Training Infrastructure</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="competence_centers" [queryParams]="params">-->
+<!--                    Open Science/Digital Competence centers-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="open_science_professionals" [queryParams]="params">-->
+<!--                    Open Science Professionals-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="open_science_curricula" [queryParams]="params">Open Science Curricula</a>-->
+<!--                </li>-->
+<!--                <li routerLinkActive="uk-active" [routerLinkActiveOptions]="linkActiveOptions">-->
+<!--                  <a routerLink="./" fragment="links" [queryParams]="params">Links to national initiatives on Digital Skills</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="uk-width-1-1" id="contributors_list">
+          <div id="contributors">
+            <div class="uk-text-secondary">Additional Contributors</div>
+            @let contributors = surveyAnswer['CONTRIBUTORS']?.['Question34'];
+            <ng-container *ngIf="contributors && contributors[0]['Question34-1'] && contributors[0]['Question34-2']; else noContributors">
+              <ul class="uk-list uk-list-circle">
+                <li *ngFor="let element of contributors" class="uk-margin-top">
+                  <span [innerHTML]="element['Question34-1']"></span>
+                  @if (element['Question34-2']) {
+                    &nbsp;<span [innerHTML]="element['Question34-2']"></span>
+                  }
+                  @if (element['Question34-3']) {
+                    ,&nbsp;<span [innerHTML]="element['Question34-3']"></span>
+                  }
+                </li>
+              </ul>
+            </ng-container>
+            <ng-template #noContributors><p>N/A</p></ng-template>
           </div>
         </div>
 
